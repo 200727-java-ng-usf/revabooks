@@ -1,6 +1,4 @@
-package com.revature;
-
-import java.util.List;
+package com.revature.revabooks.models;
 
 public class Book {
     Integer id;

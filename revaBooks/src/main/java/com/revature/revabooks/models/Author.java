@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.revabooks.models;
 
 public class Author {
     String firstName;

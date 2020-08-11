@@ -1,4 +1,6 @@
-package com.revature;
+package com.revature.revabooks;
+
+import com.revature.revabooks.models.User;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
