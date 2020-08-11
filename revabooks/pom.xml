@@ -7,7 +7,19 @@
     <groupId>org.example</groupId>
     <artifactId>revabooks</artifactId>
     <version>1.0-SNAPSHOT</version>
-<dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
@@ -22,5 +34,11 @@
         <scope>test</scope>
     </dependency>
 </dependencies>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
 
 </project>
