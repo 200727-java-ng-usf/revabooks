@@ -1,5 +1,6 @@
 package com.revature.revabooks.models;
 
 public enum Role {
-    // String roleName;
+    // values declared within enums are constants and are comma separated
+    ADMIN, MANAGER, PREMIUM_MEMBER, BASIC_MEMBER, LOCKED;
 }
