@@ -2,7 +2,7 @@ package com.revature.revabooks.models;
 
 import java.util.Objects;
 
-public class appUser {
+public class AppUser {
 
     // Set up fields
     private Integer id;
@@ -12,9 +12,9 @@ public class appUser {
     private String password;
     private Role role;
 
-    public appUser(){}
+    public AppUser(){}
 
-    public appUser(String firstName, String lastName, String userName, String password, Role role) {
+    public AppUser(String firstName, String lastName, String userName, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -22,12 +22,12 @@ public class appUser {
         this.role = role;
     }
 
-    public appUser(Integer id, String firstName, String lastName, String userName, String password, Role role) {
+    public AppUser(Integer id, String firstName, String lastName, String userName, String password, Role role) {
         this(firstName, lastName, userName, password, role);
         this.id = id;
     }
 
-    public appUser(appUser copy) {
+    public AppUser(AppUser copy) {
         this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.password, copy.role);
     }
 
@@ -95,7 +95,7 @@ public class appUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        appUser appUser = (appUser) o;
+        AppUser appUser = (AppUser) o;
         return Objects.equals(id, appUser.id) &&
                 Objects.equals(firstName, appUser.firstName) &&
                 Objects.equals(lastName, appUser.lastName) &&
