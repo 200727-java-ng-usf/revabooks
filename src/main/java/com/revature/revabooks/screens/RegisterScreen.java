@@ -10,9 +10,11 @@ public class RegisterScreen extends Screen {
 
     private UserService userService;
 
-    public RegisterScreen() {
+    public RegisterScreen(UserService userService) {
         System.out.println("[LOG] - instanciating " + this.getClass().getName());
-        userService = new UserService();
+//        userService = new UserService();
+        this.userService = userService;
+
 
     }
 

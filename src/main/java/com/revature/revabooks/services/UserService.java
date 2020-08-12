@@ -4,13 +4,16 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
+import java.util.HashSet;
+
 public class UserService {
 
     private UserRepository userRepo;
 
-    public UserService() {
+    public UserService(UserRepository repo) {
         System.out.println("[LOG] instantiating " + this.getClass().getName());
-        userRepo = new UserRepository();
+        userRepo =  repo;
+//        userRepo = new UserRepository();
     }
 
     public AppUser authentication(String username, String password) {
@@ -36,6 +39,10 @@ public class UserService {
         return userRepo.save(newUser);
 
     }
+//    public Set<AppUser>getAllUsers(){
+//        return new HashSet<>();
+//    }
+
 
     public AppUser update(AppUser updateUser) {
         return null;
