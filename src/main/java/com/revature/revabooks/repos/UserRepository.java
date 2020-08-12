@@ -10,4 +10,10 @@ public class UserRepository {
     public AppUser findUserByCredentials(String username, String password){
         return userDataset.findUserByCredential(username, password);
     }
+    public AppUser findUserByUsername(String username){
+        return userDataset.findByUserName(username);
+    }
+    public AppUser save(AppUser newUser){
+        return userDataset.addUser(newUser);
+    }
 }

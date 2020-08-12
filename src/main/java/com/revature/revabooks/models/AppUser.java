@@ -15,14 +15,15 @@ public class AppUser {
         super();
     }
 
-    public AppUser(String firstName, String lastName, String username, String password, Role role) {
+    public AppUser(String firstName, String lastName, String username, String password) {
 
         FirstName = firstName;
         LastName = lastName;
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.role = Role.LOCKED;
     }
+
 
     //constructor chaining
     public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
@@ -34,6 +35,12 @@ public class AppUser {
     //copy constructor
     public AppUser(AppUser copy) {
         this(copy.id, copy.FirstName, copy.LastName, copy.username, copy.password, copy.role);
+    }
+
+
+    public AppUser(String firstName, String lastName, String username, String password, Role role) {
+        this(firstName, lastName, username, password);
+        this.role = role;
     }
 
     public Integer getId() {

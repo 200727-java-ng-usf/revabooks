@@ -4,36 +4,40 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.services.UserService;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class LoginScreen extends Screen {
+public class RegisterScreen extends Screen {
+
     private UserService userService;
 
-    public LoginScreen() {
+    public RegisterScreen() {
         System.out.println("[LOG] - instanciating " + this.getClass().getName());
         userService = new UserService();
+
     }
 
-    /**
-     * render the login screen menu to compile
-     */
     @Override
     public void render() {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        String username, password;
+        String firstName, LastName, username, password;
 
         try {
-            System.out.println("please provide your credentials");
+
+            System.out.println("Sign up for a new account");
+            System.out.print("First Name: ");
+            firstName = console.readLine();
+            System.out.print("Last Name: ");
+            LastName = console.readLine();
             System.out.print("Username: ");
             username = console.readLine();
             System.out.print("Password: ");
             password = console.readLine();
 
 
-            System.out.println("you entered: " + username + "/" + password);
-            AppUser  authUser = userService.authentication(username,password);
-            System.out.println(authUser);
+
+            AppUser newUser = new AppUser(firstName, LastName,username, password);
+            AppUser registeredUser = userService.register(newUser);
+            System.out.println(registeredUser);
 
         } catch (Exception e) {
             e.printStackTrace();

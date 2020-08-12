@@ -30,8 +30,6 @@ public class UserDB extends HashMap<Integer, AppUser> {
 
     public AppUser findUserByCredential(String username, String password){
 
-
-
         for (AppUser user: userDataset.values()){
             if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                 return user;
@@ -39,4 +37,18 @@ public class UserDB extends HashMap<Integer, AppUser> {
         }
         return null;
     }
+    public AppUser findByUserName(String username){
+        for (AppUser user: userDataset.values()){
+            if (user.getUsername().equals(username)){
+                return user;
+            }
+        }
+        return null;
+    }
 }
+
+
+
+
+
+
