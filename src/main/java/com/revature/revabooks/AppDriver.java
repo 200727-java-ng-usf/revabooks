@@ -1,7 +1,9 @@
 package com.revature.revabooks;
 
+import com.revature.revabooks.repos.UserRepository;
 import com.revature.revabooks.screens.LoginScreen;
 import com.revature.revabooks.screens.RegisterScreen;
+import com.revature.revabooks.services.UserService;
 
 import java.io.IOException;
 
@@ -9,10 +11,13 @@ public class AppDriver {
 
     public static void main(String[] args) throws IOException {
 
-        RegisterScreen registerScreen = new RegisterScreen();
+        UserRepository userRepo = new UserRepository();
+        UserService userService = new UserService(userRepo);
+
+        RegisterScreen registerScreen = new RegisterScreen(userService);
         registerScreen.render();
 
-        LoginScreen loginScreen = new LoginScreen();
+        LoginScreen loginScreen = new LoginScreen(userService);
         loginScreen.render();
 
 

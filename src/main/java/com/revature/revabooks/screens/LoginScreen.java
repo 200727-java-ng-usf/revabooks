@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 
 public class LoginScreen extends Screen{
 
+    //UserService is a dependency to the login screen
+    //inject the dependency through the constructor (constructor injection)
     private UserService userService;
 
     public LoginScreen(UserService userService){

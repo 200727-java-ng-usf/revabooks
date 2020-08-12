@@ -8,6 +8,10 @@ public class UserRepository {
 
     private UserDB userDataset = UserDB.userDataset;
 
+    public UserRepository(){
+        System.out.println("[LOG] Instantiating: "+this.getClass().getName());
+    }
+
 
     public AppUser findUserByCredentials(String username, String password){
 
