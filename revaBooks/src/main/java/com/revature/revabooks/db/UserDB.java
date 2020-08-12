@@ -36,4 +36,17 @@ public class UserDB extends HashMap<Integer, AppUser> {
         return null;
     }
 
+    public AppUser findUserByUsername(String username) {
+
+//        return userDataset.values().stream().filter(user -> user.getUsername().equals(username)).findFirst().orElse(null);
+
+        for (AppUser user : userDataset.values()) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
 }
