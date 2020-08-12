@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LoginScreen extends Screen{
-
+// UserService is a dependency to the LoginScreen
     private UserService userService;
-
-    public LoginScreen(){
+//  Inject the dependency through the constructor (constructor injection)
+    public LoginScreen(UserService userService){
         System.out.println("[LOG] - Instantiating"+ this.getClass().getName());
-        userService = new UserService();
+
+        this.userService = userService; // this is loosely coupled , becasue this class is not responsible for instantiation of a userService
+//        userService = new UserService();
 
     }
 
