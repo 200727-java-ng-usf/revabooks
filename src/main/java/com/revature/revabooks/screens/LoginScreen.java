@@ -10,9 +10,9 @@ public class LoginScreen extends Screen {
 
     private UserService userService;
 
-    public LoginScreen() {
-        System.out.println("[LOG] - Instantiating" + this.getClass().getName());
-        userService = new UserService();
+    public LoginScreen(UserService userService) {
+        System.out.println("[LOG]");
+        this.userService = userService;
     }
 
     @Override

@@ -35,4 +35,13 @@ public class UserDb extends HashMap<Integer, AppUser> {
         return null;
     }
 
+    public AppUser getUserByUsername(String username) {
+        for(AppUser user : userDataset.values()) {
+            if(user.getUserName().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
 }

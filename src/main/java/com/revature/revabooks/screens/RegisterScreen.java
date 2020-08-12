@@ -11,9 +11,9 @@ public class RegisterScreen extends Screen {
 
     private UserService userService;
 
-    public RegisterScreen() {
+    public RegisterScreen(UserService userService) {
         System.out.println("[LOG]");
-        userService = new UserService();
+        this.userService = userService;
     }
 
     @Override
