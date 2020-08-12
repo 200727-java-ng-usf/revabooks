@@ -11,10 +11,15 @@ public class UserService {
 
     private UserRepository userRepo;
 
-    public UserService(){
+    public UserService(UserRepository repo){
         System.out.println("[LOG] - Instantiating "+this.getClass().getName());
-        userRepo=new UserRepository();
+        //userRepo=new UserRepository(); //tight coupling! nigh impossible to unit test without dark magic!
+        // only COWARDS use tight coupling! target LOOSE coupling
+        userRepo = repo;
     }
+
+
+
 
     public AppUser authenticate(String username, String password){
         //returning AppUser
