@@ -22,8 +22,9 @@ public class UserService {
 	 * @return
 	 */
 	public AppUser authenticate(String username, String password){
-		if(username == null || username.trim() == "" ||
-		password == null || password.trim() == ""){
+
+		// Validate that the provided username and password are not non-values
+		if(username == null || username.trim().equals("") || password == null || password.trim().equals("")){
 			// TODO implement a custom invalid request exception.
 			throw new RuntimeException("Invalid credential values provided");
 		}
@@ -36,4 +37,8 @@ public class UserService {
 
 		return authenticatedUser;
 	}
+
+//	public AppUser register(AppUser user){
+//
+//	}
 }
