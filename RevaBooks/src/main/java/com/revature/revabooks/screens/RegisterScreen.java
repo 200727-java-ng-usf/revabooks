@@ -14,9 +14,10 @@ public class RegisterScreen extends Screen {
 	private String route = "/register";
 	private UserService userService;
 
-	public RegisterScreen(){
+	public RegisterScreen(UserService userService){
 		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-		userService = new UserService();
+		this.userService = userService;
+//		userService = new UserService();
 	}
 
 	@Override

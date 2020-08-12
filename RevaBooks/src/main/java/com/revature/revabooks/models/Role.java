@@ -8,9 +8,15 @@ public enum Role {
 	,LOCKED("Locked")
 	;
 	//naming convention for constant values is to make them ALL CAPS.
-
+	/**
+	 *
+	 */
 	private String roleName;
 
+	/**
+	 *
+	 * @param roleName
+	 */
 	Role(String roleName) {
 		this.roleName = roleName;
 	}

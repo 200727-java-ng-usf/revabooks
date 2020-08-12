@@ -1,4 +1,4 @@
-package com.revature.revabooks.models;
+package com.revature.revabooks.exceptions;
 
 public class ResourceNotFoundException extends Exception{
 }

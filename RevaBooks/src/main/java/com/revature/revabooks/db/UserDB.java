@@ -22,10 +22,11 @@ public class UserDB extends HashMap<Integer, AppUser> {
 	}
 
 	public AppUser addUser(AppUser newUser){
+//		System.out.println(key);
 		AppUser nUser = new AppUser(newUser);
 		nUser.setId(key);
-		userDataset.put(key++, newUser);
-		return newUser;
+		userDataset.put(key++, nUser);
+		return nUser;
 	}
 
 	public AppUser findUserByCredentials(String username, String password){
@@ -40,6 +41,23 @@ public class UserDB extends HashMap<Integer, AppUser> {
 			}
 		}
 		return null;
+	}
+
+	public AppUser findUserByUsername(String username){
+
+		// using the Stream API (all Collection implementations have a .stream() method)
+		return userDataset.values()
+				.stream()
+				.filter(user -> user.getUserName().equals(username))
+				.findFirst()
+				.orElse(null);
+
+//		for (AppUser user :userDataset.values()){
+//			if(user.getUserName().equals(username)){
+//				return user;
+//			}
+//		}
+//		return null;
 	}
 
 }

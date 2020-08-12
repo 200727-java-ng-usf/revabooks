@@ -10,7 +10,10 @@ public class UserRepository {
 
 	private UserDB userDataset = UserDB.userDataset;
 
-	// TODO replace mock implementation with in-memory persistence
+	public UserRepository(){
+		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+	}
+
 	public AppUser findUserByCredentials(String username, String password){
 
 		return userDataset.findUserByCredentials(username, password);
@@ -23,5 +26,14 @@ public class UserRepository {
 //
 //		return new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
 ////		return new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
+	}
+
+	public AppUser findUserByUsername(String username){
+		return userDataset.findUserByUsername(username);
+	}
+
+	public AppUser save(AppUser newUser){
+//		return newUser;
+		return userDataset.addUser(newUser);
 	}
 }

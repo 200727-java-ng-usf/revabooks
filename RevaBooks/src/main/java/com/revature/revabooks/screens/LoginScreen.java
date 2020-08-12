@@ -9,11 +9,16 @@ import java.io.InputStreamReader;
 
 public class LoginScreen extends Screen{
 	private String name;
+	// UserrService is a dependency to the LoginScreen
 	private UserService userService;
 
-	public LoginScreen(){
+	// Inject the dependency through the constructor (constructor injection)
+	public LoginScreen(UserService userService){
 		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-		userService = new UserService();
+
+		// loosely coupled, because this class is not responsible for instantiation of a UserService
+		this.userService = userService;
+//		userService = new UserService(); // tight coupling! We aim for loose coupling
 	}
 
 	/**
