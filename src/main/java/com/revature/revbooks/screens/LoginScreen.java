@@ -13,6 +13,8 @@ public class LoginScreen {
 
     public LoginScreen(){
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+
+        // make a link to the UserService
         userService = new UserService();
     }
 
@@ -34,6 +36,7 @@ public class LoginScreen {
             System.out.println("Password: ");
             password = console.readLine();
 
+            // pass the userInput to check for authentication
             AppUser authUser = userService.authenticate(username,password);
             System.out.println(authUser);
 

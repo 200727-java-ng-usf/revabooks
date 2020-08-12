@@ -16,6 +16,7 @@ public class UserService {
     public AppUser authenticate(String username, String password) {
 
         // username.trim().equals("") make sure not empty string
+        // validate the user input are not null also
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new RuntimeException("Invalid credential values provide!");
         }
