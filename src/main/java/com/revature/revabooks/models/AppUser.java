@@ -23,13 +23,21 @@ public class AppUser {
         this.role = role;
     }
 
+    public AppUser(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.role = Role.LOCKED;
+    }
+
     public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
         this(firstName, lastName, username, password, role);
         this.id = id;
 
     }
 
-    //copy constructor
+    //copy constructor. Used constructor chaining
     public AppUser(AppUser copy) {
         this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password,copy.role);
     }
