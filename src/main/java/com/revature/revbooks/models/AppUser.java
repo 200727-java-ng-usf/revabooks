@@ -19,11 +19,17 @@ public class AppUser {
     // constructor with no id because id does not exist when you sign up
     public AppUser(String firstname, String lastname, String username, String password, Role role) {
 
+        this(firstname, lastname, username, password);
+        this.role = role;
+    }
+
+    // constructor for register
+    public AppUser(String firstname, String lastname, String username, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.role = Role.LOCKED;
     }
 
     public AppUser(Integer id, String firstname, String lastname, String username, String password, Role role) {

@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class LoginScreen {
+public class LoginScreen extends Screen {
 
     private UserService userService;
 
@@ -22,6 +22,8 @@ public class LoginScreen {
     /**
      * Renders the login screen menu to the console
      */
+
+    @Override
     public void render(){
 
         // BufferedReader object to read user input
