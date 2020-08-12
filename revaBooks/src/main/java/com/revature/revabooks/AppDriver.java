@@ -8,8 +8,6 @@ import java.io.InputStreamReader;
 
 public class AppDriver {
     public static void main(String[] args) {
-//        Boolean appRunning = false;
-//        AppUser currentUser = new AppUser();
 //
         LoginScreen loginScreen = new LoginScreen();
         loginScreen.render();

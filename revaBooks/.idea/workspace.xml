@@ -23,15 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="379c668c-1402-4d12-87d6-083ff8456f14" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/db/UserDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/AppDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/AppDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,10 +115,11 @@
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="2220" y="297" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597178665326" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1597171314019">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2446" y="393" key="FileChooserDialogImpl" timestamp="1597249193416">
+      <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597171314019" />
+    <state x="2446" y="393" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597249193416" />
     <state x="2104" y="209" key="SettingsEditor" timestamp="1597174322938">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
