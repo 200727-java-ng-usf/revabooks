@@ -1,15 +1,20 @@
 package com.revature.revabooks.services;
 
 import com.revature.revabooks.models.AppUser;
+import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserService {
 
     private UserRepository userRepo;
 
-    public UserService() {
+    public UserService(UserRepository repo) {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-        userRepo = new UserRepository();
+        userRepo = repo;
+//        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
 
     public AppUser authenticate(String username, String password) {
@@ -38,11 +43,38 @@ public class UserService {
             throw new RuntimeException("Invalid user field values provided during registration!");
         }
 
+        if (userRepo.findUserByUsername(newUser.getUsername()) != null) {
+            // TODO implement a custom ResourcePersistenceException
+            throw new RuntimeException("Provided username is already in use!");
+        }
+
+        newUser.setRole(Role.BASIC_MEMBER);
+        return userRepo.save(newUser);
+
+    }
+
+    public Set<AppUser> getAllUsers() {
+        return new HashSet<>();
+    }
+
+    public Set<AppUser> getUsersByRole() {
+        return new HashSet<>();
+    }
+
+    public AppUser getUserById(int id) {
         return null;
     }
 
-    public AppUser update(AppUser updatedUser) {
+    public AppUser getUserByUsername(String username) {
         return null;
+    }
+
+    public boolean deleteUserById(int id) {
+        return false;
+    }
+
+    public boolean update(AppUser updatedUser) {
+        return false;
     }
 
     /**
