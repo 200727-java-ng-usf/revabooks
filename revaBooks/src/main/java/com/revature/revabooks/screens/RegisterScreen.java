@@ -1,6 +1,7 @@
 package com.revature.revabooks.screens;
 
 import com.revature.revabooks.models.AppUser;
+import com.revature.revabooks.repos.UserRepository;
 import com.revature.revabooks.services.UserService;
 
 import java.io.BufferedReader;
@@ -10,9 +11,10 @@ public class RegisterScreen extends Screen{
 
     private UserService userService;
 
-    public RegisterScreen() {
+    public RegisterScreen(UserService userService) {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-        userService = new UserService();
+        // userService = new UserService(); //tight coupling! we want loose coupling
+        this.userService = userService;
     }
 
     @Override
