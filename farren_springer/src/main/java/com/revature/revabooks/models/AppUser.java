@@ -13,8 +13,6 @@ public class AppUser {
     private Role role;
 
     // constructors
-
-
     public AppUser() {
         super();
     }
