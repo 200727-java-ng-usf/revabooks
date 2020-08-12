@@ -20,10 +20,10 @@ public class UserRepository {
     }
 
     public AppUser findUserByUsername(String username) {
-
+        return userDataset.findUserByUsername(username);
     }
 
     public AppUser save(AppUser newUser) {
-
+        return userDataset.addUser(newUser);
     }
 }

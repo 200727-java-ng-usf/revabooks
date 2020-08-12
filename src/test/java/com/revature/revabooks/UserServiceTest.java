@@ -15,8 +15,8 @@ public class UserServiceTest {
     private UserRepository mockUserRepo = Mockito.mock(UserRepository.class);
     Set<AppUser> mockUsers = new HashSet<>();
 
-    @Before
-    public void setup {
-        sut = new
-    }
+//    @Before
+//    public void setup {
+//        sut = new
+//    }
 }

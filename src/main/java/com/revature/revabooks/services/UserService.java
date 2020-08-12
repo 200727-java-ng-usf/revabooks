@@ -13,7 +13,7 @@ public class UserService {
 
     public UserService(UserRepository repo) {
         System.out.println("[LOG] - Instantiating" + this.getClass().getName());
-        userRepo = new repo();
+        userRepo = repo;
     }
     public AppUser authenticate(String username, String password) {
         if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {

@@ -11,10 +11,10 @@ public class AppDriver {
         UserRepository userRepo = new UserRepository();
         UserService userService = new UserService(userRepo);
 
-        LoginScreen loginScreen = new LoginScreen();
+        LoginScreen loginScreen = new LoginScreen(userService);
         loginScreen.render();
 
-        RegisterScreen registerScreen = new RegisterScreen();
+        RegisterScreen registerScreen = new RegisterScreen(userService);
         registerScreen.render();
     }
 }
