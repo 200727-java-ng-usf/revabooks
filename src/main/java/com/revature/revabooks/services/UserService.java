@@ -5,6 +5,7 @@ import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class UserService {
 
@@ -39,21 +40,36 @@ public class UserService {
         return userRepo.save(newUser);
 
     }
-//    public Set<AppUser>getAllUsers(){
-//        return new HashSet<>();
-//    }
+    public Set<AppUser> getAllUsers() {
+        return new HashSet<>();
+    }
 
+    public Set<AppUser> getUsersByRole() {
+        return new HashSet<>();
+    }
 
-    public AppUser update(AppUser updateUser) {
+    public AppUser getUserById(int id) {
         return null;
     }
 
-    public boolean isUserValid(AppUser user) {
-        if (user == null) return false;
-        if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
-        if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
-        if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
-        if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
-        return true;
+    public AppUser getUserByUsername(String username) {
+        return null;
     }
+
+    public boolean deleteUserById(int id) {
+        return false;
+    }
+
+    public boolean update(AppUser updatedUser) {
+        return false;
+    }
+
+        public boolean isUserValid(AppUser user) {
+            if (user == null) return false;
+            if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
+            if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
+            if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
+            if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
+            return true;
+        }
 }
