@@ -9,7 +9,8 @@ public class UserRepository {
     //TODO replace mock implementation with in-memory persistence
     public AppUser findUserByCredentials(String username, String password){
         return userDataset.findUserByCredential(username,password);
-
+        
+//on top replaced what we had wrote on top
 //        if(!username.equals("admin") && !password.equals("p4ssw0rd") ){
 //         //   throw new RuntimeException("No user found with the given credentials")
 //            return null;

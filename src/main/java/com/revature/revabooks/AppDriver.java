@@ -1,6 +1,7 @@
 package com.revature.revabooks;
 
 import com.revature.revabooks.screens.LoginScreen;
+import com.revature.revabooks.screens.RegisterScreen;
 
 public class AppDriver {
 
@@ -10,4 +11,7 @@ public class AppDriver {
         loginScreen.render();
     }
 
+    RegisterScreen registerScreen = new RegisterScreen();
+
+    registerScreen.render();
 }

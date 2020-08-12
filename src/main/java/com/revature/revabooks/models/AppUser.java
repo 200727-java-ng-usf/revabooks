@@ -8,6 +8,8 @@ public class AppUser {
     //fields/ attributes
     private Integer id;
     private String firstName;
+
+
     private String LastName;
     private String userName;
     private String passWord;
@@ -18,11 +20,17 @@ public class AppUser {
         super();
     }
 
-    public AppUser(String firstName, String lastName, String userName, String passWord, Role role) {
+    public AppUser(String firstName, String lastName, String userName, String passWord) {
         this.firstName = firstName;
         this.LastName = lastName;
         this.userName = userName;
         this.passWord = passWord;
+        this.role = Role.LOCKED;
+    }
+
+
+    public AppUser(String firstName, String lastName, String userName, String passWord, Role role) {
+        this(firstName, lastName, userName, passWord);
         this.role = role;
     }
 
