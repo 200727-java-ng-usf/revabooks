@@ -14,6 +14,7 @@ public class UserService {
 
     public AppUser authenticate(String username, String password) {
 
+        // validate that the provided username and password are not non-values
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             // TODO implement a custom InvalidRequestException
             throw new RuntimeException("Invalid credential values provided!");
