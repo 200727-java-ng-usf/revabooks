@@ -1,5 +1,7 @@
 package com.revature.revabooks.services;
 
+import com.revature.revabooks.exceptions.AuthenticationException;
+import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
@@ -21,15 +23,13 @@ public class UserService {
 
         // validate that the provided username and password are not non-values
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
-            // TODO implement a custom InvalidRequestException
-            throw new RuntimeException("Invalid credential values provided!");
+            throw new InvalidRequestException("Invalid credential values provided!");
         }
 
         AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
 
         if (authenticatedUser == null) {
-            // TODO implement a custom AuthenticationException
-            throw new RuntimeException("No user found with the provided credentials");
+            throw new AuthenticationException("No user found with the provided credentials");
         }
 
         return authenticatedUser;
