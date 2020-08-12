@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class LoginScreen {
+public class LoginScreen extends Screen {
 
     private UserService userService;
 
@@ -20,7 +20,7 @@ public class LoginScreen {
     /**
      * Renders login screen menu to the console
      */
-
+    @Override
     public void render() {
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
