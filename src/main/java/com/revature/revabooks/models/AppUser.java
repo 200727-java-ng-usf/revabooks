@@ -12,7 +12,6 @@ public class AppUser {
     private String password;
     private Role role;
 
-
     // constructors
     public AppUser() {
         super();
@@ -23,6 +22,7 @@ public class AppUser {
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.role = Role.LOCKED;
     }
 
     public AppUser(String firstName, String lastName, String username, String password, Role role) {
@@ -33,10 +33,9 @@ public class AppUser {
     public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
         this(firstName, lastName, username, password, role);
         this.id = id;
-
     }
 
-    // copy constructor (used for conveniently copying values of one AppUser to create a new instance with those values
+    // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
     public AppUser(AppUser copy) {
         this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.role);
     }
@@ -90,8 +89,7 @@ public class AppUser {
         this.role = role;
     }
 
-    // overridden methods
-
+    // overridden Object methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -121,4 +119,5 @@ public class AppUser {
                 ", role=" + role +
                 '}';
     }
+
 }

@@ -2,7 +2,6 @@ package com.revature.revabooks.db;
 
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import java.util.HashMap;
 
@@ -18,6 +17,7 @@ public class UserDB extends HashMap<Integer, AppUser> {
         userDataset.addUser(new AppUser("Dylan", "McBee", "dmcbee", "password", Role.BASIC_MEMBER));
         userDataset.addUser(new AppUser("Nickolas", "Jurczak", "njurczak", "drowssap", Role.BASIC_MEMBER));
     }
+
     public AppUser addUser(AppUser newUser) {
         AppUser nUser = new AppUser(newUser);
         nUser.setId(key);
@@ -27,11 +27,31 @@ public class UserDB extends HashMap<Integer, AppUser> {
 
     public AppUser findUserByCredentials(String username, String password) {
 
-        for (AppUser user: userDataset.values()) {
+        for (AppUser user : userDataset.values()) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user;
             }
         }
+
         return null;
     }
+
+    public AppUser findUserByUsername(String username) {
+
+        // using the Stream API (all Collection implementations have a .stream() method)
+//        return userDataset.values()
+//                          .stream()
+//                          .filter(user -> user.getUsername().equals(username))
+//                          .findFirst()
+//                          .orElse(null);
+
+        for (AppUser user : userDataset.values()) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
 }

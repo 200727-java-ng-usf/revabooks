@@ -3,7 +3,7 @@ package com.revature.revabooks.screens;
 public abstract class Screen {
 
     /**
-     * render method from Screen abstract class
+     * Displays a particular menu depending on the screen implementation.
      */
     public abstract void render();
 
