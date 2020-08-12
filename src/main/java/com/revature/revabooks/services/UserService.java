@@ -16,5 +16,12 @@ public class UserService {
             throw new RuntimeException("Invalid credentials provided!");
         }
         AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
+
+        if (authenticatedUser == null) {
+            // TODO implement a custom AuthenticationException
+            throw new RuntimeException("No user found with the provided credentials");
+        }
+
+        return authenticatedUser;
     }
 }
