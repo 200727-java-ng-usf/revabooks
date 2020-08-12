@@ -21,8 +21,39 @@ public class UserService {
 
         if(authenticatedUser == null){
             //TODO implemnt a custom AuthenticationException
-            throw new RuntimeException("No user found with the provided credentails");
+            throw new RuntimeException("No user found with the provided credential");
         }
         return authenticatedUser;
     }
+
+    public AppUser register(AppUser newUser){
+        if(!isUserValid(newUser)){
+            //TODO implement a custom InvalidRequestException
+            throw new RuntimeException("Invalid user field values provided during registration!");
+        }
+        return null;
+
+    }
+
+    public AppUser update(AppUser updatedUser){
+        return null;
+    }
+
+    /**
+     * Validates that the given user and its fields are valid (not null or empty strings).
+     * does not perform validation on id or role fields.
+     * @param user
+     * @return true or false depending on if the user was valid or not
+     */
+    public boolean isUserValid (AppUser user){
+        if (user==null) return false;
+
+        if(user.getFirstName() == null || user.getFirstName().trim().equals(""))return false;
+        if(user.getLastName() == null || user.getLastName().trim().equals(""))return false;
+        if(user.getUserName() == null || user.getUserName().trim().equals(""))return false;
+        if(user.getPassWord() == null || user.getPassWord().trim().equals(""))return false;
+        return true;
+
+    }
 }
+

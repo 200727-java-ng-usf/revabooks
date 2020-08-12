@@ -36,4 +36,19 @@ public class UserDB extends HashMap<Integer, AppUser> {
         return null;
     }
 
+
+
+    public AppUser findUserByUsername(String username){
+        //Uses the Stream API (all Collection implementations have a .stream()
+        return userDataset.values()
+                .stream()
+                .filter(user -> user.getUserName().equals(username))
+                .findFirst()
+                .orElse(null);
+        //the top does exactly the same as the bottom here
+//        for(AppUser user: userDataset.values() ) {
+//            if (user.getUserName().equals(username)) {
+//                return user;
+    }
+
 }
