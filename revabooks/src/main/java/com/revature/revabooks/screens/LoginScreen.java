@@ -1,4 +1,5 @@
 package com.revature.revabooks.screens;
+import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.services.UserService;
 
 import java.io.BufferedReader;
@@ -30,7 +31,8 @@ public class LoginScreen {
             System.out.println("Please provide password: ");
             password = console.readLine();
 
-            System.out.println("You entered " + username + " / "+ password);
+            AppUser authUser = userService.authentic(username,password);
+            System.out.println(authUser);
         }catch(Exception e){
             e.printStackTrace();
         }

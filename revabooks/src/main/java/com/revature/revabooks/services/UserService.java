@@ -8,12 +8,12 @@ public class UserService {
     private UserRepo userRepo;
 
     public UserService(){
-        System.out.println("[LOG] - Instaniatting " + this.getClass().getName());
+        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
         userRepo = new UserRepo();
     }
 
     public AppUser authentic(String username, String password){
-
+        //validate that the provided username and password are not non values
         if(username==null || username.trim().equals("")||password==null||password.trim().equals("")){
 
             //TODO implement a custom InvalidRequestException
