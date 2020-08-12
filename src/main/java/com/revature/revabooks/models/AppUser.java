@@ -14,11 +14,16 @@ public class AppUser {
 
     public AppUser(){}
 
-    public AppUser(String firstName, String lastName, String userName, String password, Role role) {
+    public AppUser(String firstName, String lastName, String userName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
+        this.role = Role.LOCKED;
+    }
+
+    public AppUser(String firstName, String lastName, String userName, String password, Role role) {
+        this(firstName, lastName, userName, password);
         this.role = role;
     }
 
