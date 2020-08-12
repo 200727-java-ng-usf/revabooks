@@ -14,4 +14,22 @@ public class UserRepo {
 
     }
 
+    public AppUser save(AppUser newUser){
+        return userDataset.addUser(newUser);
+    }
+
+    public AppUser findUserByUsername(String username) {
+        for (AppUser user : userDataset.values()) {
+            if (user.getUsername().equals(username)) {
+                return user;
+
+            }
+
+        }
+        return null;
+    }
+    public UserRepo() {
+        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+    }
+
 }
