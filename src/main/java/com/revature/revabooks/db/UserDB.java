@@ -26,21 +26,28 @@ public class UserDB extends HashMap<Integer, AppUser> {
     }
 
     public AppUser findUserByCredentials(String username, String password){
-
-//        userDataset.values().stream().filter(user ->{
-//            if(user.getUsername().equals(username) && user.getPassword().equals(password)){
-//                return user;
-//            }
-//            return null;
-//        });
-
         for(AppUser user : userDataset.values()){
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
                 return user;
             }
         }
         return null;
+//                userDataset.values().stream().filter(user ->{
+//            if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+//                return user;
+//            }
+//            return null;
+//        });
     }
 
+    public AppUser findUserByUsername(String username){
+        for(AppUser user : userDataset.values()){
+            if(user.getUsername().equals(username)){
+                return user;
+            }
+        }
+
+        return null;
+    }
 
 }

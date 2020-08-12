@@ -9,11 +9,13 @@ public class AppDriver {
 
     public static void main(String[] args) throws IOException {
 
+        RegisterScreen registerScreen = new RegisterScreen();
+        registerScreen.render();
+
         LoginScreen loginScreen = new LoginScreen();
         loginScreen.render();
 
-        RegisterScreen registerScreen = new RegisterScreen();
-        registerScreen.render();
+
 
     }
 

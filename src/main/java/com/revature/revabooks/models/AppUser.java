@@ -23,6 +23,7 @@ public class AppUser {
         this.role = role;
     }
 
+    //registration constructor
     public AppUser(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
