@@ -30,4 +30,42 @@ public class UserService {
         return authenticatedUser;
 
     }
+
+    public AppUser register(AppUser newUser) {
+
+        if (!isUserValid(newUser)) {
+            // TODO implement a custom InvalidRequestException
+            throw new RuntimeException("Invalid user field values provided during registration!");
+        }
+
+        // TODO implement a custom ResourcePersistenceException
+        // TODO cww provided username is already in use
+
+        // newUser.setRole();
+        // TODO cww
+        return null;
+    }
+
+    public AppUser update(AppUser updatedUser) {
+        return null;
+    }
+
+    /**
+     * Validates that the given user and its fields are valid (not null or empty strings). Does
+     * not perform validation on id or role fields.
+     *
+     * @param user
+     * @return true or false depending on if the user was valid or not
+     */
+    public boolean isUserValid(AppUser user) {
+        if (user== null ||
+            user.getFirstName() == null || user.getFirstName().trim().equals("") ||
+            user.getLastName() == null  || user.getLastName().trim().equals("")  ||
+            user.getUsername() == null  || user.getUsername().trim().equals("")  ||
+            user.getPassword() == null  || user.getPassword().trim().equals(""))
+            return false;
+
+        return true;
+
+    }
 }

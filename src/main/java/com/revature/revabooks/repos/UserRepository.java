@@ -20,4 +20,6 @@ public class UserRepository {
 //        return new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
 
     }
+
+    //TODO cww findUserByUsername, save
 }
