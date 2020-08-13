@@ -48,11 +48,11 @@ public class UserService {
 		//
 		if(!isUserValid(newUser)){
 			//TODO implement a custom InvalidRequestException
-			throw new RuntimeException("Invalid user field values provided during registration!");
+			throw new InvalidRequestException("Invalid user field values provided during registration!");
 		}
 		if(userRepo.findUserByUsername(newUser.getUserName()) != null){
 			// TODO implement a custom ResourcePersistenceException
-			throw new RuntimeException("Provided username is already in use!");
+			throw new AuthenticationException("Provided username is already in use!");
 		}
 
 		newUser.setRole(Role.BASIC_MEMBER);
