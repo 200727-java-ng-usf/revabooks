@@ -1,5 +1,7 @@
 package com.revature.revbooks.screens;
 
+import com.revature.revbooks.exceptions.AuthenticationException;
+import com.revature.revbooks.exceptions.InvalidRequestException;
 import com.revature.revbooks.models.AppUser;
 import com.revature.revbooks.services.UserService;
 
@@ -11,19 +13,17 @@ public class LoginScreen extends Screen {
 
     private UserService userService;
 
-    public LoginScreen(){
+    public LoginScreen(UserService userService){
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 
         // make a link to the UserService
-        userService = new UserService();
+        this.userService = userService;
     }
 
 
     /**
      * Renders the login screen menu to the console
      */
-
-    @Override
     public void render(){
 
         // BufferedReader object to read user input
@@ -45,6 +45,10 @@ public class LoginScreen extends Screen {
             System.out.println("You entered Username: " + username + "  Password: " + password);
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (InvalidRequestException e) {
+            e.printStackTrace();
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
         }
 
     }

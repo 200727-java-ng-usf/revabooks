@@ -13,11 +13,11 @@ public class UserDB extends HashMap<Integer, AppUser> {
 
     static {
 
-        userDataSet.addUser(new AppUser("Adam","Inn", "admin","password",Role.ADMIN));
-        userDataSet.addUser(new AppUser("yuanfeng","Gu","guyuanfeng8","12345",Role.PREMIUM_MEMBER));
-        userDataSet.addUser(new AppUser("Eden","Gu","melon","54321",Role.BASIC_MEMBER));
-        userDataSet.addUser(new AppUser("effie","shen","yanfei","abcde",Role.MANAGER));
-        userDataSet.addUser(new AppUser("yuqin","zhao","yuqin","abcde",Role.BASIC_MEMBER));
+        userDataSet.addUser(new AppUser(2,"Adam","Inn", "admin","password",Role.ADMIN));
+        userDataSet.addUser(new AppUser(3,"yuanfeng","Gu","guyuanfeng8","12345",Role.PREMIUM_MEMBER));
+        userDataSet.addUser(new AppUser(4,"Eden","Gu","melon","54321",Role.BASIC_MEMBER));
+        userDataSet.addUser(new AppUser(5,"effie","shen","yanfei","abcde",Role.MANAGER));
+        userDataSet.addUser(new AppUser(6,"yuqin","zhao","yuqin","abcde",Role.BASIC_MEMBER));
 
 
     }
@@ -26,7 +26,7 @@ public class UserDB extends HashMap<Integer, AppUser> {
         //for none duplicate variable name
         AppUser nUser = new AppUser(newUser);
         // set ID first
-        newUser.setId(key);
+        nUser.setId(key);
         // key will add one automatically ,self set
         userDataSet.put(key++,nUser);
 
@@ -47,4 +47,18 @@ public class UserDB extends HashMap<Integer, AppUser> {
         }
         return  null;
     }
+
+    public AppUser findUserByUsername(String username){
+
+        for(AppUser user:userDataSet.values()){
+            //checker
+            if (user.getUsername().equals(username)){
+                // if qualified return the AppUser the one matched
+                return  user;
+            }
+        }
+        return  null;
+
+    }
+
 }

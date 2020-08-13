@@ -10,10 +10,21 @@ public class UserRepository {
 
     // TODO replace mock implementation with in - memory
 
+    public UserRepository() {
+        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+    }
+
     public AppUser findUserCredentials( String username, String password){
 
         return userDataSet.findUserByCredentials(username,password);
-
-
     }
+
+    public AppUser findUserByUsername(String username){
+        return userDataSet.findUserByUsername(username);
+    }
+
+    public  AppUser save(AppUser newUser){
+        return userDataSet.addUser(newUser);
+    }
+
 }
