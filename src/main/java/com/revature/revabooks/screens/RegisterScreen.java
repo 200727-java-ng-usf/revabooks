@@ -6,44 +6,42 @@ import com.revature.revabooks.services.UserService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class LoginScreen extends Screen {
+public class RegisterScreen extends Screen {
 
-    // UserService is a dependency to the LoginScreen
     private UserService userService;
 
-    // Inject the dependency through the constructor (constructor injection)
-    public LoginScreen(UserService userService) {
+    public RegisterScreen(UserService userService) {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-
-        // loosely coupled, because this class is not responsible for instantiation of a UserService
         this.userService = userService;
-
-//        userService = new UserService();
-
+//        userService = new UserService(); // tight coupling! we aim for loose coupling
     }
 
-    /**
-     * Renders the login screen menu to the console.
-     */
     @Override
     public void render() {
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        String username, password;
+        String firstName, lastName, username, password;
 
         try {
-            System.out.println("Please provide your login credentials");
+
+            System.out.println("Sign up for a new account!");
+            System.out.print("First name: ");
+            firstName = console.readLine();
+            System.out.print("Last name: ");
+            lastName = console.readLine();
             System.out.print("Username: ");
             username = console.readLine();
             System.out.print("Password: ");
             password = console.readLine();
 
-            AppUser authUser = userService.authenticate(username, password);
-            System.out.println(authUser);
+            AppUser newUser = new AppUser(firstName, lastName, username, password);
+            AppUser registeredUser = userService.register(newUser);
+            System.out.println(registeredUser);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
 }

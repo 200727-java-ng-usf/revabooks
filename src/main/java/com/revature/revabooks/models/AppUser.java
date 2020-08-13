@@ -2,7 +2,7 @@ package com.revature.revabooks.models;
 
 import java.util.Objects;
 
-public class AppUser{
+public class AppUser {
 
     // fields/attributes
     private Integer id;
@@ -13,31 +13,34 @@ public class AppUser{
     private Role role;
 
     // constructors
-    public AppUser(){
+    public AppUser() {
         super();
-
     }
 
-    // when you gather the data, users did not pick the ID just yet
-    public AppUser(String firstName, String lastName, String username, String password, Role role) {
+    public AppUser(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.password= password;
+        this.password = password;
+        this.role = Role.LOCKED;
+    }
+
+    public AppUser(String firstName, String lastName, String username, String password, Role role) {
+        this(firstName, lastName, username, password);
         this.role = role;
     }
 
-    public AppUser(Integer id, String firstName, String lastName, String username,String password, Role role) {
+    public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
         this(firstName, lastName, username, password, role);
         this.id = id;
-
     }
 
-        public AppUser(AppUser copy){
+    // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
+    public AppUser(AppUser copy) {
         this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.role);
-        }
-    // getters and setters
+    }
 
+    // getters and setters
     public Integer getId() {
         return id;
     }
@@ -86,10 +89,7 @@ public class AppUser{
         this.role = role;
     }
 
-
-
-    // any other instance methods
-
+    // overridden Object methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -119,4 +119,5 @@ public class AppUser{
                 ", role=" + role +
                 '}';
     }
+
 }
