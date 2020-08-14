@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class UserServiceTests {
@@ -42,7 +43,7 @@ public class UserServiceTests {
         AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "secret", Role.ADMIN );
 
         Mockito.when(mockUserRepo.findUserByCredentials("admin", "secret"))
-                .thenReturn(expectedUser);
+                .thenReturn(Optional.of(expectedUser));
 
         //Act
         AppUser actualResult = sut.authenticate("admin", "secret");
@@ -63,6 +64,8 @@ public class UserServiceTests {
 
     @Test(expected = AuthenticationException.class)
     public void authenticationWithUnknownCredentials() {
+
+        sut.authenticate("garbage", "user");
 
     }
 
