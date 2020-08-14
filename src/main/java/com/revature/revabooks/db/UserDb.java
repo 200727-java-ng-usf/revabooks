@@ -4,6 +4,7 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class UserDb extends HashMap<Integer, AppUser> {
 
@@ -25,23 +26,35 @@ public class UserDb extends HashMap<Integer, AppUser> {
         return newUser;
     }
 
-    public AppUser findUserByCredentials(String username, String password) {
+//    public AppUser findUserByCredentials(String username, String password) {
+//
+//        for(AppUser user : userDataset.values()) {
+//            if(user.getUserName().equals(username) && user.getPassword().equals(password)) {
+//                return user;
+//            }
+//        }
+//        return null;
+//    }
 
-        for(AppUser user : userDataset.values()) {
-            if(user.getUserName().equals(username) && user.getPassword().equals(password)) {
-                return user;
-            }
-        }
-        return null;
+    public Optional<AppUser> findUserByUsername(String username) {
+        return userDataset.values()
+                            .stream()
+                            .filter(user -> user.getUserName().equals(username))
+                            .findFirst();
+
+
+//    public AppUser findUserByUsername(String username) {
+//        for(AppUser user : userDataset.values()) {
+//            if(user.getUserName().equals(username)) {
+//                return user;
+//            }
     }
 
-    public AppUser findUserByUsername(String username) {
-        for(AppUser user : userDataset.values()) {
-            if(user.getUserName().equals(username)) {
-                return user;
-            }
-        }
-        return null;
+        public Optional<AppUser> findUserByCredentials(String username, String password) {
+            return userDataset.values()
+                    .stream()
+                    .filter(user -> user.getUserName().equals(username) && user.getPassword().equals(password))
+                    .findFirst();
     }
 
 }

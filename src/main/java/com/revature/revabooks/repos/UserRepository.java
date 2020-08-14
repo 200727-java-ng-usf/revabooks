@@ -4,6 +4,8 @@ import com.revature.revabooks.db.UserDb;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 
+import java.util.Optional;
+
 public class UserRepository {
 
     public UserRepository() {
@@ -19,7 +21,7 @@ public class UserRepository {
         return new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
     }
 
-    public AppUser findUserByUsername(String username) {
+    public Optional<AppUser> findUserByUsername(String username) {
         return userDataset.findUserByUsername(username);
     }
 

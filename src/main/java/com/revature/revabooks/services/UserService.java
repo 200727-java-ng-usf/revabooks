@@ -5,6 +5,7 @@ import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class UserService {
@@ -32,6 +33,7 @@ public class UserService {
         if (!validateUserFields(newUser)) {
             throw new RuntimeException("Invalid user fields provided during registration.");
         }
+        Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUserName());
         if(userRepo.findUserByUsername(newUser.getUserName()) != null) {
             throw new RuntimeException("That username is already in use.");
         }
