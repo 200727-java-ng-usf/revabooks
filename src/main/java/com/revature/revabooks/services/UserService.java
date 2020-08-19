@@ -6,8 +6,7 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class UserService {
 
@@ -26,13 +25,16 @@ public class UserService {
             throw new InvalidRequestException("Invalid credential values provided!");
         }
 
-        AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
+        return userRepo.findUserByCredentials(username, password)
+                       .orElseThrow(AuthenticationException::new);
 
-        if (authenticatedUser == null) {
-            throw new AuthenticationException("No user found with the provided credentials");
-        }
+//        AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
 
-        return authenticatedUser;
+//        if (authenticatedUser == null) {
+//            throw new AuthenticationException("No user found with the provided credentials");
+//        }
+//
+//        return authenticatedUser;
 
     }
 
@@ -43,7 +45,8 @@ public class UserService {
             throw new RuntimeException("Invalid user field values provided during registration!");
         }
 
-        if (userRepo.findUserByUsername(newUser.getUsername()) != null) {
+        Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
+        if (existingUser.isPresent()) {
             // TODO implement a custom ResourcePersistenceException
             throw new RuntimeException("Provided username is already in use!");
         }

@@ -3,6 +3,8 @@ package com.revature.revabooks.repos;
 import com.revature.revabooks.db.UserDB;
 import com.revature.revabooks.models.AppUser;
 
+import java.util.Optional;
+
 public class UserRepository {
 
     private UserDB userDataset = UserDB.userDataset;
@@ -11,11 +13,11 @@ public class UserRepository {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
     }
 
-    public AppUser findUserByCredentials(String username, String password) {
+    public Optional<AppUser> findUserByCredentials(String username, String password) {
         return userDataset.findUserByCredentials(username, password);
     }
 
-    public AppUser findUserByUsername(String username) {
+    public Optional<AppUser> findUserByUsername(String username) {
         return userDataset.findUserByUsername(username);
     }
 
