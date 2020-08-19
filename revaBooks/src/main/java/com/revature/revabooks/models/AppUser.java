@@ -3,6 +3,8 @@ package com.revature.revabooks.models;
 import java.util.Objects;
 
 public class AppUser {
+
+    // fields/attributes
     private Integer id;
     private String firstName;
     private String lastName;
@@ -10,7 +12,7 @@ public class AppUser {
     private String password;
     private Role role;
 
-
+    // constructors
     public AppUser() {
         super();
     }
@@ -31,18 +33,19 @@ public class AppUser {
     public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
         this(firstName, lastName, username, password, role);
         this.id = id;
-
     }
 
+    // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
     public AppUser(AppUser copy) {
         this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.role);
     }
 
-    public int getId() {
+    // getters and setters
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,12 +89,13 @@ public class AppUser {
         this.role = role;
     }
 
+    // overridden Object methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return id == appUser.id &&
+        return Objects.equals(id, appUser.id) &&
                 Objects.equals(firstName, appUser.firstName) &&
                 Objects.equals(lastName, appUser.lastName) &&
                 Objects.equals(username, appUser.username) &&
@@ -115,4 +119,5 @@ public class AppUser {
                 ", role=" + role +
                 '}';
     }
+
 }

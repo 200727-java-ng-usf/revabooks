@@ -23,12 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="379c668c-1402-4d12-87d6-083ff8456f14" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/streams/Geode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/streams/StreamDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/db/UserDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/db/UserDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/exceptions/AuthenticationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/exceptions/AuthenticationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/AppUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/LoginScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/RegisterScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/RegisterScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/services/UserServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/services/UserServiceTests.java" afterDir="false" />
     </list>
@@ -67,7 +67,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mia_capoli_p0/project_0" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -181,39 +181,41 @@
     </state>
     <state x="686" y="114" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597261501275" />
     <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597435341175" />
-    <state x="2386" y="433" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597182773376">
-      <screen x="1920" y="200" width="1366" height="728" />
+    <state x="655" y="333" width="609" height="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597706941735">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="655" y="333" width="609" height="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597706941735" />
     <state x="2386" y="433" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597182773375" />
-    <state x="2220" y="297" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597178665326">
-      <screen x="1920" y="200" width="1366" height="728" />
+    <state x="422" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597706915713">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="422" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597706915713" />
     <state x="2220" y="297" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597178665326" />
-    <state x="2446" y="393" key="FileChooserDialogImpl" timestamp="1597269108985">
+    <state x="2446" y="393" key="FileChooserDialogImpl" timestamp="1597802745733">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597261712956" />
-    <state x="2446" y="393" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597269108985" />
-    <state width="1323" height="204" key="GridCell.Tab.0.bottom" timestamp="1597435889631">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597701011743" />
+    <state x="2446" y="393" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597802745733" />
+    <state width="1323" height="204" key="GridCell.Tab.0.bottom" timestamp="1597452281203">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597261968517" />
-    <state width="1323" height="204" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597435889631" />
-    <state width="1323" height="204" key="GridCell.Tab.0.center" timestamp="1597435889631">
+    <state width="1323" height="204" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
+    <state width="1323" height="204" key="GridCell.Tab.0.center" timestamp="1597452281203">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597261968517" />
-    <state width="1323" height="204" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597435889631" />
-    <state width="1323" height="204" key="GridCell.Tab.0.left" timestamp="1597435889631">
+    <state width="1323" height="204" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
+    <state width="1323" height="204" key="GridCell.Tab.0.left" timestamp="1597452281203">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597261968517" />
-    <state width="1323" height="204" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597435889631" />
-    <state width="1323" height="204" key="GridCell.Tab.0.right" timestamp="1597435889631">
+    <state width="1323" height="204" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
+    <state width="1323" height="204" key="GridCell.Tab.0.right" timestamp="1597452281203">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597261968517" />
-    <state width="1323" height="204" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597435889631" />
+    <state width="1323" height="204" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
     <state x="2104" y="209" key="SettingsEditor" timestamp="1597174322938">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>

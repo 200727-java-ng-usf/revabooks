@@ -1,7 +1,6 @@
 package com.revature.revabooks.screens;
 
 import com.revature.revabooks.models.AppUser;
-import com.revature.revabooks.repos.UserRepository;
 import com.revature.revabooks.services.UserService;
 
 import java.io.BufferedReader;

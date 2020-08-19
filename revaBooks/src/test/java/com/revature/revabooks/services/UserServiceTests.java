@@ -39,11 +39,10 @@ public class UserServiceTests {
 
     @Test
     public void authenticationWithValidCredentials() {
-        //Arrange
-        AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "secret", Role.ADMIN );
-
+        // Arrange
+        AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "secret", Role.ADMIN);
         Mockito.when(mockUserRepo.findUserByCredentials("admin", "secret"))
-                .thenReturn(Optional.of(expectedUser));
+                .thenReturn(expectedUser);
 
         //Act
         AppUser actualResult = sut.authenticate("admin", "secret");
