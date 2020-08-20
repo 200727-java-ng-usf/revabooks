@@ -1,11 +1,14 @@
 package com.revature.revabooks.services;
 
+import com.revature.revabooks.exceptions.AuthenticationException;
+import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+import static com.revature.revabooks.AppDriver.app;
 
 public class UserService {
 
@@ -14,42 +17,40 @@ public class UserService {
     public UserService(UserRepository repo) {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
         userRepo = repo;
-//        userRepo = new UserRepository();
+//        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
 
-    public AppUser authenticate(String username, String password) {
+    public void authenticate(String username, String password) {
 
         // validate that the provided username and password are not non-values
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
-            // TODO implement a custom InvalidRequestException
-            throw new RuntimeException("Invalid credential values provided!");
+            throw new InvalidRequestException("Invalid credential values provided!");
         }
 
-        AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
+        AppUser authUser = userRepo.findUserByCredentials(username, password)
+                                    .orElseThrow(AuthenticationException::new);
 
-        if (authenticatedUser == null) {
-            // TODO implement a custom AuthenticationException
-            throw new RuntimeException("No user found with the provided credentials");
-        }
-
-        return authenticatedUser;
+        app.setCurrentUser(authUser);
 
     }
 
-    public AppUser register(AppUser newUser) {
+    public void register(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
             // TODO implement a custom InvalidRequestException
             throw new RuntimeException("Invalid user field values provided during registration!");
         }
 
-        if (userRepo.findUserByUsername(newUser.getUsername()) != null) {
+        Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
+        if (existingUser.isPresent()) {
             // TODO implement a custom ResourcePersistenceException
             throw new RuntimeException("Provided username is already in use!");
         }
 
         newUser.setRole(Role.BASIC_MEMBER);
-        return userRepo.save(newUser);
+        AppUser registeredUser = userRepo.save(newUser);
+
+        app.setCurrentUser(registeredUser);
 
     }
 
@@ -57,11 +58,11 @@ public class UserService {
         return new HashSet<>();
     }
 
-    public Set<AppUser> getUserByRole() {
+    public Set<AppUser> getUsersByRole() {
         return new HashSet<>();
     }
 
-    public Set<AppUser> getUserById(int id) {
+    public AppUser getUserById(int id) {
         return null;
     }
 
