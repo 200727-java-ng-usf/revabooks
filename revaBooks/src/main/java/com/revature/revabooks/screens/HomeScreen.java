@@ -1,14 +1,11 @@
 package com.revature.revabooks.screens;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 import static com.revature.revabooks.AppDriver.app;
 
 public class HomeScreen extends Screen {
-
-    BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
     public HomeScreen() {
         super("HomeScreen", "/home");
@@ -24,7 +21,7 @@ public class HomeScreen extends Screen {
 
         try {
             System.out.print("> ");
-            String userSelection = app.getConsole().readLine();
+            String userSelection = app.getConsole().readLine().trim();
 
             switch (userSelection) {
                 case "1":

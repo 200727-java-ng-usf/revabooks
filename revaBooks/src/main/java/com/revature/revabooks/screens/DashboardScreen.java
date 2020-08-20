@@ -20,7 +20,7 @@ public class DashboardScreen extends Screen{
 
         try {
             System.out.print("> ");
-            String userSelection = app.getConsole().readLine();
+            String userSelection = app.getConsole().readLine().trim();
 
             switch (userSelection) {
                 case "1":

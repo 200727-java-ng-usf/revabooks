@@ -27,8 +27,8 @@ public class AppState {
               .addScreen(new RegisterScreen(userService))
               .addScreen(new LoginScreen(userService))
               .addScreen(new DashboardScreen())
-                .addScreen(new SearchBooksScreen(userService))
-                .addScreen(new UserProfileScreen(userService));
+              .addScreen(new SearchBooksScreen(userService))
+              .addScreen(new UserProfileScreen(userService));
 
     }
 

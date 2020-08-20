@@ -23,11 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="379c668c-1402-4d12-87d6-083ff8456f14" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/util/ConnectionFactoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/SearchBooksScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/SearchBooksScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/UserProfileScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/UserProfileScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/AppDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/AppDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/db/UserDB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/DashboardScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/DashboardScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/HomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/AppState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/AppState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ScreenRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ScreenRouter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +103,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ConnectionFactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="revaBooks" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.revature.revabooks.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.revature.revabooks.util" />
+      <option name="MAIN_CLASS_NAME" value="com.revature.revabooks.util.ConnectionFactoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="revaBooks" />
       <extension name="coverage">
@@ -131,6 +152,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.AppDriver" />
+        <item itemvalue="JUnit.ConnectionFactoryTest" />
         <item itemvalue="Application.StreamDriver" />
         <item itemvalue="JUnit.UserServiceTests.authenticationWithUnknownCredentials" />
         <item itemvalue="JUnit.UserServiceTests" />
@@ -173,11 +195,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="#Project_Structure/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597169333509" />
-    <state x="686" y="114" key="#com.intellij.ide.util.MemberChooser" timestamp="1597951829337">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser" timestamp="1597957901695">
+      <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="686" y="114" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597951829337" />
-    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597944030385" />
+    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597957901695" />
     <state x="655" y="333" width="609" height="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597706941735">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -188,31 +210,35 @@
     </state>
     <state x="422" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597706915713" />
     <state x="2220" y="297" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597178665326" />
+    <state x="2333" y="311" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1597957420686">
+      <screen x="1920" y="200" width="1366" height="728" />
+    </state>
+    <state x="2333" y="311" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597957420686" />
     <state x="2446" y="393" key="FileChooserDialogImpl" timestamp="1597802745733">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597701011743" />
     <state x="2446" y="393" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597802745733" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1597952609446">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="238" key="GridCell.Tab.0.bottom" timestamp="1597959664122">
+      <screen x="1920" y="200" width="1366" height="728" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952609446" />
-    <state width="1323" height="204" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1597952609446">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="319" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952745195" />
+    <state width="1323" height="238" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597959664122" />
+    <state width="1323" height="238" key="GridCell.Tab.0.center" timestamp="1597959664122">
+      <screen x="1920" y="200" width="1366" height="728" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952609446" />
-    <state width="1323" height="204" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1597952609445">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="319" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952745195" />
+    <state width="1323" height="238" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597959664122" />
+    <state width="1323" height="238" key="GridCell.Tab.0.left" timestamp="1597959664122">
+      <screen x="1920" y="200" width="1366" height="728" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952609445" />
-    <state width="1323" height="204" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1597952609446">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="319" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952745195" />
+    <state width="1323" height="238" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597959664122" />
+    <state width="1323" height="238" key="GridCell.Tab.0.right" timestamp="1597959664122">
+      <screen x="1920" y="200" width="1366" height="728" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952609446" />
-    <state width="1323" height="204" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597452281203" />
+    <state width="1877" height="319" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952745195" />
+    <state width="1323" height="238" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597959664122" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1597952609447">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -246,21 +272,5 @@
     </state>
     <state x="486" y="70" width="945" height="969" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597259394896" />
     <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597183205566" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/DashboardScreen.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/SearchBooksScreen.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
