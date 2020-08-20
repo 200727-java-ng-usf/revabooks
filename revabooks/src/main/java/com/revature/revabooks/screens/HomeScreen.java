@@ -47,4 +47,9 @@ public class HomeScreen extends Screen {
         }
     }
 
+    @Override
+    public void add(Screen screen) {
+
+    }
+
 }

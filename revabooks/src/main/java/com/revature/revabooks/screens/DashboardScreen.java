@@ -12,4 +12,9 @@ public class DashboardScreen extends Screen{
         System.out.println("Dash works!");
 
     }
+
+    @Override
+    public void add(Screen screen) {
+
+    }
 }

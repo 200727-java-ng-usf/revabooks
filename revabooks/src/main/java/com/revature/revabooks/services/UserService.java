@@ -7,6 +7,8 @@ import com.revature.revabooks.repos.UserRepo;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class UserService {
 
     private UserRepo userRepo;
@@ -24,7 +26,7 @@ public class UserService {
             throw new RuntimeException("Invalid credential values provided!");
         }
 
-        AppUser authenticatedUser = userRepo.findUserCredentials(username,password);
+        userRepo.findUserCredentials(username,password);
 
         if (authenticatedUser == null) {
             // TODO implement a custom AuthenticationException
@@ -45,7 +47,9 @@ public class UserService {
         }
 
         newUser.setRole(Role.BASIC_MEMBER);
-        return userRepo.save(newUser);
+        userRepo.save(newUser);
+
+        app.getCurrentUser(newUser);
     }
 
     public AppUser update(AppUser updatedUser){
