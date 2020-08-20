@@ -14,9 +14,10 @@ public class AppDriver {
 	 */
 
 	public static void main(String[] args) {
-		app.setDebug(true);
 		while(app.isAppRunning()){
+			System.out.println("start of while loop");
 			app.getRouter().navigate("/home");
+			System.out.println("end of while loop");
 		}
 //
 //		HomeScreen homeScreen = new HomeScreen();
