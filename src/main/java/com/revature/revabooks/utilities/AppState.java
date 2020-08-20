@@ -2,9 +2,7 @@ package com.revature.revabooks.utilities;
 
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.repos.UserRepository;
-import com.revature.revabooks.screens.HomeScreen;
-import com.revature.revabooks.screens.LoginScreen;
-import com.revature.revabooks.screens.RegisterScreen;
+import com.revature.revabooks.screens.*;
 import com.revature.revabooks.services.UserService;
 import com.revature.revabooks.utilities.ScreenRouter;
 
@@ -15,7 +13,7 @@ public class AppState {
 
     private BufferedReader console;
     private AppUser currentUser;
-    private com.revature.revabooks.util.ScreenRouter router;
+    private ScreenRouter router;
     private boolean appRunning;
 
     public AppState() {
@@ -31,7 +29,11 @@ public class AppState {
         router.addScreen(new HomeScreen())
                 .addScreen(new RegisterScreen(userService))
                 .addScreen(new LoginScreen(userService))
-                //.addScreen(new DashboardScreen());
+                .addScreen(new DashboardScreen())
+                .addScreen(new SearchBooksScreen())
+                .addScreen(new UserProfileScreen());
+
+
 
         System.out.println("[LOG] - Application initialization complete.");
 

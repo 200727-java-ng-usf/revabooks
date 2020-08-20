@@ -1,5 +1,6 @@
 package com.revature.revabooks.services;
 
+import com.revature.revabooks.exceptions.AuthenticationException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
@@ -15,7 +16,7 @@ public class UserService {
         System.out.println("[LOG] - Instantiating" + this.getClass().getName());
         userRepo = repo;
     }
-    public void authenticate(String username, String password) {
+    public AppUser authenticate(String username, String password) {
         if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new RuntimeException("Invalid credentials provided!");
         }
@@ -23,9 +24,10 @@ public class UserService {
                 .orElseThrow(AuthenticationException::new);
 
         app.setCurrentUser(authUser);
+        return authUser;
     }
 
-    public AppUser register(AppUser newUser) {
+    public void register(AppUser newUser) {
         if (!validateUserFields(newUser)) {
             throw new RuntimeException("Invalid user fields provided during registration.");
         }

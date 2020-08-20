@@ -10,9 +10,10 @@ import java.io.InputStreamReader;
 public class RegisterScreen extends Screen {
 
     private UserService userService;
-    super("RegisterScreen", "/register");
+
 
     public RegisterScreen(UserService userService) {
+        super("RegisterScreen", "/register");
         this.userService = userService;
     }
 
@@ -36,7 +37,7 @@ public class RegisterScreen extends Screen {
             userService.register(newUser);
 
             if (app.isSessionValid()) {
-                app.getRouter().navigate("/dashboard");
+                app.getRouter().navigate("/home");
             }
 
         } catch (IOException ioe) {

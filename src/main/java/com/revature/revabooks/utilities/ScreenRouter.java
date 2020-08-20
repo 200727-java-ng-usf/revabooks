@@ -1,4 +1,4 @@
-package com.revature.revabooks.util;
+package com.revature.revabooks.utilities;
 
 import com.revature.revabooks.screens.Screen;
 
@@ -8,10 +8,6 @@ import java.util.Set;
 public class ScreenRouter {
 
     private Set<Screen> screens = new HashSet<>();
-
-    public Set<Screen> getScreens() {
-        return screens;
-    }
 
     public ScreenRouter addScreen(Screen screen) {
         System.out.println("[LOG] - Loading " + screen.getName() + " into the router");
