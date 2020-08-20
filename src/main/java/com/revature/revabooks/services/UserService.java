@@ -4,9 +4,8 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import static com.revature.revabooks.AppDriver.app;
 
 public class UserService {
 
@@ -16,19 +15,16 @@ public class UserService {
         System.out.println("[LOG] - Instantiating" + this.getClass().getName());
         userRepo = repo;
     }
-    public AppUser authenticate(String username, String password) {
+    public void authenticate(String username, String password) {
         if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new RuntimeException("Invalid credentials provided!");
         }
-        AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
+        AppUser authUser = userRepo.findUserByCredentials(username, password)
+                .orElseThrow(AuthenticationException::new);
 
-        if (authenticatedUser == null) {
-            // TODO implement a custom AuthenticationException
-            throw new RuntimeException("No user found with the provided credentials");
-        }
-
-        return authenticatedUser;
+        app.setCurrentUser(authUser);
     }
+
     public AppUser register(AppUser newUser) {
         if (!validateUserFields(newUser)) {
             throw new RuntimeException("Invalid user fields provided during registration.");
@@ -39,7 +35,9 @@ public class UserService {
         }
 
         newUser.setRole(Role.BASIC_MEMBER);
-        return userRepo.save(newUser);
+        AppUser registeredUser = userRepo.save(newUser);
+
+        app.setCurrentUser(registeredUser);
     }
 
     public Set<AppUser> getAllUsers() {

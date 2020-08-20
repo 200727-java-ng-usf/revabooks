@@ -6,13 +6,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class LoginScreen extends Screen {
 
     private UserService userService;
 
     public LoginScreen(UserService userService) {
         super("Login Screen", "/login");
-        this.userService = userService;
     }
 
     @Override
@@ -23,12 +24,17 @@ public class LoginScreen extends Screen {
         try {
             System.out.println("Please provide your login credentials.");
             System.out.print("Username: ");
-            username = app.getconsole.readLine();
+            username = app.getConsole().readLine();
 
             System.out.println("Password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
 
             System.out.println("You entered username: " + username + " / " + password);
+            userService.authenticate(username, password);
+
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/dashboard");
+            }
 
         } catch (IOException ioe) {
             ioe.printStackTrace();

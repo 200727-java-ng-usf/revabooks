@@ -12,7 +12,9 @@ public class AppDriver {
 
     public static void main(String[] args) {
 
-//        while IsAppRunning
+        while(app.isAppRunning()) {
+            app.getRouter().navigate("/home");
+        }
 
         UserRepository userRepo = new UserRepository();
         UserService userService = new UserService(userRepo);

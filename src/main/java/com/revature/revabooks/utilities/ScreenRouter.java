@@ -1,4 +1,4 @@
-package com.revature.revabooks.utilities;
+package com.revature.revabooks.util;
 
 import com.revature.revabooks.screens.Screen;
 
@@ -7,22 +7,25 @@ import java.util.Set;
 
 public class ScreenRouter {
 
-    private Set<Screen> screenSet = new HashSet<>();
+    private Set<Screen> screens = new HashSet<>();
 
-    public Set<Screen> getScreenSet() {
-        return screenSet;
+    public Set<Screen> getScreens() {
+        return screens;
     }
 
     public ScreenRouter addScreen(Screen screen) {
-        screenSet.add(screen);
+        System.out.println("[LOG] - Loading " + screen.getName() + " into the router");
+        screens.add(screen);
         return this;
     }
 
     public void navigate(String route) {
-        screenSet.stream()
+
+        screens.stream()
                 .filter(screen -> screen.getRoute().equals(route))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("No screen found."))
+                .orElseThrow(() -> new RuntimeException("No screen found with that route."))
                 .render();
     }
+
 }
