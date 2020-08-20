@@ -2,10 +2,7 @@ package com.revature.revabooks.util;
 
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.repos.UserRepository;
-import com.revature.revabooks.screens.DashboardScreen;
-import com.revature.revabooks.screens.HomeScreen;
-import com.revature.revabooks.screens.LoginScreen;
-import com.revature.revabooks.screens.RegisterScreen;
+import com.revature.revabooks.screens.*;
 import com.revature.revabooks.services.UserService;
 
 import java.io.BufferedReader;
@@ -31,7 +28,9 @@ public class AppState {
         router.addScreen(new HomeScreen())
               .addScreen(new RegisterScreen(userService))
               .addScreen(new LoginScreen(userService))
-              .addScreen(new DashboardScreen());
+              .addScreen(new DashboardScreen())
+              .addScreen(new UserProfileScreen())
+              .addScreen(new SearchBooksScreen());
 
         System.out.println("[LOG] - Application initialization complete.");
 
