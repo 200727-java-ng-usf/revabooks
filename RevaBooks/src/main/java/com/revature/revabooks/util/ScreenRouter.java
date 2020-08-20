@@ -16,7 +16,7 @@ public class ScreenRouter {
 	}
 
 	public ScreenRouter addScreen(Screen screen){
-		if(app.isDebug()) System.out.println("[LOG] - Loading " + screen.getName() + " into the router");
+		System.out.println("[LOG] - Loading " + screen.getName() + " into the router");
 		screens.add(screen);
 		return this;
 	}

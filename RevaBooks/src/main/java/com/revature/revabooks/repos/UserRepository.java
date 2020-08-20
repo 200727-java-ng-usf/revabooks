@@ -14,7 +14,7 @@ public class UserRepository {
 	private UserDB userDataset = UserDB.userDataset;
 
 	public UserRepository(){
-		if(app.isDebug()) System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 	}
 
 	public Optional<AppUser> findUserByCredentials(String username, String password){

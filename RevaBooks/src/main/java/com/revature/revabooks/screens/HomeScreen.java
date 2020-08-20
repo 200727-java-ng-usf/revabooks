@@ -13,7 +13,7 @@ public class HomeScreen extends Screen{
 
 	public HomeScreen(){
 		super("HomeScreen", "/home");
-		if(app.isDebug()) System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 
 	}
 
@@ -22,7 +22,6 @@ public class HomeScreen extends Screen{
 	 */
 	@Override
 	public void render(){
-		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 		String prompt;
 		System.out.println("Welcome to RevaBooks!\n");
 		System.out.println("1) Login");
@@ -31,13 +30,11 @@ public class HomeScreen extends Screen{
 
 		try{
 			System.out.print("> ");
-			prompt = console.readLine();
+			prompt = app.getConsole().readLine();
 
 			switch(prompt){
 				case "1":
 					app.getRouter().navigate("/login");
-					// how can we navigate to LoginScreen witthout creating a
-					// new instance of one?
 					break;
 				case "2":
 					app.getRouter().navigate("/register");
@@ -47,12 +44,10 @@ public class HomeScreen extends Screen{
 					// how can we stop the application smoothly (without using System.exit());
 					break;
 				default:
-					if(app.isDebug()) System.out.println("[LOG] - Invalid Selection!");
+					System.out.println("[LOG] - Invalid Selection!");
 					break;
 			}
-			app.setAppRunning(false);
-
-			console.close();
+//			app.setAppRunning(false);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

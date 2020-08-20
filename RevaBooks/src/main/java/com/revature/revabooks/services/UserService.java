@@ -17,7 +17,7 @@ public class UserService {
 	private UserRepository userRepo;
 
 	public UserService(UserRepository repo) {
-		if(app.isDebug()) System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 		userRepo = repo;
 //		userRepo = new UserRepository(); // tight coupling ~hard~ impossible to unit test
 	}
