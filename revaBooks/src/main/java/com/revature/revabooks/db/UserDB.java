@@ -4,6 +4,7 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class UserDB extends HashMap<Integer, AppUser> {
 
@@ -25,18 +26,16 @@ public class UserDB extends HashMap<Integer, AppUser> {
         return nUser;
     }
 
-    public AppUser findUserByCredentials(String username, String password) {
+    public Optional<AppUser> findUserByCredentials(String username, String password) {
 
-        for (AppUser user : userDataset.values()) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return user;
-            }
-        }
+        return userDataset.values()
+                .stream()
+                .filter(user -> user.getUsername().equals(username) && user.getPassword().equals(password))
+                .findFirst();
 
-        return null;
     }
 
-    public AppUser findUserByUsername(String username) {
+    public  Optional<AppUser> findUserByUsername(String username) {
 
         // using the Stream API (all Collection implementations have a .stream() method)
 //        return userDataset.values()
@@ -45,13 +44,11 @@ public class UserDB extends HashMap<Integer, AppUser> {
 //                          .findFirst()
 //                          .orElse(null);
 
-        for (AppUser user : userDataset.values()) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
+        return userDataset.values()
+                .stream()
+                .filter(user -> user.getUsername().equals(username))
+                .findFirst();
 
-        return null;
     }
 
 }

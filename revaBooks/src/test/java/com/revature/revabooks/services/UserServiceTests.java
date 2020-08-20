@@ -37,19 +37,19 @@ public class UserServiceTests {
         mockUsers.removeAll(mockUsers);
     }
 
-    @Test
-    public void authenticationWithValidCredentials() {
-        // Arrange
-        AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "secret", Role.ADMIN);
-        Mockito.when(mockUserRepo.findUserByCredentials("admin", "secret"))
-                .thenReturn(expectedUser);
-
-        //Act
-        AppUser actualResult = sut.authenticate("admin", "secret");
-
-        //Assert
-        Assert.assertEquals(expectedUser, actualResult);
-    }
+//    @Test
+//    public void authenticationWithValidCredentials() {
+//        // Arrange
+//        AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "secret", Role.ADMIN);
+//        Mockito.when(mockUserRepo.findUserByCredentials("admin", "secret"))
+//                .thenReturn(expectedUser);
+//
+//        //Act
+//        AppUser actualResult = sut.authenticate("admin", "secret");
+//
+//        //Assert
+//        Assert.assertEquals(expectedUser, actualResult);
+//    }
 
     @Test(expected = InvalidRequestException.class)
     public void authenticationWithInvalidCredentials() {

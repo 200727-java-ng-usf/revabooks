@@ -6,11 +6,14 @@ import com.revature.revabooks.services.UserService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class RegisterScreen extends Screen{
 
     private UserService userService;
 
     public RegisterScreen(UserService userService) {
+        super("RegisterScreen", "/register");
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
         // userService = new UserService(); //tight coupling! we want loose coupling
         this.userService = userService;
@@ -25,18 +28,21 @@ public class RegisterScreen extends Screen{
         try {
 
             System.out.println("Sign up for a new account!");
-            System.out.println("First name: ");
-            firstName = console.readLine();
-            System.out.println("Last name: ");
-            lastName = console.readLine();
-            System.out.println("username: ");
-            username = console.readLine();
-            System.out.println("Password: ");
-            password = console.readLine();
+            System.out.print("First name: ");
+            firstName = app.getConsole().readLine();
+            System.out.print("Last name: ");
+            lastName = app.getConsole().readLine();
+            System.out.print("Username: ");
+            username = app.getConsole().readLine();
+            System.out.print("Password: ");
+            password = app.getConsole().readLine();
 
             AppUser newUser = new AppUser(firstName, lastName, username, password);
-            AppUser registeredUser = userService.register(newUser);
-            System.out.println(registeredUser);
+            userService.register(newUser);
+
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/dashboard");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
