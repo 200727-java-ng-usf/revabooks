@@ -20,8 +20,9 @@ public class ConnectionFactory {
         Connection conn = null;
 
         try {
-            Class.forName("org.postgres.Driver");
-            conn = DriverManager.getConnection("jdbc-url", "username", "password");
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://java-project-0.ccfjhmis2yua.us-west-1.rds.amazonaws.com",
+                    "username", "password");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
