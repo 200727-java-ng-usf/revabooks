@@ -45,6 +45,10 @@ public class AppState {
         return router;
     }
 
+    public void setCurrentUser(AppUser currentUser) {
+        this.currentUser = currentUser;
+    }
+
     public boolean isAppRunning() {
         return appRunning;
     }

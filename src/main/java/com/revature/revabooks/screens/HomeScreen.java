@@ -2,6 +2,8 @@ package com.revature.revabooks.screens;
 
 import java.io.Console;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class HomeScreen extends Screen{
 
         public HomeScreen() {
@@ -18,15 +20,18 @@ public class HomeScreen extends Screen{
 
             try {
                 System.out.println("> ");
-                String userSelection = Console.Re
+                String userSelection = Console.
 
                 switch(userSelection) {
                     case "1":
-
+                        app.getRouter().navigate("/login");
+                        break;
                     case "2":
-
+                        app.getRouter().navigate("/register");
+                        break;
                     case "3":
-
+                        app.setAppRunning(false);
+                        break;
 
                 }
             } catch (Exception e) {

@@ -18,13 +18,12 @@ public class LoginScreen extends Screen {
     @Override
     public void render() {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String username, password;
 
         try {
             System.out.println("Please provide your login credentials.");
             System.out.print("Username: ");
-            username = console.readLine();
+            username = app.getconsole.readLine();
 
             System.out.println("Password: ");
             password = console.readLine();
