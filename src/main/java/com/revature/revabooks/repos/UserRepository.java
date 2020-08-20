@@ -30,7 +30,7 @@ public class UserRepository {
 
             ResultSet rs = pstmt.executeQuery();
 
-            AppUser appUser = null;
+            AppUser appUser = new AppUser();
 
             while(rs.next()) {
                 appUser.setId(rs.getInt("id"));
