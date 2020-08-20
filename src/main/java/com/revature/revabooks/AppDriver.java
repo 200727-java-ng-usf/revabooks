@@ -1,22 +1,21 @@
 package com.revature.revabooks;
 
 import com.revature.revabooks.repos.UserRepository;
+import com.revature.revabooks.screens.HomeScreen;
 import com.revature.revabooks.screens.LoginScreen;
 import com.revature.revabooks.screens.RegisterScreen;
 import com.revature.revabooks.services.UserService;
+import com.revature.revabooks.util.AppState;
 
 public class AppDriver {
 
+    public static AppState app = new AppState();
+
     public static void main(String[] args) {
 
-        UserRepository userRepo = new UserRepository();
-        UserService userService = new UserService(userRepo);
-
-        RegisterScreen registerScreen = new RegisterScreen(userService);
-        registerScreen.render();
-
-        LoginScreen loginScreen = new LoginScreen(userService);
-        loginScreen.render();
+        while(app.isAppRunning()) {
+            app.getRouter().navigate("/home");
+        }
 
     }
 

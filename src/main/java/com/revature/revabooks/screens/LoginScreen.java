@@ -6,6 +6,8 @@ import com.revature.revabooks.services.UserService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class LoginScreen extends Screen {
 
     // UserService is a dependency to the LoginScreen
@@ -13,6 +15,7 @@ public class LoginScreen extends Screen {
 
     // Inject the dependency through the constructor (constructor injection)
     public LoginScreen(UserService userService) {
+        super("LoginScreen", "/login");
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 
         // loosely coupled, because this class is not responsible for instantiation of a UserService
@@ -27,19 +30,20 @@ public class LoginScreen extends Screen {
      */
     @Override
     public void render() {
-
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String username, password;
 
         try {
             System.out.println("Please provide your login credentials");
             System.out.print("Username: ");
-            username = console.readLine();
+            username = app.getConsole().readLine();
             System.out.print("Password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
 
-            AppUser authUser = userService.authenticate(username, password);
-            System.out.println(authUser);
+            userService.authenticate(username, password);
+
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/dashboard");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

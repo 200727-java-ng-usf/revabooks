@@ -8,6 +8,8 @@ import com.revature.revabooks.repos.UserRepository;
 
 import java.util.*;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class UserService {
 
     private UserRepository userRepo;
@@ -18,27 +20,21 @@ public class UserService {
 //        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
 
-    public AppUser authenticate(String username, String password) {
+    public void authenticate(String username, String password) {
 
         // validate that the provided username and password are not non-values
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new InvalidRequestException("Invalid credential values provided!");
         }
 
-        return userRepo.findUserByCredentials(username, password)
-                       .orElseThrow(AuthenticationException::new);
+        AppUser authUser = userRepo.findUserByCredentials(username, password)
+                                    .orElseThrow(AuthenticationException::new);
 
-//        AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
-
-//        if (authenticatedUser == null) {
-//            throw new AuthenticationException("No user found with the provided credentials");
-//        }
-//
-//        return authenticatedUser;
+        app.setCurrentUser(authUser);
 
     }
 
-    public AppUser register(AppUser newUser) {
+    public void register(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
             // TODO implement a custom InvalidRequestException
@@ -52,7 +48,9 @@ public class UserService {
         }
 
         newUser.setRole(Role.BASIC_MEMBER);
-        return userRepo.save(newUser);
+        AppUser registeredUser = userRepo.save(newUser);
+
+        app.setCurrentUser(registeredUser);
 
     }
 

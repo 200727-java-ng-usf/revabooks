@@ -6,11 +6,14 @@ import com.revature.revabooks.services.UserService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class RegisterScreen extends Screen {
 
     private UserService userService;
 
     public RegisterScreen(UserService userService) {
+        super("RegisterScreen", "/register");
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
         this.userService = userService;
 //        userService = new UserService(); // tight coupling! we aim for loose coupling
@@ -19,24 +22,26 @@ public class RegisterScreen extends Screen {
     @Override
     public void render() {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String firstName, lastName, username, password;
 
         try {
 
             System.out.println("Sign up for a new account!");
             System.out.print("First name: ");
-            firstName = console.readLine();
+            firstName = app.getConsole().readLine();
             System.out.print("Last name: ");
-            lastName = console.readLine();
+            lastName = app.getConsole().readLine();
             System.out.print("Username: ");
-            username = console.readLine();
+            username = app.getConsole().readLine();
             System.out.print("Password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
 
             AppUser newUser = new AppUser(firstName, lastName, username, password);
-            AppUser registeredUser = userService.register(newUser);
-            System.out.println(registeredUser);
+            userService.register(newUser);
+
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/dashboard");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
