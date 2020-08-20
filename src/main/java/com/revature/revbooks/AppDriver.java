@@ -8,7 +8,13 @@ import com.revature.revbooks.screens.LoginScreen;
 import com.revature.revbooks.screens.RegisterScreen;
 import com.revature.revbooks.services.UserService;
 
+
+import com.revature.revbooks.util.AppState;
+
 public class AppDriver {
+
+    public static AppState app = new AppState();
+
     public static void main(String[] args) {
 
 
@@ -22,10 +28,10 @@ public class AppDriver {
 //        LoginScreen loginScreen = new LoginScreen(userService);
 //        loginScreen.render();
 
-        UserDB userDB = new UserDB();
-        AppUser appUser = new AppUser("eee","fff","ggg","1234", Role.BASIC_MEMBER);
+        while(app.isAppRunning()) {
+            app.getRouter().navigate("/home");
+        }
 
-        System.out.println(userDB.addUser(appUser).toString());
 
 
     }

@@ -9,11 +9,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.revature.revbooks.AppDriver.app;
+
 public class LoginScreen extends Screen {
 
     private UserService userService;
 
     public LoginScreen(UserService userService){
+
+        super("loginScreen","/login");
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 
         // make a link to the UserService
@@ -42,7 +46,13 @@ public class LoginScreen extends Screen {
             AppUser authUser = userService.authenticate(username,password);
             System.out.println(authUser);
 
+            app.setCurrentUser(authUser);
+
             System.out.println("You entered Username: " + username + "  Password: " + password);
+
+
+            app.getRouter().navigate("/dashboard");
+
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (InvalidRequestException e) {

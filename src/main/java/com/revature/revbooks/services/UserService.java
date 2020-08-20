@@ -32,7 +32,7 @@ public class UserService {
 
             if (authenticatedUser == null) {
                 // TODO implement a custom AuthenticationException
-                throw new AuthenticationException("No user found with the provided credentials");
+                throw new AuthenticationException( "No user found with the provided credentials");
             }
             return authenticatedUser;
         }
