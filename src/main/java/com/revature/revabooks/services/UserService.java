@@ -1,45 +1,59 @@
 package com.revature.revabooks.services;
 
+import com.revature.revabooks.exceptions.AuthenticationException;
+import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+import static com.revature.revabooks.AppDriver.app;
 
 public class UserService {
 
     private UserRepository userRepo;
 
     public UserService(UserRepository repo) {
-        System.out.println("[LOG] instantiating " + this.getClass().getName());
-        userRepo =  repo;
-//        userRepo = new UserRepository();
+        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+        userRepo = repo;
+//        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
 
-    public AppUser authentication(String username, String password) {
+    public void authenticate(String username, String password) {
+
+        // validate that the provided username and password are not non-values
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
-            throw new RuntimeException("invalid credentials provided");
+            throw new InvalidRequestException("Invalid credential values provided!");
         }
-        AppUser authenticatedUser = userRepo.findUserByCredentials(username, password);
 
-        if (authenticatedUser == null) {
-            throw new RuntimeException("invalid credentials provided");
-        }
-        return authenticatedUser;
+        AppUser authUser = userRepo.findUserByCredentials(username, password)
+                .orElseThrow(AuthenticationException::new);
+
+        app.setCurrentUser(authUser);
+
     }
 
-    public AppUser register(AppUser newUser) {
+    public void register(AppUser newUser) {
+
         if (!isUserValid(newUser)) {
-            throw new RuntimeException("Invalid user fields provided during registration");
+            // TODO implement a custom InvalidRequestException
+            throw new RuntimeException("Invalid user field values provided during registration!");
         }
-        if (userRepo.findUserByUsername(newUser.getUsername()) != null) {
-            throw new RuntimeException("Provided username is already in user");
+
+        Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
+        if (existingUser.isPresent()) {
+            // TODO implement a custom ResourcePersistenceException
+            throw new RuntimeException("Provided username is already in use!");
         }
+
         newUser.setRole(Role.BASIC_MEMBER);
-        return userRepo.save(newUser);
+        AppUser registeredUser = userRepo.save(newUser);
+
+        app.setCurrentUser(registeredUser);
 
     }
+
     public Set<AppUser> getAllUsers() {
         return new HashSet<>();
     }
@@ -64,12 +78,21 @@ public class UserService {
         return false;
     }
 
-        public boolean isUserValid(AppUser user) {
-            if (user == null) return false;
-            if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
-            if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
-            if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
-            if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
-            return true;
-        }
+    /**
+     * Validates that the given user and its fields are valid (not null or empty strings). Does
+     * not perform validation on id or role fields.
+     *
+     * @param user
+     * @return true or false depending on if the user was valid or not
+     */
+    public boolean isUserValid(AppUser user) {
+        if (user == null) return false;
+        if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
+        if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
+        if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
+        if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
+        return true;
+    }
+
+
 }

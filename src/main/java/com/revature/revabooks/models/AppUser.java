@@ -3,46 +3,42 @@ package com.revature.revabooks.models;
 import java.util.Objects;
 
 public class AppUser {
-    private Integer id;
-    private String FirstName;
-    private String LastName;
-    private String username;
-    private String password;
-    private Role role;
-
+// fields/attributes
+private Integer id;
+private String firstName;
+private String lastName;
+private String username;
+private String password;
+private Role role;
 
     public AppUser() {
         super();
     }
 
     public AppUser(String firstName, String lastName, String username, String password) {
-
-        FirstName = firstName;
-        LastName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.role = Role.LOCKED;
     }
-
-
-    //constructor chaining
-    public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
-        this(firstName, lastName, username, password, role);
-        this.id = id;
-
-    }
-
-    //copy constructor
-    public AppUser(AppUser copy) {
-        this(copy.id, copy.FirstName, copy.LastName, copy.username, copy.password, copy.role);
-    }
-
 
     public AppUser(String firstName, String lastName, String username, String password, Role role) {
         this(firstName, lastName, username, password);
         this.role = role;
     }
 
+    public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
+        this(firstName, lastName, username, password, role);
+        this.id = id;
+    }
+
+    // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
+    public AppUser(AppUser copy) {
+        this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.role);
+    }
+
+    // getters and setters
     public Integer getId() {
         return id;
     }
@@ -52,19 +48,19 @@ public class AppUser {
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -88,37 +84,38 @@ public class AppUser {
     }
 
     public void setRole(Role role) {
-
         this.role = role;
     }
 
+    // overridden Object methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return Objects.equals(getId(), appUser.getId()) &&
-                Objects.equals(getFirstName(), appUser.getFirstName()) &&
-                Objects.equals(getLastName(), appUser.getLastName()) &&
-                Objects.equals(getUsername(), appUser.getUsername()) &&
-                Objects.equals(getPassword(), appUser.getPassword()) &&
-                getRole() == appUser.getRole();
+        return Objects.equals(id, appUser.id) &&
+                Objects.equals(firstName, appUser.firstName) &&
+                Objects.equals(lastName, appUser.lastName) &&
+                Objects.equals(username, appUser.username) &&
+                Objects.equals(password, appUser.password) &&
+                role == appUser.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getUsername(), getPassword(), getRole());
+        return Objects.hash(id, firstName, lastName, username, password, role);
     }
 
     @Override
     public String toString() {
         return "AppUser{" +
                 "id=" + id +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
     }
+
 }
