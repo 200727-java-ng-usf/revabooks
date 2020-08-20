@@ -18,8 +18,6 @@ public class HomeScreen extends Screen {
     @Override
     public void render() {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.println("Welcome to Revabooks!\n");
         System.out.println("1) Login");
         System.out.println("2) Register");
@@ -27,10 +25,11 @@ public class HomeScreen extends Screen {
 
         try {
             System.out.print("> ");
-            String userSelection = console.readLine();
+            String userSelection = app.getConsole().readLine();
 
             switch (userSelection) {
                 case "1":
+//                    new LoginScreen(new UserService(new UserRepository())).render();
                     app.getRouter().navigate("/login");
                     break;
                 case "2":
@@ -42,8 +41,6 @@ public class HomeScreen extends Screen {
                 default:
                     System.out.println("[LOG] - Invalid selection!");
             }
-
-            app.setAppRunning(false);
 
         } catch (Exception e) {
             e.printStackTrace();

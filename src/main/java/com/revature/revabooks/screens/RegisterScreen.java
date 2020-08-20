@@ -1,5 +1,6 @@
 package com.revature.revabooks.screens;
 
+import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.services.UserService;
 
@@ -43,8 +44,12 @@ public class RegisterScreen extends Screen {
                 app.getRouter().navigate("/dashboard");
             }
 
+        } catch (InvalidRequestException e) {
+            System.err.println("Registration unsuccessful, invalid values provided.");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("[ERROR] - An unexpected exception occurred: " + e.getMessage());
+            System.out.println("[LOG] - Shutting down application");
+            app.setAppRunning(false);
         }
 
     }
