@@ -2,8 +2,7 @@ package com.revature.revabooks.util;
 
 import com.revature.revabooks.screens.Screen;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ScreenRouter {
 

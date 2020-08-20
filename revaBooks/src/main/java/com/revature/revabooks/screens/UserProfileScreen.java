@@ -8,7 +8,7 @@ public class UserProfileScreen extends Screen{
 
     private UserService userService;
 
-    protected UserProfileScreen(UserService userService) {
+    public UserProfileScreen(UserService userService) {
         super("UserProfile", "/userProfile");
     }
 

@@ -6,7 +6,7 @@ public class SearchBooksScreen extends Screen {
 
     private UserService userService;
 
-    protected SearchBooksScreen(UserService userService) {
+    public SearchBooksScreen(UserService userService) {
         super("SearchBooksScreen", "/searchBooks");
     }
 
