@@ -7,14 +7,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class LoginScreen extends Screen{
-	private String name;
 	// UserrService is a dependency to the LoginScreen
 	private UserService userService;
 
 	// Inject the dependency through the constructor (constructor injection)
 	public LoginScreen(UserService userService){
-		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+		super("LoginScreen", "/login");
+		if(app.isDebug()) System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 
 		// loosely coupled, because this class is not responsible for instantiation of a UserService
 		this.userService = userService;
@@ -26,23 +28,23 @@ public class LoginScreen extends Screen{
 	 */
 	@Override
 	public void render(){
-		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-		String username;
-		String password;
+		String username, password;
 
 		try{
 			System.out.println("Please provide your login credentials");
 			System.out.print("Username: ");
-			username = console.readLine();
+			username = app.getConsole().readLine();
 			System.out.print("Password: ");
-			password = console.readLine();
+			password = app.getConsole().readLine();
 
 //			System.out.println("You entered: " + username + "/" + password);
-			AppUser authUser = userService.authenticate(username, password);
+			userService.authenticate(username, password);
 
-			System.out.println(authUser);
+			if(app.isSessionValid()){
+				app.getRouter().navigate("/dashboard");
+			}
 
-			console.close();
+//			app.getConsole().close();
 		} catch(Exception ioe) {
 			ioe.printStackTrace();
 		}

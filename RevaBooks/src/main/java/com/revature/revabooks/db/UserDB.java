@@ -5,6 +5,7 @@ import com.revature.revabooks.models.Role;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class UserDB extends HashMap<Integer, AppUser> {
 
@@ -29,28 +30,32 @@ public class UserDB extends HashMap<Integer, AppUser> {
 		return nUser;
 	}
 
-	public AppUser findUserByCredentials(String username, String password){
-//
-//		userDataset.values().stream().filter(user -> {
-//
-//		})
+	public Optional<AppUser> findUserByCredentials(String username, String password){
 
-		for (AppUser user :userDataset.values()){
-			if(user.getUserName().equals(username) && user.getPassword().equals(password)){
-				return user;
-			}
-		}
-		return null;
+		return userDataset.values()
+				.stream()
+				.filter(user -> user.getUserName().equals(username)
+								&& user.getPassword().equals(password))
+				.findFirst();
+
+//		for (AppUser user :userDataset.values()){
+//			if(user.getUserName().equals(username) && user.getPassword().equals(password)){
+//				return user;
+//			}
+//		}
+//		return null;
 	}
 
-	public AppUser findUserByUsername(String username){
+	public Optional<AppUser> findUserByUsername(String username){
+
+//		Optional<AppUser> _user = Optional.of(new AppUser(null));
+//		_user.isPresent();
 
 		// using the Stream API (all Collection implementations have a .stream() method)
 		return userDataset.values()
 				.stream()
 				.filter(user -> user.getUserName().equals(username))
-				.findFirst()
-				.orElse(null);
+				.findFirst();
 
 //		for (AppUser user :userDataset.values()){
 //			if(user.getUserName().equals(username)){

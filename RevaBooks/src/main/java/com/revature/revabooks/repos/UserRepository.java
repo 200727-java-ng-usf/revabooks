@@ -5,16 +5,19 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 
 import javax.swing.*;
+import java.util.Optional;
+
+import static com.revature.revabooks.AppDriver.app;
 
 public class UserRepository {
 
 	private UserDB userDataset = UserDB.userDataset;
 
 	public UserRepository(){
-		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+		if(app.isDebug()) System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 	}
 
-	public AppUser findUserByCredentials(String username, String password){
+	public Optional<AppUser> findUserByCredentials(String username, String password){
 
 		return userDataset.findUserByCredentials(username, password);
 
@@ -28,7 +31,7 @@ public class UserRepository {
 ////		return new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
 	}
 
-	public AppUser findUserByUsername(String username){
+	public Optional<AppUser> findUserByUsername(String username){
 		return userDataset.findUserByUsername(username);
 	}
 

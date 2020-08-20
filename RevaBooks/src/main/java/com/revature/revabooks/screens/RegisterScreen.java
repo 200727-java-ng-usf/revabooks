@@ -9,13 +9,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.Buffer;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class RegisterScreen extends Screen {
-	private String name = "RegisterScreen";
-	private String route = "/register";
 	private UserService userService;
 
 	public RegisterScreen(UserService userService){
-		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+		super("RegisterScreen", "/register");
+		if(app.isDebug()) System.out.println("[LOG] - Instantiating " + this.getClass().getName());
 		this.userService = userService;
 //		userService = new UserService();
 	}
@@ -23,27 +24,26 @@ public class RegisterScreen extends Screen {
 	@Override
 	public void render(){
 
-		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-		String firstName;
-		String lastName;
-		String userName;
-		String password;
+		String firstName, lastName, userName, password;
 
 		try{
 			System.out.println("Sign up for a new account!");
 			System.out.println("First name: ");
-			firstName = console.readLine();
+			firstName = app.getConsole().readLine();
 			System.out.println("Last name: ");
-			lastName = console.readLine();
+			lastName = app.getConsole().readLine();
 			System.out.println("Username: ");
-			userName = console.readLine();
+			userName = app.getConsole().readLine();
 			System.out.println("Password: ");
-			password = console.readLine();
+			password = app.getConsole().readLine();
 
 			AppUser newUser = new AppUser(firstName, lastName, userName, password);
+			userService.register(newUser);
 
-			AppUser registeredUser = userService.register(newUser);
-			System.out.println(registeredUser);
+			if(app.isSessionValid()){
+				app.getRouter().navigate("/dashboard");
+			}
+
 		} catch(Exception e) {
 		    e.printStackTrace();
 		}

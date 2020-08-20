@@ -1,33 +1,33 @@
 package com.revature.revabooks;
 
 import com.revature.revabooks.repos.UserRepository;
+import com.revature.revabooks.screens.HomeScreen;
 import com.revature.revabooks.screens.LoginScreen;
 import com.revature.revabooks.screens.RegisterScreen;
 import com.revature.revabooks.services.UserService;
+import com.revature.revabooks.util.AppState;
 
 public class AppDriver {
-	private static boolean debug = true;
-
-	public static boolean isDebug() {
-		return debug;
-	}
-
-	public static void setDebug(boolean debug) {
-		AppDriver.debug = debug;
-	}
+	public static AppState app = new AppState();
 /*
 	Domain driven approach -> focus on implementing user stories one at a time.
 	 */
 
 	public static void main(String[] args) {
-
-		UserRepository userRepo = new UserRepository();
-		UserService userService = new UserService(userRepo);
-
-		RegisterScreen registerScreen = new RegisterScreen(userService);
-		registerScreen.render();
-
-		LoginScreen loginScreen = new LoginScreen(userService);
-		loginScreen.render();
+		app.setDebug(true);
+		while(app.isAppRunning()){
+			app.getRouter().navigate("/home");
+		}
+//
+//		HomeScreen homeScreen = new HomeScreen();
+//		homeScreen.render();
+//		UserRepository userRepo = new UserRepository();
+//		UserService userService = new UserService(userRepo);
+//
+//		RegisterScreen registerScreen = new RegisterScreen(userService);
+//		registerScreen.render();
+//
+//		LoginScreen loginScreen = new LoginScreen(userService);
+//		loginScreen.render();
 	}
 }
