@@ -6,11 +6,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.revature.revabooks.AppDriver.app;
+
 public class LoginScreen extends Screen{
 
     private UserService userService;
 
     public LoginScreen(UserService userService){
+        super("LoginScreen","/login");
         System.out.println("[LOG] - Instantiating "+this.getClass().getName());
        this.userService = userService;
     }
@@ -20,20 +23,23 @@ public class LoginScreen extends Screen{
      */
     @Override
     public void render(){
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String username, password;
 
 
         try {
             System.out.println("Please provide your login credentials");
             System.out.println("Username: ");
-            username = console.readLine();
+            username = app.getConsole().readLine();
             System.out.println("Please provide password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
 
-            AppUser authUser = userService.authentic(username,password);
-            System.out.println(authUser);
-        }catch(Exception e){
+            userService.authentic(username,password);
+
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/dashboard");
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
