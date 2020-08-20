@@ -31,7 +31,7 @@ public class DashboardScreen extends Screen{
 			System.out.println("3) Logout");
 			try {
 				System.out.print("> ");
-				prompt = app.getConsole().readLine();
+				prompt = app.getConsole().readLine().trim();
 
 				switch (prompt) {
 					case "1":

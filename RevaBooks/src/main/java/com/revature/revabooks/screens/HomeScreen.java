@@ -30,7 +30,7 @@ public class HomeScreen extends Screen{
 
 		try{
 			System.out.print("> ");
-			prompt = app.getConsole().readLine();
+			prompt = app.getConsole().readLine().trim();
 
 			switch(prompt){
 				case "1":

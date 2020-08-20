@@ -65,7 +65,7 @@ public class UserService {
 		}
 
 		newUser.setRole(Role.BASIC_MEMBER);
-		AppUser registeredUser = userRepo.save(newUser);
+		Optional<AppUser> registeredUser = userRepo.save(newUser);
 
 		app.setCurrentUser(newUser);
 

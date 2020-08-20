@@ -29,13 +29,13 @@ public class RegisterScreen extends Screen {
 		try{
 			System.out.println("Sign up for a new account!");
 			System.out.println("First name: ");
-			firstName = app.getConsole().readLine();
+			firstName = app.getConsole().readLine().trim();
 			System.out.println("Last name: ");
-			lastName = app.getConsole().readLine();
+			lastName = app.getConsole().readLine().trim();
 			System.out.println("Username: ");
-			userName = app.getConsole().readLine();
+			userName = app.getConsole().readLine().trim();
 			System.out.println("Password: ");
-			password = app.getConsole().readLine();
+			password = app.getConsole().readLine().trim();
 
 			AppUser newUser = new AppUser(firstName, lastName, userName, password);
 			userService.register(newUser);
