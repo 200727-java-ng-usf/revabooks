@@ -11,7 +11,7 @@ public class LoginScreen extends Screen {
     private UserService userService;
 
     public LoginScreen(UserService userService) {
-        System.out.println("[LOG]");
+        super("Login Screen", "/login");
         this.userService = userService;
     }
 
