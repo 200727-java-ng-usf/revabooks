@@ -6,10 +6,11 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
+    // The next three blocks make it a singleton
     private static ConnectionFactory connFactory = new ConnectionFactory();
 
     private ConnectionFactory() {
-
+        super();
     }
 
     public static ConnectionFactory getInstance() {
@@ -21,8 +22,10 @@ public class ConnectionFactory {
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://java-project-0.ccfjhmis2yua.us-west-1.rds.amazonaws.com",
-                    "username", "password");
+            conn = DriverManager.getConnection
+                    ("jdbc:postgresql://java-project-0.ccfjhmis2yua.us-west-1.rds.amazonaws.com:5432/postgres",
+                    "fake-username",
+                            "fake-pass");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

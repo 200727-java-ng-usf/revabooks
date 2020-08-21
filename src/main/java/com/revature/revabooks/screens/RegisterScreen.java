@@ -20,7 +20,7 @@ public class RegisterScreen extends Screen {
     @Override
     public void render() {
 
-        String firstname, lastname, username, password;
+        String firstname, lastname, username, password, email;
 
         try {
             System.out.println("Sign up for a new account.");
@@ -32,8 +32,10 @@ public class RegisterScreen extends Screen {
             username = app.getConsole().readLine();
             System.out.println("Password: ");
             password = app.getConsole().readLine();
+            System.out.println("Email: ");
+            email = app.getConsole().readLine();
 
-            AppUser newUser = new AppUser(firstname, lastname, username, password);
+            AppUser newUser = new AppUser(firstname, lastname, username, password, email);
             userService.register(newUser);
 
             if (app.isSessionValid()) {

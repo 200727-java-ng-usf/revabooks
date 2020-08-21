@@ -22,10 +22,10 @@ public class UserServiceTest {
     @Before
     public void setup() {
         sut = new UserService(mockUserRepo);
-        mockUsers.add(new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN));
-        mockUsers.add(new AppUser(1, "Manny", "Ger", "manager", "m4n4ge", Role.MANAGER));
-        mockUsers.add(new AppUser(1, "Allison", "Wonderland", "rabbit", "qn0fH4rts", Role.PREMIUM_MEMBER));
-        mockUsers.add(new AppUser(1, "Bob", "Barker", "bbk", "priceRight", Role.BASIC_MEMBER));
+        mockUsers.add(new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", "admin@revbooks.com", Role.ADMIN));
+        mockUsers.add(new AppUser(1, "Manny", "Ger", "manager", "m4n4ge", "manager@revbooks.com", Role.MANAGER));
+        mockUsers.add(new AppUser(1, "Allison", "Wonderland", "rabbit", "qn0fH4rts", "alice@wonderland.com", Role.PREMIUM_MEMBER));
+        mockUsers.add(new AppUser(1, "Bob", "Barker", "bbk", "priceRight", "host@priceisright.com", Role.BASIC_MEMBER));
     }
 
     @After
