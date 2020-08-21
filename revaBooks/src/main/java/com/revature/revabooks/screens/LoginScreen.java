@@ -21,8 +21,6 @@ public class LoginScreen extends Screen {
         // loosely coupled, because this class is not responsible for instantiation of a UserService
         this.userService = userService;
 
-//        userService = new UserService();
-
     }
 
     /**

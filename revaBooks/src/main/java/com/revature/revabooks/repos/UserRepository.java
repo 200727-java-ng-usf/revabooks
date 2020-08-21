@@ -28,16 +28,16 @@ public class UserRepository {
 
             ResultSet rs = pstmt.executeQuery();
 
-            AppUser appUser = null;
-
+            AppUser appUser = new AppUser();
             while(rs.next()) {
                 appUser.setId(rs.getInt("id"));
                 appUser.setUsername(rs.getString("username"));
                 appUser.setPassword(rs.getString("password"));
                 appUser.setFirstName(rs.getString("first_name"));
-                appUser.setLastName(rs.getString("first_name"));
-                appUser.setLastName(rs.getString("first_name"));
+                appUser.setLastName(rs.getString("last_name"));
             }
+
+            return Optional.of(appUser);
 
         } catch (SQLException sqle) {
             sqle.printStackTrace();

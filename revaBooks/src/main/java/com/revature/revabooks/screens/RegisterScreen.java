@@ -22,7 +22,6 @@ public class RegisterScreen extends Screen{
     @Override
     public void render() {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String firstName, lastName, username, password;
 
         try {
