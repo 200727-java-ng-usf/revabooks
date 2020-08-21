@@ -69,51 +69,49 @@ public class UserRepository {
 
     public void save(AppUser newUser) {
 
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO revabooks.app_users " +
                     "(username, password, first_name, last_name, email, role_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?,)";
 
-            PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
+            PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 
             pstmt.setString(1, newUser.getUserName());
             pstmt.setString(2, newUser.getPassword());
             pstmt.setString(3, newUser.getFirstName());
             pstmt.setString(4, newUser.getLastName());
             pstmt.setString(5, newUser.getEmail());
-            pstmt.setInt(6, newUser.getRole().ordinal()+1);
+            pstmt.setInt(6, newUser.getRole().ordinal() + 1);
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
             if (affectedRows > 0) {
                 // get the ID back
                 ResultSet rs = pstmt.getGeneratedKeys();
-                    while (rs.next()) {
-                        newUser.setId(rs.getInt(1));
-                    }
+                while (rs.next()) {
+                    newUser.setId(rs.getInt(1));
+                }
 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
-
-
-    private Set<AppUser> mapResultSet(ResultSet rs) throws SQLException {
-        Set<AppUser> users = new HashSet<>();
-
-        while(rs.next()) {
-            AppUser temp = new AppUser();
-            temp.setId(rs.getInt("id"));
-            temp.setUserName(rs.getString("username"));
-            temp.setPassword(rs.getString("password"));
-            temp.setFirstName(rs.getString("first_name"));
-            temp.setLastName(rs.getString("last_name"));
-            temp.setRole(Role.getByName(rs.getString("name")));
-
-            users.add(temp);
-        }
-        return users;
     }
 
-}
+        private Set<AppUser> mapResultSet(ResultSet rs) throws SQLException {
+            Set<AppUser> users = new HashSet<>();
+
+            while (rs.next()) {
+                AppUser temp = new AppUser();
+                temp.setId(rs.getInt("id"));
+                temp.setUserName(rs.getString("username"));
+                temp.setPassword(rs.getString("password"));
+                temp.setFirstName(rs.getString("first_name"));
+                temp.setLastName(rs.getString("last_name"));
+                temp.setRole(Role.getByName(rs.getString("name")));
+
+                users.add(temp);
+            }
+            return users;
+        }
+    }

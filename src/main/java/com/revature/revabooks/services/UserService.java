@@ -28,11 +28,12 @@ public class UserService {
     }
 
     public void register(AppUser newUser) {
+
         if (!validateUserFields(newUser)) {
             throw new RuntimeException("Invalid user fields provided during registration.");
         }
         Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUserName());
-        if(userRepo.findUserByUsername(newUser.getUserName()) != null) {
+        if(existingUser.isPresent()) {
             throw new RuntimeException("That username is already in use.");
         }
 
