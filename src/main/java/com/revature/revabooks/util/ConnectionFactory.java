@@ -27,8 +27,8 @@ public class ConnectionFactory {
 
             conn = DriverManager.getConnection(
                     "jdbc:postgresql://revature-training.cveu74hasekl.us-east-1.rds.amazonaws.com:5432/postgres",
-                    "postgres",
-                    "Ultimate1!");
+                    "fake_user",
+                    "fake_password");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
