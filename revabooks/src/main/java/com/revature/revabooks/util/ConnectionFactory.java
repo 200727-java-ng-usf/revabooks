@@ -24,9 +24,10 @@ public class ConnectionFactory {
             // force the JVM to load the postgres jdbc driver
             Class.forName("org.postgresql.Driver");
 
-            conn = DriverManager.getConnection("jdbc:postgresql:postgres://java-ng-usf-200727.cmgr36vlmagf.us-east-2.rds.amazonaws.com:5432/postgres",
-                    "dumb",
-                    "dummy");
+            conn = DriverManager.getConnection(
+                    "jdbc:postgresql://java-ng-usf-200727.cmgr36vlmagf.us-east-2.rds.amazonaws.com:5432/postgres",
+                    "revabooks_app",
+                    "revabooks");
 
         }catch (ClassNotFoundException | SQLException e){
             e.printStackTrace();

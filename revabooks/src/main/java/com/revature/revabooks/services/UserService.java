@@ -3,6 +3,8 @@ package com.revature.revabooks.services;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepo;
+import com.revature.revabooks.exceptions.AuthenticationException;
+import com.revature.revabooks.exceptions.InvalidRequestException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,25 +17,23 @@ public class UserService {
 
     public UserService(UserRepo repo){
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-        userRepo = new UserRepo();
+        userRepo = repo;
     }
 
-    public AppUser authentic(String username, String password){
+    public void authentic(String username, String password){
         //validate that the provided username and password are not non values
         if(username==null || username.trim().equals("")||password==null||password.trim().equals("")){
 
             //TODO implement a custom InvalidRequestException
-            throw new RuntimeException("Invalid credential values provided!");
+            throw new InvalidRequestException("Invalid credential values provided!");
         }
 
-        userRepo.findUserCredentials(username,password);
+        userRepo.findUserByCredentials(username,password);
 
-        if (authenticatedUser == null) {
-            // TODO implement a custom AuthenticationException
-            throw new RuntimeException("No user found with the provided credentials");
-        }
+        AppUser authUser = userRepo.findUserByCredentials(username, password)
+                .orElseThrow(AuthenticationException::new);
 
-        return authenticatedUser;
+        app.setCurrentUser(authUser);
 
     }
 
@@ -49,7 +49,9 @@ public class UserService {
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
 
-        app.getCurrentUser(newUser);
+        app.getCurrentUser();
+
+        return newUser;
     }
 
     public AppUser update(AppUser updatedUser){

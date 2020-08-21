@@ -11,18 +11,6 @@ import static org.junit.Assert.assertSame;
 
 public class ConnectionFactoryTest {
 
-    private  ConnectionFactory sut;
-
-    @Before
-    public void setUp(){
-        sut = ConnectionFactory.getInstance();
-    }
-
-    @After
-    public void tearDown(){
-        sut = null;
-    }
-
     @Test
     public void ensureConnectionFactoryIsSingle(){
         ConnectionFactory c1 = ConnectionFactory.getInstance();

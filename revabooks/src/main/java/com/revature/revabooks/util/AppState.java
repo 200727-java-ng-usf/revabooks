@@ -60,6 +60,11 @@ public class AppState {
         currentUser = null;
     }
 
+    public void setCurrentUser(AppUser currentUser) {
+        this.currentUser = currentUser;
+    }
+
+
     public boolean isSessionValid(){
         return (this.currentUser != null);
 

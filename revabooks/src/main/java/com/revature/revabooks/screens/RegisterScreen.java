@@ -40,4 +40,9 @@ public class RegisterScreen extends Screen{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void add(Screen screen) {
+
+    }
 }
