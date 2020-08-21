@@ -25,10 +25,11 @@ public class HomeScreen extends Screen {
 
         try {
             System.out.print("> ");
-            String userSelection = app.getConsole().readLine().trim();
+            String userSelection = app.getConsole().readLine();
 
             switch (userSelection) {
                 case "1":
+//                    new LoginScreen(new UserService(new UserRepository())).render();
                     app.getRouter().navigate("/login");
                     break;
                 case "2":
@@ -40,8 +41,6 @@ public class HomeScreen extends Screen {
                 default:
                     System.out.println("[LOG] - Invalid selection!");
             }
-
-//          app.setAppRunning(false);
 
         } catch (Exception e) {
             e.printStackTrace();

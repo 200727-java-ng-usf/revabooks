@@ -82,4 +82,5 @@ from app_users au
 join user_roles ur
 on au.role_id = ur.id;
 
-
+SELECT * FROM app_users;
+COMMIT;

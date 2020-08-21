@@ -15,7 +15,7 @@ public class UserService {
     private UserRepository userRepo;
 
     public UserService(UserRepository repo) {
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+        //System.out.println("[LOG] - Instantiating " + this.getClass().getName());
         userRepo = repo;
 //        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
@@ -37,8 +37,7 @@ public class UserService {
     public void register(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
-            // TODO implement a custom InvalidRequestException
-            throw new RuntimeException("Invalid user field values provided during registration!");
+            throw new InvalidRequestException("Invalid user field values provided during registration!");
         }
 
         Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
