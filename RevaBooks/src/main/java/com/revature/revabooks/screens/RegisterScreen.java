@@ -1,7 +1,6 @@
 package com.revature.revabooks.screens;
 
 import com.revature.revabooks.AppDriver;
-import com.revature.revabooks.db.UserDB;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.services.UserService;
 
@@ -24,7 +23,7 @@ public class RegisterScreen extends Screen {
 	@Override
 	public void render(){
 
-		String firstName, lastName, userName, password;
+		String firstName, lastName, userName, password, email;
 
 		try{
 			System.out.println("Sign up for a new account!");
@@ -32,12 +31,14 @@ public class RegisterScreen extends Screen {
 			firstName = app.getConsole().readLine().trim();
 			System.out.println("Last name: ");
 			lastName = app.getConsole().readLine().trim();
+			System.out.println("Email: ");
+			email = app.getConsole().readLine().trim();
 			System.out.println("Username: ");
 			userName = app.getConsole().readLine().trim();
 			System.out.println("Password: ");
 			password = app.getConsole().readLine().trim();
 
-			AppUser newUser = new AppUser(firstName, lastName, userName, password);
+			AppUser newUser = new AppUser(firstName, lastName, userName, password, email);
 			userService.register(newUser);
 
 			if(app.isSessionValid()){

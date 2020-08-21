@@ -38,7 +38,7 @@ public class UserService {
 //		List<AppUser> users = Arrays.asList(new AppUser(), new AppUser());
 //		users.forEach(user -> System.out.println(user)); // double colon operator = method reference operator.
 
-		AppUser authUser =  userRepo.findUserByCredentials(username,password)
+		AppUser authUser = userRepo.findUserByCredentials(username,password)
 				.orElseThrow(AuthenticationException::new);
 
 		app.setCurrentUser(authUser);
@@ -65,8 +65,10 @@ public class UserService {
 		}
 
 		newUser.setRole(Role.BASIC_MEMBER);
-		Optional<AppUser> registeredUser = userRepo.save(newUser);
+		userRepo.save(newUser);
+		System.out.println(newUser);
 
+//		app.setCurrentUser(getUserByUserName(newUser.getUserName()));
 		app.setCurrentUser(newUser);
 
 	}
