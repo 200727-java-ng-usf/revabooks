@@ -37,8 +37,7 @@ public class UserService {
     public void register(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
-            // TODO implement a custom InvalidRequestException
-            throw new RuntimeException("Invalid user field values provided during registration!");
+            throw new InvalidRequestException("Invalid user field values provided during registration!");
         }
 
         Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
@@ -48,9 +47,9 @@ public class UserService {
         }
 
         newUser.setRole(Role.BASIC_MEMBER);
-        AppUser registeredUser = userRepo.save(newUser);
+        userRepo.save(newUser);
 
-        app.setCurrentUser(registeredUser);
+        app.setCurrentUser(newUser);
 
     }
 

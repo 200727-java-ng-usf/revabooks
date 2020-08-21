@@ -13,10 +13,12 @@ public class AppDriver {
 
     public static void main(String[] args) {
 
-        while (app.isAppRunning()) {
-            System.out.println("beginning of whileloop" + app.isAppRunning());
+        while(app.isAppRunning()) {
+            System.out.println(app.isAppRunning());
+            System.out.println("beginning of while loop");
             app.getRouter().navigate("/home");
             System.out.println("end of while loop");
+            System.out.println(app.isAppRunning());
         }
 
     }

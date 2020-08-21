@@ -16,22 +16,21 @@ public class AppState {
     private boolean appRunning;
 
     public AppState() {
+        System.out.println("[LOG] - Initializing application...");
+
         appRunning = true;
         console = new BufferedReader(new InputStreamReader(System.in));
 
-        final UserRepository userRepository = new UserRepository();
-        final UserService userService = new UserService(userRepository);
-
-
-        //dont forget to add screens here
+        final UserRepository userRepo = new UserRepository();
+        final UserService userService = new UserService(userRepo);
 
         router = new ScreenRouter();
         router.addScreen(new HomeScreen())
                 .addScreen(new RegisterScreen(userService))
                 .addScreen(new LoginScreen(userService))
-                .addScreen(new DashboardScreen())
-                .addScreen(new SearchBookScreen(userService))
-                .addScreen(new UserProfileScreen(userService));
+                .addScreen(new DashboardScreen());
+
+        System.out.println("[LOG] - Application initialization complete.");
 
     }
 
@@ -59,7 +58,7 @@ public class AppState {
         this.appRunning = appRunning;
     }
 
-    public void invalidateCurrentUser() {
+    public void invalidateCurrentSession() {
         currentUser = null;
     }
 
