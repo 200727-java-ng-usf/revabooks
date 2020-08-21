@@ -27,8 +27,8 @@ public class ConnectionFactory {
 
             conn = DriverManager.getConnection(
                     "jdbc:postgresql://eli-paetow-database.cv8xzds2fibf.us-east-2.rds.amazonaws.com:5432/postgres",
-                    "revabooks_app",
-                    "revabooks");
+                    "postgres",
+                    "wrestler10312");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
