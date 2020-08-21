@@ -68,25 +68,37 @@ public class UserRepository {
     }
 
     public void save(AppUser newUser) {
+
+
         try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = "INSERT INTO revabooks.app_users VALUES (username = ? , password = ? , first_name = ? , last_name = ? , role_id = 4  )";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            String sql = "INSERT INTO revabooks.app_users (username, password, first_name, last_name, email, role_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
 
-
+            // second parameter here is used to indicate column names that will have generated values
+            PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
             pstmt.setString(1, newUser.getUsername());
             pstmt.setString(2, newUser.getPassword());
             pstmt.setString(3, newUser.getFirstName());
             pstmt.setString(4, newUser.getLastName());
+            pstmt.setString(5, newUser.getEmail());
+            pstmt.setInt(6, newUser.getRole().ordinal() + 1);
 
+            int rowsInserted = pstmt.executeUpdate();
 
-            ResultSet rs = pstmt.executeQuery();
+            if (rowsInserted != 0) {
 
+                ResultSet rs = pstmt.getGeneratedKeys();
 
+                rs.next();
+                newUser.setId(rs.getInt(1));
+
+            }
 
         }catch (SQLException sqle){
             sqle.printStackTrace();
         }
-        return;
+
+
     }
 
     private Set<AppUser> mapResultSet(ResultSet rs) throws SQLException {
@@ -100,6 +112,7 @@ public class UserRepository {
             temp.setLastName(rs.getString("last_name"));
             temp.setUsername(rs.getString("username"));
             temp.setPassword(rs.getString("password"));
+            temp.setEmail(rs.getString("email"));
             temp.setRole(Role.getByName(rs.getString("name")));
             System.out.println(temp);
             users.add(temp);

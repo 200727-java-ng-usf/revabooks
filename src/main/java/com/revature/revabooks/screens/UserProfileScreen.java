@@ -4,7 +4,7 @@ import com.revature.revabooks.services.UserService;
 
 import static com.revature.revabooks.AppDriver.app;
 
-public class UserProfileScreen extends Screen{
+public class UserProfileScreen extends Screen {
 
     private UserService userService;
 

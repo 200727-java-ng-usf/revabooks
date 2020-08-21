@@ -28,7 +28,9 @@ public class AppState {
         router.addScreen(new HomeScreen())
                 .addScreen(new RegisterScreen(userService))
                 .addScreen(new LoginScreen(userService))
-                .addScreen(new DashboardScreen());
+                .addScreen(new DashboardScreen())
+                .addScreen(new UserProfileScreen(userService))
+                .addScreen(new SearchBookScreen(userService));
 
         System.out.println("[LOG] - Application initialization complete.");
 
