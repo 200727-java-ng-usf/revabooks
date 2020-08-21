@@ -1,25 +1,61 @@
 package com.revature.revabooks.repos;
 
-import com.revature.revabooks.db.UserDB;
 import com.revature.revabooks.models.AppUser;
-import com.revature.revabooks.models.Role;
+import com.revature.revabooks.util.ConnectionFactory;
+
+import javax.swing.text.html.Option;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
 
 public class UserRepository {
 
-    private UserDB userDataset = UserDB.userDataset;
-
-    // TODO replace mock implementation with in-memory persistence
-    public AppUser findUserByCredentials(String username, String password) {
-
-        return  userDataset.findUserByCredentials(username, password);
-
-//        if (!username.equals("admin") && !password.equals("p4ssw0rd")) {
-//            return null;
-//        }
-//
-//        return new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
-
+    public UserRepository() {
+        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
     }
 
-    //TODO cww findUserByUsername, save
+    public Optional<AppUser> findUserByCredentials(String username, String password) {
+
+        Optional<AppUser> _user = Optional.empty();
+
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = "SELECT * FROM revabooks.app_users WHERE username = ? AND password = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            AppUser appUser = new AppUser();
+
+            while(rs.next()) {
+                appUser.setId(rs.getInt("id"));
+                appUser.setUsername(rs.getString("username"));
+                appUser.setPassword(rs.getString("password"));
+                appUser.setFirstName(rs.getString("first_name"));
+                appUser.setLastName(rs.getString("last_name"));
+            }
+
+            _user = Optional.of(appUser);
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+
+        return _user;
+    }
+
+    public Optional<AppUser> findUserByUsername(String username) {
+        return Optional.of(null);
+    }
+
+    public Optional<AppUser> save(AppUser newUser) {
+        return Optional.of(null);
+    }
+
 }

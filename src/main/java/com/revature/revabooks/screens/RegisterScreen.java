@@ -1,50 +1,57 @@
 package com.revature.revabooks.screens;
 
+import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.services.UserService;
 
-import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class RegisterScreen extends Screen{
+import static com.revature.revabooks.AppDriver.app;
+
+public class RegisterScreen extends Screen {
 
     private UserService userService;
 
-    public RegisterScreen() {
+    public RegisterScreen(UserService userService) {
+        super("RegisterScreen", "/register");
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-        userService = new UserService();
+        this.userService = userService;
+//        userService = new UserService(); // tight coupling! we aim for loose coupling
     }
 
     @Override
     public void render() {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String firstName, lastName, username, password;
 
         try {
+
             System.out.println("Sign up for a new account!");
-            System.out.println("First name: ");
-            firstName = console.readLine();
-            System.out.println("Last name: ");
-            lastName = console.readLine();
-            System.out.println("Username: ");
-            username = console.readLine();
-            System.out.println("Password: ");
-            password = console.readLine();
+            System.out.print("First name: ");
+            firstName = app.getConsole().readLine();
+            System.out.print("Last name: ");
+            lastName = app.getConsole().readLine();
+            System.out.print("Username: ");
+            username = app.getConsole().readLine();
+            System.out.print("Password: ");
+            password = app.getConsole().readLine();
 
             AppUser newUser = new AppUser(firstName, lastName, username, password);
-            AppUser registeredUser = userService.register(newUser);
-            System.out.println(registeredUser);
+            userService.register(newUser);
 
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/dashboard");
+            }
 
-
-        }   catch (Exception e) {
-
+        } catch (InvalidRequestException e) {
+            System.err.println("Registration unsuccessful, invalid values provided.");
+        } catch (Exception e) {
+            System.err.println("[ERROR] - An unexpected exception occurred: " + e.getMessage());
+            System.out.println("[LOG] - Shutting down application");
+            app.setAppRunning(false);
         }
 
-
     }
-
 
 }
