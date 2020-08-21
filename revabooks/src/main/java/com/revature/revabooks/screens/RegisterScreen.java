@@ -19,7 +19,7 @@ public class RegisterScreen extends Screen{
     @Override
     public void render(){
 
-        String firstName, lastName, userName, password;
+        String firstName, lastName, userName, password ,email;
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
         try{
@@ -30,10 +30,12 @@ public class RegisterScreen extends Screen{
             lastName = console.readLine();
             System.out.println("username: ");
             userName = console.readLine();
-            System.out.println("pasword");
+            System.out.println("password");
             password = console.readLine();
+            System.out.println("email");
+            email = console.readLine();
 
-            AppUser newUser = new AppUser(firstName,lastName,userName,password);
+            AppUser newUser = new AppUser(firstName,lastName,userName,password,email);
             AppUser registeredUser = userService.register(newUser);
             System.out.println(registeredUser);
         }catch (Exception e){

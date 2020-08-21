@@ -52,7 +52,37 @@ public class UserRepo {
     }
 
     public Optional<AppUser>save(AppUser newUser){
-        return Optional.of(null);
+
+        Optional<AppUser> _user = Optional.empty();
+
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+
+            String sql = "INSERT INTO revabooks.app_users(username, password, first_name, last_name, role_id) VALUES(?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
+            pstmt.setString(1,newUser.getUsername());
+            pstmt.setString(2,newUser.getPassword());
+            pstmt.setString(3,newUser.getFirstName());
+            pstmt.setString(4,newUser.getLastName());
+            pstmt.setString(5,newUser.getEmail());
+            pstmt.setInt(6, newUser.getRole().ordinal() +1 );
+
+            int rowsInserted = pstmt.executeUpdate();
+
+            if (rowsInserted != 0 ){
+                ResultSet rs = pstmt.getGeneratedKeys();
+
+                rs.next();
+                newUser.setId(rs.getInt(1));
+
+            }
+
+        } catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+
+        return _user;
+
     }
 
     public Optional<AppUser> findUserByUsername(String username) {

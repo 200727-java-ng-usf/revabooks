@@ -9,35 +9,35 @@ public class AppUser {
     private String lastName;
     private String username;
     private String password;
+    private String email;
     private Role role;
 
     public AppUser(){
 
     }
 
-    public AppUser(String firstName, String lastName, String username, String password) {
+    public AppUser(String firstName, String lastName, String username, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.email = email;
         this.role = Role.LOCKED;
     }
 
-    public AppUser(String firstName, String lastName, String username, String password, Role role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
+    public AppUser(String firstName, String lastName, String username, String password, String email, Role role) {
+        this(firstName, lastName, username, password, email);
         this.role = role;
     }
 
-    public AppUser(Integer id, String firstName, String lastName, String username, String password, Role role) {
-        this(firstName,lastName,username,password,role);
-        this.id = id;
+
+    public AppUser(Integer id, String firstName, String lastName, String username, String password, String email, Role role) {
+        this(firstName,lastName,username,password,email);
+        this.id= id;
 
     }
     public AppUser(AppUser copy){
-        this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.role);
+        this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.email, copy.role);
     }
 
     public Integer getId() {
@@ -88,6 +88,14 @@ public class AppUser {
         this.role = role;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,12 +106,13 @@ public class AppUser {
                 Objects.equals(lastName, appUser.lastName) &&
                 Objects.equals(username, appUser.username) &&
                 Objects.equals(password, appUser.password) &&
+                Objects.equals(email,appUser.email)&&
                 role == appUser.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, password, role);
+        return Objects.hash(id, firstName, lastName, username, password, email,role);
     }
 
     @Override
@@ -114,6 +123,7 @@ public class AppUser {
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }

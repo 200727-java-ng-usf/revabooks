@@ -30,3 +30,4 @@ out/
 # intellij specific
 *iml
 .idea/
+*.properties

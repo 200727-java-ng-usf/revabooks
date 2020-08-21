@@ -21,7 +21,7 @@ public class UserServiceTest {
     @Before
     public void setup(){
         sut = new UserService(mockUserRepo);
-        mockUsers.add(new AppUser(1,"Adam","Inn","admin","p4ssw0rd", Role.ADMIN));
+        mockUsers.add(new AppUser(1,"Adam","Inn","admin","p4ssw0rd","ainn@revature.com", Role.ADMIN));
 
     }
 
@@ -34,7 +34,7 @@ public class UserServiceTest {
     @Test
     public void authenticationWithValidCredentials(){
         //Arrange
-        AppUser expectedUser = new AppUser(1,"Adam","Inn","admin","p4ssw0rd", Role.ADMIN);
+        AppUser expectedUser = new AppUser(1,"Adam","Inn","admin","p4ssw0rd","ainn@revature.com", Role.ADMIN);
 //        Mockito.when(mockUserRepo).findUserCredentials(Mockito.anyString()).then;
         //Act
 

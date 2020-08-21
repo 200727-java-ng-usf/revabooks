@@ -5,8 +5,10 @@ import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepo;
 import com.revature.revabooks.exceptions.AuthenticationException;
 import com.revature.revabooks.exceptions.InvalidRequestException;
+import jdk.nashorn.internal.runtime.UnwarrantedOptimismException;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static com.revature.revabooks.AppDriver.app;
@@ -41,15 +43,17 @@ public class UserService {
         if(!validateUserFields(newUser)){
             throw new RuntimeException("Invalid");
         }
+        Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
+        if (existingUser.isPresent()){
+            throw new RuntimeException("Provided username is already in use!");
 
-        if(userRepo.findUserByUsername(newUser.getUsername())!=null){
-            throw new RuntimeException();
         }
+
 
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
 
-        app.getCurrentUser();
+        app.setCurrentUser(newUser);
 
         return newUser;
     }
