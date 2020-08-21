@@ -48,7 +48,7 @@ public class UserService {
 
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
-
+        System.out.println(newUser);
         app.setCurrentUser(newUser);
 
     }

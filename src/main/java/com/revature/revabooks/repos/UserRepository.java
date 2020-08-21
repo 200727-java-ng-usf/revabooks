@@ -14,6 +14,11 @@ import java.util.Set;
 
 public class UserRepository {
 
+    // extract common query clauses into a easily referenced member for reusability.
+    private String baseQuery = "SELECT * FROM revabooks.app_users au " +
+                               "JOIN revabooks.user_roles ur " +
+                               "ON au.role_id = ur.id ";
+
     public UserRepository() {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
     }
@@ -24,10 +29,7 @@ public class UserRepository {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "SELECT * FROM revabooks.app_users au " +
-                         "JOIN revabooks.user_roles ur " +
-                         "ON au.role_id = ur.id " +
-                         "WHERE username = ? AND password = ?";
+            String sql = baseQuery + "WHERE username = ? AND password = ?";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
@@ -50,7 +52,7 @@ public class UserRepository {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "SELECT * FROM revabooks.app_users WHERE username = ?";
+            String sql = baseQuery + "WHERE username = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
 
@@ -65,8 +67,37 @@ public class UserRepository {
 
     }
 
-    public Optional<AppUser> save(AppUser newUser) {
-        return Optional.of(null);
+    public void save(AppUser newUser) {
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = "INSERT INTO revabooks.app_users (username, password, first_name, last_name, email, role_id) " +
+                         "VALUES (?, ?, ?, ?, ?, ?)";
+
+            // second parameter here is used to indicate column names that will have generated values
+            PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
+            pstmt.setString(1, newUser.getUsername());
+            pstmt.setString(2, newUser.getPassword());
+            pstmt.setString(3, newUser.getFirstName());
+            pstmt.setString(4, newUser.getLastName());
+            pstmt.setString(5, newUser.getEmail());
+            pstmt.setInt(6, newUser.getRole().ordinal() + 1);
+
+            int rowsInserted = pstmt.executeUpdate();
+
+            if (rowsInserted != 0) {
+
+                ResultSet rs = pstmt.getGeneratedKeys();
+
+                rs.next();
+                newUser.setId(rs.getInt(1));
+
+            }
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
     }
 
     private Set<AppUser> mapResultSet(ResultSet rs) throws SQLException {

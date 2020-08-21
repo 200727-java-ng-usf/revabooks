@@ -94,3 +94,12 @@ from app_users au
 join user_roles ur
 on au.role_id = ur.id;
 
+
+-- test query
+select * from revabooks.app_users
+where username = 'aanderson' and password = 'password';
+
+
+
+
+

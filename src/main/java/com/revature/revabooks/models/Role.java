@@ -1,7 +1,5 @@
 package com.revature.revabooks.models;
 
-import java.util.Arrays;
-
 public enum Role {
 
     // values declared within enums are constants and are comma separated
