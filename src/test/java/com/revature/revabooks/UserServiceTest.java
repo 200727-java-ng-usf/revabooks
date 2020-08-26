@@ -34,17 +34,17 @@ public class UserServiceTest {
         mockUsers.removeAll(mockUsers);
     }
 
-//    @Test
-//    public void authenticateWithValidCredentials() {
-//        AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
-//        Mockito.when(mockUserRepo.findUserByCredentials(Mockito.anyString(), Mockito.anyString()))
-//                .thenReturn(expectedUser);
-//
-//        AppUser actualResult = sut.authenticate("admin", "password");
-//
-//        Assert.assertEquals(expectedUser, actualResult);
-//
-//    }
+    @Test
+    public void authenticateWithValidCredentials() {
+        AppUser expectedUser = new AppUser("Adam", "Inn", "admin", "p4ssw0rd", "admin@revbooks.com");
+        Mockito.when(mockUserRepo.findUserByCredentials(Mockito.anyString(), Mockito.anyString()))
+                .thenReturn(java.util.Optional.of(expectedUser));
+
+        AppUser actualResult = sut.authenticate("admin", "password");
+
+        Assert.assertEquals(expectedUser, actualResult);
+
+    }
 
     @Test(expected = RuntimeException.class)
     public void authenticateWithInvalidCredentials() {
@@ -53,14 +53,14 @@ public class UserServiceTest {
 
     }
 
-//    @Test
-//    public void authenticateWithUnknownCredentials() {
-//        AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "p4ssw0rd", Role.ADMIN);
-//        Mockito.when(mockUserRepo.findUserByCredentials(Mockito.anyString(), Mockito.anyString()))
-//                .thenReturn(expectedUser);
-//
-//        AppUser actualResult = sut.authenticate("admin", "password");
-//
-//        Assert.assertEquals(expectedUser, actualResult);
-//    }
+    @Test
+    public void authenticateWithUnknownCredentials() {
+        AppUser expectedUser = new AppUser("Adam", "Inn", "admin", "p4ssw0rd", "admin@revbooks.com");
+        Mockito.when(mockUserRepo.findUserByCredentials(Mockito.anyString(), Mockito.anyString()))
+                .thenReturn(java.util.Optional.of(expectedUser));
+
+        AppUser actualResult = sut.authenticate("admin", "password");
+
+        Assert.assertEquals(expectedUser, actualResult);
+    }
 }

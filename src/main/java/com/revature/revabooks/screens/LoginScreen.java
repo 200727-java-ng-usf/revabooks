@@ -2,9 +2,7 @@ package com.revature.revabooks.screens;
 
 import com.revature.revabooks.services.UserService;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import static com.revature.revabooks.AppDriver.app;
 
