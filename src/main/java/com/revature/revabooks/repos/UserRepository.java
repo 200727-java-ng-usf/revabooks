@@ -35,7 +35,10 @@ public class UserRepository {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = baseQuery;
+            String sql = "SELECT * FROM revabooks.app_users au " +
+                         "JOIN revabooks.user_roles ur " +
+                         "ON au.role_id = ur.id";
+
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             users = mapResultSet(rs);
@@ -146,6 +149,7 @@ public class UserRepository {
             temp.setUsername(rs.getString("username"));
             temp.setPassword(rs.getString("password"));
             temp.setRole(Role.getByName(rs.getString("name")));
+            temp.setEmail(rs.getString("email"));
             System.out.println(temp);
             users.add(temp);
         }
