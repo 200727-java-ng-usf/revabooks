@@ -5,41 +5,42 @@ import java.util.Objects;
 public class AppUser {
 	//region fields/attributes
 	private Integer id;
-	private String firstName;
-	private String lastName;
-	private String userName;
+	private String firstname;
+	private String lastname;
+	private String username;
 	private String password;
 	private String email;
 	private Role role;
 	//endregion
 
 	//region Constructors
+	// no-args contructors are required for jackson to map properly
 	public AppUser() {
 		super();
 	}
 
-	public AppUser(String firstName, String lastName, String userName, String password, String email){
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userName = userName;
+	public AppUser(String firstname, String lastName, String userName, String password, String email){
+		this.firstname = firstname;
+		this.lastname = lastName;
+		this.username = userName;
 		this.password = password;
 		this.email = email;
 		this.role = Role.LOCKED;
 	}
 
-	public AppUser(String firstName, String lastName, String userName, String password, String email, Role role) {
-		this(firstName, lastName, userName, password, email);
+	public AppUser(String firstname, String lastName, String userName, String password, String email, Role role) {
+		this(firstname, lastName, userName, password, email);
 		this.role = role;
 	}
 
-	public AppUser(Integer id, String firstName, String lastName, String userName, String password, String email, Role role) {
-		this(firstName, lastName, userName, password, email, role);
+	public AppUser(Integer id, String firstname, String lastName, String userName, String password, String email, Role role) {
+		this(firstname, lastName, userName, password, email, role);
 		this.id = id;
 	}
 
 	//copy constructor (used for convbeniently copying the values of one AppUser to create a new instance with the same values.
 	public AppUser(AppUser copy){
-		this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.password, copy.email, copy.role);
+		this(copy.id, copy.firstname, copy.lastname, copy.username, copy.password, copy.email, copy.role);
 	}
 
 	//endregion
@@ -53,28 +54,28 @@ public class AppUser {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -116,9 +117,9 @@ public class AppUser {
 		if (o == null || getClass() != o.getClass()) return false;
 		AppUser appUser = (AppUser) o;
 		return Objects.equals(id, appUser.id) &&
-				Objects.equals(firstName, appUser.firstName) &&
-				Objects.equals(lastName, appUser.lastName) &&
-				Objects.equals(userName, appUser.userName) &&
+				Objects.equals(firstname, appUser.firstname) &&
+				Objects.equals(lastname, appUser.lastname) &&
+				Objects.equals(username, appUser.username) &&
 				Objects.equals(password, appUser.password) &&
 				Objects.equals(email, appUser.email) &&
 				role == appUser.role;
@@ -126,16 +127,16 @@ public class AppUser {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, firstName, lastName, userName, password, email, role);
+		return Objects.hash(id, firstname, lastname, username, password, email, role);
 	}
 
 	@Override
 	public String toString() {
 		return "AppUser{" +
 				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", userName='" + userName + '\'' +
+				", firstName='" + firstname + '\'' +
+				", lastName='" + lastname + '\'' +
+				", userName='" + username + '\'' +
 				", password='" + password + '\'' +
 				", email='" + email + '\'' +
 				", role=" + role +

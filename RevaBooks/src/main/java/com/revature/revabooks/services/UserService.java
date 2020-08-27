@@ -58,8 +58,7 @@ public class UserService {
 			throw new InvalidRequestException("Invalid user field values provided during registration!");
 		}
 
-		Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUserName());
-
+		Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
 		if(existingUser.isPresent()){
 			throw new AuthenticationException("Provided username is already in use!");
 		}
@@ -74,7 +73,11 @@ public class UserService {
 	}
 
 	public Set<AppUser> getAllUsers(){
-		return new HashSet<>();
+		Set<AppUser> users = userRepo.findAllUsers();
+		if(users.isEmpty()){
+			throw new RuntimeException("No users found... ");
+		}
+		return users;
 	}
 
 	public Set<AppUser> getUsersByRole(){
@@ -107,9 +110,9 @@ public class UserService {
 	public boolean isUserValid(AppUser user){
 
 		if(user == null) return false;
-		if(user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
-		if(user.getLastName() == null || user.getLastName().trim().equals("")) return false;
-		if(user.getUserName() == null || user.getUserName().trim().equals("")) return false;
+		if(user.getFirstname() == null || user.getFirstname().trim().equals("")) return false;
+		if(user.getLastname() == null || user.getLastname().trim().equals("")) return false;
+		if(user.getUsername() == null || user.getUsername().trim().equals("")) return false;
 		if(user.getPassword() == null || user.getPassword().trim().equals("")) return false;
 
 		return true;

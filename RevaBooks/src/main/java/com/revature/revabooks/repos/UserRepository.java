@@ -4,17 +4,21 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.util.ConnectionFactory;
 
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static com.revature.revabooks.AppDriver.app;
+/*
+	Recommended methods to implement:
 
+		- Set<AppUser> findAllUsers()
+		- Optional<AppUser> findUserById(int id)
+		- Set<AppUser> find UsersByRole(String rolename)
+		- boolean/void/AppUser update(AppUser updatedUser)
+		- boolean/void deleteUserById(int id)
+		- Optional<AppUser> findUserByEmail(String email)
+ */
 public class UserRepository {
 
 	// Extract common query clauses into a easily referenced thingamabobamagigit
@@ -27,6 +31,24 @@ public class UserRepository {
 			"JOIN revabooks.user_roles ur " +
 			"ON au.role_id = ur.id ";
 
+	public Set<AppUser>findAllUsers(){
+		Set<AppUser> users = new HashSet<>();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+
+			String sql = baseQuery;
+
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			users = mapResultSet(rs);
+
+
+		} catch(Exception e) {
+		    e.printStackTrace();
+		}
+
+		return users;
+	}
 
 	public UserRepository(){
 		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
@@ -75,13 +97,21 @@ public class UserRepository {
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
 
+			// you can control whether or not JDBC automatically commits DML statements
+//			conn.setAutoCommit(false);
+
 			String sql = baseQuery + "WHERE username = ?";
+//			Statement stmt = conn.createStatement();
+//			stmt.executeQuery(sql);
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, username);
 
 			ResultSet rs =  pstmt.executeQuery();
 			_user = mapResultSet(rs).stream().findFirst();
 
+			//
+//			conn.commit();
 
 		} catch(SQLException sqle){
 			sqle.printStackTrace();
@@ -102,10 +132,10 @@ public class UserRepository {
 					;
 			// second parameter here is used to indicate column names that will have generated values
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
-			pstmt.setString(1, newUser.getUserName());
+			pstmt.setString(1, newUser.getUsername());
 			pstmt.setString(2, newUser.getPassword());
-			pstmt.setString(3, newUser.getFirstName());
-			pstmt.setString(4, newUser.getLastName());
+			pstmt.setString(3, newUser.getFirstname());
+			pstmt.setString(4, newUser.getLastname());
 			pstmt.setString(5, newUser.getEmail());
 //			pstmt.setString(5, newUser.getFirstName().toLowerCase().charAt(0)
 //					+ newUser.getLastName().toLowerCase()
@@ -136,10 +166,10 @@ public class UserRepository {
 			AppUser temp = new AppUser();
 
 			temp.setId(			rs.getInt("id"));
-			temp.setUserName(	rs.getString("username"));
+			temp.setUsername(	rs.getString("username"));
 			temp.setPassword(	rs.getString("password"));
-			temp.setFirstName(	rs.getString("first_name"));
-			temp.setLastName(	rs.getString("last_name"));
+			temp.setFirstname(	rs.getString("first_name"));
+			temp.setLastname(	rs.getString("last_name"));
 //				temp.setEmail(rs.getString("email"));
 			// TODO figure out how to set the Role of an AppUser using a ResultSet
 			temp.setRole(Role.getByName(rs.getString("name")));

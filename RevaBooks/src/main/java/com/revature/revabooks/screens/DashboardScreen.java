@@ -1,12 +1,5 @@
 package com.revature.revabooks.screens;
 
-import com.revature.revabooks.repos.UserRepository;
-import com.revature.revabooks.services.UserService;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import static com.revature.revabooks.AppDriver.app;
 
 public class DashboardScreen extends Screen{
@@ -53,7 +46,7 @@ public class DashboardScreen extends Screen{
 						app.getRouter().navigate("/profile");
 						break;
 					case "6":
-						System.out.println(app.getCurrentUser().getUserName() + " signing out...");
+						System.out.println(app.getCurrentUser().getUsername() + " signing out...");
 						app.invalidateCurrentSession();
 						break;
 					default:

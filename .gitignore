@@ -32,3 +32,6 @@ out/
 
 *.iml
 *.idea
+
+# Properties files
+*.properties
