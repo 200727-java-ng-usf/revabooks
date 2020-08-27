@@ -2,11 +2,7 @@ package com.revature.revabooks.screens;
 
 import com.revature.revabooks.exceptions.AuthenticationException;
 import com.revature.revabooks.exceptions.InvalidRequestException;
-import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.services.UserService;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 import static com.revature.revabooks.AppDriver.app;
 

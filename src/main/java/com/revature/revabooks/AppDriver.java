@@ -1,10 +1,5 @@
 package com.revature.revabooks;
 
-import com.revature.revabooks.repos.UserRepository;
-import com.revature.revabooks.screens.HomeScreen;
-import com.revature.revabooks.screens.LoginScreen;
-import com.revature.revabooks.screens.RegisterScreen;
-import com.revature.revabooks.services.UserService;
 import com.revature.revabooks.util.AppState;
 
 public class AppDriver {
@@ -14,11 +9,7 @@ public class AppDriver {
     public static void main(String[] args) {
 
         while(app.isAppRunning()) {
-            System.out.println(app.isAppRunning());
-            System.out.println("beginning of while loop");
             app.getRouter().navigate("/home");
-            System.out.println("end of while loop");
-            System.out.println(app.isAppRunning());
         }
 
     }

@@ -1,15 +1,30 @@
 package com.revature.revabooks.util;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnectionFactory {
 
+
     private static ConnectionFactory connFactory = new ConnectionFactory();
 
+    private Properties props = new Properties();
+
     private ConnectionFactory() {
-        super();
+
+        try {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            InputStream propsInput = loader.getResourceAsStream("application.properties");
+            props.load(propsInput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static ConnectionFactory getInstance() {
@@ -26,9 +41,10 @@ public class ConnectionFactory {
             Class.forName("org.postgresql.Driver");
 
             conn = DriverManager.getConnection(
-                    "jdbc:postgresql://revature-training.cveu74hasekl.us-east-1.rds.amazonaws.com:5432/postgres",
-                    "fake_user",
-                    "fake_password");
+                    props.getProperty("url"),
+                    props.getProperty("username"),
+                    props.getProperty("password")
+            );
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

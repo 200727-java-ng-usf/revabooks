@@ -15,10 +15,22 @@ public class UserService {
     private UserRepository userRepo;
 
     public UserService(UserRepository repo) {
-        //System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
         userRepo = repo;
 //        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
+
+    public Set<AppUser> getAllUsers() {
+
+        Set<AppUser> users = userRepo.findAllUsers();
+
+        if (users.isEmpty()) {
+            throw new RuntimeException("No users found...");
+        }
+
+        return users;
+    }
+
 
     public void authenticate(String username, String password) {
 
@@ -48,13 +60,9 @@ public class UserService {
 
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
-
+        System.out.println(newUser);
         app.setCurrentUser(newUser);
 
-    }
-
-    public Set<AppUser> getAllUsers() {
-        return new HashSet<>();
     }
 
     public Set<AppUser> getUsersByRole() {
@@ -90,6 +98,8 @@ public class UserService {
         if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
         if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
         if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
+        if (user.getEmail() == null || user.getEmail().trim().equals("")) return false;
+
         return true;
     }
 

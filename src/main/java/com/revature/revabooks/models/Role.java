@@ -9,17 +9,16 @@ public enum Role {
     BASIC_MEMBER("Basic Member"),
     LOCKED("Locked");
 
-
     private String roleName;
 
-    //enum constructors implicitly private
+    // enum constructors are implicitly private
     Role(String name) {
         this.roleName = name;
     }
 
     public static Role getByName(String name) {
 
-        for (Role role: Role.values()) {
+        for (Role role : Role.values()) {
             if (role.roleName.equals(name)) {
                 return role;
             }
@@ -27,10 +26,17 @@ public enum Role {
 
         return LOCKED;
 
+        // functional implementation of the above code
+//        return Arrays.stream(Role.values())
+//                .filter(role -> role.roleName.equals(name))
+//                .findFirst()
+//                .orElse(LOCKED);
+
     }
 
     @Override
     public String toString() {
         return roleName;
     }
+
 }
