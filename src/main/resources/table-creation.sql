@@ -96,10 +96,10 @@ on au.role_id = ur.id;
 
 
 -- test query
-select * from revabooks.app_users
-where username = 'aanderson' and password = 'password';
+select * from revabooks.app_users;
 
+select * from revabooks.user_roles ur ;
 
+delete from revabooks.app_users where id = 0;
 
-
-
+commit;

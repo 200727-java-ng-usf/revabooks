@@ -14,6 +14,7 @@ public class AppUser {
     private Role role;
 
     // constructors
+    // no args constructors are required for Jackson to map properly!
     public AppUser() {
         super();
     }

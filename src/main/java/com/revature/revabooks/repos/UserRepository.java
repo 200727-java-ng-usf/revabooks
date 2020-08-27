@@ -4,14 +4,20 @@ import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.util.ConnectionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+/*
+    Recommended methods to implement:
+        - Set<AppUser> findAllUsers()
+        - Optional<AppUser> findUserById(int id)
+        - Set<AppUser> findUsersByRole(String rolename)
+        - boolean/void updateUser(AppUser updatedUser)
+        - boolean/void deleteUserById(int id)
+        - Optional<AppUser> findUserByEmail(String email)
+ */
 public class UserRepository {
 
     // extract common query clauses into a easily referenced member for reusability.
@@ -21,6 +27,25 @@ public class UserRepository {
 
     public UserRepository() {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+    }
+
+    public Set<AppUser> findAllUsers() {
+
+        Set<AppUser> users = new HashSet<>();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = baseQuery;
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            users = mapResultSet(rs);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return users;
+
     }
 
     public Optional<AppUser> findUserByCredentials(String username, String password) {
@@ -52,12 +77,21 @@ public class UserRepository {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
+            // you can control whether or not JDBC automatically commits DML statements
+//            conn.setAutoCommit(false);
+
             String sql = baseQuery + "WHERE username = ?";
+
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
 
             ResultSet rs = pstmt.executeQuery();
             _user = mapResultSet(rs).stream().findFirst();
+
+            // if you want to manually control the transaction
+//            conn.commit();
+//            conn.rollback();
+//            conn.setSavepoint();
 
         } catch (SQLException sqle) {
             sqle.printStackTrace();
