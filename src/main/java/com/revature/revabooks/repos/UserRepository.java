@@ -21,12 +21,35 @@ import java.util.Set;
 public class UserRepository {
 
     // extract common query clauses into a easily referenced member for reusability.
-    private String baseQuery = "SELECT * FROM revabooks.app_users au " +
-                               "JOIN revabooks.user_roles ur " +
+    private String baseQuery = "SELECT * FROM app_users au " +
+                               "JOIN user_roles ur " +
                                "ON au.role_id = ur.id ";
 
     public UserRepository() {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+    }
+
+    public Optional<AppUser> findUserById(int id) {
+
+        Optional<AppUser> _user = Optional.empty();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = baseQuery + "WHERE au.id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            Set<AppUser> result = mapResultSet(pstmt.executeQuery());
+            if (!result.isEmpty()) {
+                _user = result.stream().findFirst();
+            }
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+        return _user;
+
     }
 
     public Set<AppUser> findAllUsers() {
@@ -35,8 +58,8 @@ public class UserRepository {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "SELECT * FROM revabooks.app_users au " +
-                         "JOIN revabooks.user_roles ur " +
+            String sql = "SELECT * FROM app_users au " +
+                         "JOIN user_roles ur " +
                          "ON au.role_id = ur.id";
 
             Statement stmt = conn.createStatement();
@@ -108,7 +131,7 @@ public class UserRepository {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "INSERT INTO revabooks.app_users (username, password, first_name, last_name, email, role_id) " +
+            String sql = "INSERT INTO app_users (username, password, first_name, last_name, email, role_id) " +
                          "VALUES (?, ?, ?, ?, ?, ?)";
 
             // second parameter here is used to indicate column names that will have generated values
@@ -150,7 +173,6 @@ public class UserRepository {
             temp.setPassword(rs.getString("password"));
             temp.setRole(Role.getByName(rs.getString("name")));
             temp.setEmail(rs.getString("email"));
-            System.out.println(temp);
             users.add(temp);
         }
 
