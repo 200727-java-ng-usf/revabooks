@@ -20,6 +20,18 @@ public class UserService {
 //        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
     }
 
+
+    public Set<AppUser> getAllUsers() {
+        Set<AppUser> users = userRepo.findAllUsers();
+        if (users.isEmpty()) {
+            throw new RuntimeException("No users found...");
+        }
+        return users;
+    }
+
+
+
+
     public void authenticate(String username, String password) {
 
         // validate that the provided username and password are not non-values
@@ -54,10 +66,6 @@ public class UserService {
 
     }
 
-
-    public Set<AppUser> getAllUsers() {
-        return new HashSet<>();
-    }
 
     public Set<AppUser> getUsersByRole() {
         return new HashSet<>();
