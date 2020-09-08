@@ -17,7 +17,28 @@ public class UserRepository {
                                "ON au.role_id = ur.id ";
 
     public UserRepository() {
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+        super();
+    }
+
+    public Optional<AppUser> findUserById(int id) {
+
+        Optional<AppUser> opUser = Optional.empty();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+
+            String sql = baseQuery + "WHERE au.id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            Set<AppUser> result = mapResultSet(pstmt.executeQuery());
+            if (!result.isEmpty()) {
+                opUser = result.stream().findFirst();
+            }
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return opUser;
     }
 
     public Set<AppUser> findAllUsers() {
@@ -94,7 +115,7 @@ public class UserRepository {
                          "VALUES (?, ?, ?, ?, ?, ?)";
 
             // second parameter here is used to indicate column names that will have generated values
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
             pstmt.setString(1, newUser.getUsername());
             pstmt.setString(2, newUser.getPassword());
             pstmt.setString(3, newUser.getFirstName());
@@ -102,7 +123,14 @@ public class UserRepository {
             pstmt.setString(5, newUser.getEmail());
             pstmt.setInt(6, newUser.getRole().ordinal() + 1);
 
-            pstmt.executeUpdate();
+           // pstmt.executeUpdate();
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted != 0) {
+                ResultSet rs = pstmt.getGeneratedKeys();
+                rs.next();
+                newUser.setId(rs.getInt(1));
+            }
 
         } catch (SQLException sqle) {
             sqle.printStackTrace();
