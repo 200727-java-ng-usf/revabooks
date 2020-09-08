@@ -23,20 +23,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="379c668c-1402-4d12-87d6-083ff8456f14" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/dtos/Credentials.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/dtos/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/AuthServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/UserServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/models/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/CrudRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/AppDriver.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/RegisterScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/RegisterScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/DashboardScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/HomeScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/LoginScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/RegisterScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/Screen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/SearchBooksScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/UserProfileScreen.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/AppState.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ConnectionFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tasble_creationm.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tasble_creationm.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/services/UserServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/services/UserServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ScreenRouter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/util/ConnectionFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/util/ConnectionFactoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +86,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Application.AppDriver">
+  <component name="RunManager" selected="JUnit.ConnectionFactoryTest">
     <configuration name="AppDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.revature.revabooks.AppDriver" />
       <module name="revaBooks" />
@@ -155,8 +161,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AppDriver" />
         <item itemvalue="JUnit.ConnectionFactoryTest" />
+        <item itemvalue="Application.AppDriver" />
         <item itemvalue="Application.StreamDriver" />
         <item itemvalue="JUnit.UserServiceTests.authenticationWithUnknownCredentials" />
         <item itemvalue="JUnit.UserServiceTests" />
@@ -199,11 +205,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="#Project_Structure/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597169333509" />
-    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser" timestamp="1598553324578">
+    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser" timestamp="1599602436649">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="686" y="114" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597951829337" />
-    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1598553324578" />
+    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599602436649" />
     <state x="655" y="333" width="609" height="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597706941735">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -214,6 +220,10 @@
     </state>
     <state x="422" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597706915713" />
     <state x="2220" y="297" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597178665326" />
+    <state x="2333" y="311" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599590292082">
+      <screen x="1920" y="200" width="1366" height="728" />
+    </state>
+    <state x="2333" y="311" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599590292082" />
     <state x="2333" y="311" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1597957420686">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
@@ -223,26 +233,26 @@
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598364014036" />
     <state x="2446" y="393" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599094698292" />
-    <state width="1323" height="237" key="GridCell.Tab.0.bottom" timestamp="1598122877523">
+    <state width="1323" height="237" key="GridCell.Tab.0.bottom" timestamp="1599593321653">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665346" />
-    <state width="1323" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1598122877523" />
-    <state width="1323" height="237" key="GridCell.Tab.0.center" timestamp="1598122877523">
+    <state width="1323" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321653" />
+    <state width="1323" height="237" key="GridCell.Tab.0.center" timestamp="1599593321653">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665345" />
-    <state width="1323" height="237" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1598122877523" />
-    <state width="1323" height="237" key="GridCell.Tab.0.left" timestamp="1598122877523">
+    <state width="1323" height="237" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321653" />
+    <state width="1323" height="237" key="GridCell.Tab.0.left" timestamp="1599593321652">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665345" />
-    <state width="1323" height="237" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1598122877523" />
-    <state width="1323" height="237" key="GridCell.Tab.0.right" timestamp="1598122877523">
+    <state width="1323" height="237" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321652" />
+    <state width="1323" height="237" key="GridCell.Tab.0.right" timestamp="1599593321653">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665345" />
-    <state width="1323" height="237" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1598122877523" />
+    <state width="1323" height="237" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321653" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1597969331961">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
@@ -283,11 +293,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597948798345" />
-    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup" timestamp="1598553867494">
+    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup" timestamp="1599597481946">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="486" y="70" width="945" height="969" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597259394896" />
-    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1598553867494" />
+    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599597481946" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

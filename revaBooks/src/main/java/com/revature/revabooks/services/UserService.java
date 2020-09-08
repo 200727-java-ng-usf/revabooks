@@ -2,55 +2,52 @@ package com.revature.revabooks.services;
 
 import com.revature.revabooks.exceptions.AuthenticationException;
 import com.revature.revabooks.exceptions.InvalidRequestException;
+import com.revature.revabooks.exceptions.ResourceNotFoundException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
 import java.util.*;
 
-import static com.revature.revabooks.AppDriver.app;
-
 public class UserService {
 
-    private UserRepository userRepo;
+    private UserRepository userRepo = new UserRepository();
 
-    public UserService(UserRepository repo) {
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-        userRepo = repo;
-//        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
-    }
+//    public UserService(UserRepository repo) {
+//        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+//        userRepo = repo;
+////        userRepo = new UserRepository(); // tight coupling! ~hard~ impossible to unit test
+//    }
 
 
     public Set<AppUser> getAllUsers() {
+
         Set<AppUser> users = userRepo.findAllUsers();
+
         if (users.isEmpty()) {
-            throw new RuntimeException("No users found...");
+            throw new ResourceNotFoundException();
         }
+
         return users;
     }
 
-
-
-
-    public void authenticate(String username, String password) {
+    public AppUser authenticate(String username, String password) {
 
         // validate that the provided username and password are not non-values
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new InvalidRequestException("Invalid credential values provided!");
         }
 
-        AppUser authUser = userRepo.findUserByCredentials(username, password)
+        return userRepo.findUserByCredentials(username, password)
                 .orElseThrow(AuthenticationException::new);
 
-        app.setCurrentUser(authUser);
 
     }
 
     public void register(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
-            // TODO implement a custom InvalidRequestException
-            throw new RuntimeException("Invalid user field values provided during registration!");
+            throw new InvalidRequestException("Invalid user field values provided during registration!");
         }
 
         Optional<AppUser> existingUser = userRepo.findUserByUsername(newUser.getUsername());
@@ -61,9 +58,8 @@ public class UserService {
 
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
-
-        app.setCurrentUser(newUser);
-
+        System.out.println(newUser);
+        //app.setCurrentUser(newUser);
     }
 
 
@@ -72,7 +68,13 @@ public class UserService {
     }
 
     public AppUser getUserById(int id) {
-        return null;
+
+        if (id <= 0) {
+            throw new InvalidRequestException("The provided Id cannot be less than or equal to 0!");
+        }
+
+        return userRepo.findUserById(id)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     public AppUser getUserByUsername(String username) {

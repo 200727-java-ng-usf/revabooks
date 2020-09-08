@@ -20,7 +20,7 @@ public class ConnectionFactory {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream propsInput = loader.getResourceAsStream("application.properties");
             props.load(propsInput);
-            props.load(new FileReader("./src/main/resources/application.properties"));
+//            props.load(new FileReader("./src/main/resources/application.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
