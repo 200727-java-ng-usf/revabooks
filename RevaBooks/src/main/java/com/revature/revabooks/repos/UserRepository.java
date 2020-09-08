@@ -31,6 +31,30 @@ public class UserRepository {
 			"JOIN revabooks.user_roles ur " +
 			"ON au.role_id = ur.id ";
 
+	public Optional<AppUser> findUserById(int id){
+		Optional<AppUser> _user = Optional.empty();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+
+			String sql = baseQuery + "WHERE au.id = ? ";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+//			ResultSet rs = pstmt.executeQuery(sql);
+			Set<AppUser> result = mapResultSet(pstmt.executeQuery());
+			if(!result.isEmpty()){
+				_user = result.stream().findFirst();
+			}
+//			_user = mapResultSet(rs).stream().findFirst();
+
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return _user;
+	}
+
 	public Set<AppUser>findAllUsers(){
 		Set<AppUser> users = new HashSet<>();
 
@@ -173,7 +197,7 @@ public class UserRepository {
 //				temp.setEmail(rs.getString("email"));
 			// TODO figure out how to set the Role of an AppUser using a ResultSet
 			temp.setRole(Role.getByName(rs.getString("name")));
-			System.out.println(temp);
+//			System.out.println(temp);
 
 			users.add(temp);
 		}

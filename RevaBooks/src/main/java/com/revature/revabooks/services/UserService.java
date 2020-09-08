@@ -2,25 +2,25 @@ package com.revature.revabooks.services;
 
 import com.revature.revabooks.exceptions.AuthenticationException;
 import com.revature.revabooks.exceptions.InvalidRequestException;
+import com.revature.revabooks.exceptions.ResourceNotFoundException;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.repos.UserRepository;
 
 import java.util.*;
 
-import static com.revature.revabooks.AppDriver.app;
 
 public class UserService {
 
 
 
-	private UserRepository userRepo;
+	private UserRepository userRepo = new UserRepository();
 
-	public UserService(UserRepository repo) {
-		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-		userRepo = repo;
-//		userRepo = new UserRepository(); // tight coupling ~hard~ impossible to unit test
-	}
+//	public UserService(UserRepository repo) {
+//		System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+//		userRepo = repo;
+////		userRepo = new UserRepository(); // tight coupling ~hard~ impossible to unit test
+//	}
 
 	/**
 	 *
@@ -28,7 +28,7 @@ public class UserService {
 	 * @param password
 	 * @return
 	 */
-	public void authenticate(String username, String password){
+	public AppUser authenticate(String username, String password){
 
 		// Validate that the provided username and password are not non-values
 		if(username == null || username.trim().equals("") || password == null || password.trim().equals("")){
@@ -38,10 +38,10 @@ public class UserService {
 //		List<AppUser> users = Arrays.asList(new AppUser(), new AppUser());
 //		users.forEach(user -> System.out.println(user)); // double colon operator = method reference operator.
 
-		AppUser authUser = userRepo.findUserByCredentials(username,password)
+		return userRepo.findUserByCredentials(username,password)
 				.orElseThrow(AuthenticationException::new);
 
-		app.setCurrentUser(authUser);
+//		app.setCurrentUser(authUser);
 
 //		Optional<AppUser> _authUser = userRepo.findUserByCredentials(username, password);
 //
@@ -65,17 +65,17 @@ public class UserService {
 
 		newUser.setRole(Role.BASIC_MEMBER);
 		userRepo.save(newUser);
-		System.out.println(newUser);
+//		System.out.println(newUser);
 
 //		app.setCurrentUser(getUserByUserName(newUser.getUserName()));
-		app.setCurrentUser(newUser);
+//		app.setCurrentUser(newUser);
 
 	}
 
-	public Set<AppUser> getAllUsers(){
+	public Set<AppUser> getAllUsers() throws ResourceNotFoundException {
 		Set<AppUser> users = userRepo.findAllUsers();
 		if(users.isEmpty()){
-			throw new RuntimeException("No users found... ");
+			throw new ResourceNotFoundException();
 		}
 		return users;
 	}
@@ -84,8 +84,13 @@ public class UserService {
 		return new HashSet<>();
 	}
 
-	public AppUser getUserByID(int id){
-		return null;
+	public AppUser getUserByID(int id) throws ResourceNotFoundException {
+		if(id <= 0){
+			throw new InvalidRequestException("The provided id cannot be less than or equal to zero.");
+		}
+
+		return userRepo.findUserById(id)
+				.orElseThrow(ResourceNotFoundException::new);
 	}
 
 	public AppUser getUserByUserName(String username){
