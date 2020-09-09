@@ -3,39 +3,47 @@ package com.revature.revabooks.models;
 import java.util.Objects;
 
 public class AppUser {
-    //fieldds/attributes
+
+    // fields/attributes
     private Integer id;
     private String firstName;
     private String lastName;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
+    private String email;
     private Role role;
 
-    //constructors
-    public AppUser(){
+    // constructors
+    // no args constructors are required for Jackson to map properly!
+    public AppUser() {
         super();
     }
-    //create user with no id
-    public AppUser(String firstName, String lastName, String userName, String passWord, Role role) {
+
+    public AppUser(String firstName, String lastName, String username, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
-        this.passWord = passWord;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = Role.LOCKED;
+    }
+
+    public AppUser(String firstName, String lastName, String username, String password, String email, Role role) {
+        this(firstName, lastName, username, password, email);
         this.role = role;
     }
 
-    public AppUser(Integer id, String firstName, String lastName, String userName, String passWord, Role role) {
-        this(firstName, lastName, userName, passWord, role);
+    public AppUser(Integer id, String firstName, String lastName, String username, String password, String email,  Role role) {
+        this(firstName, lastName, username, password, email, role);
         this.id = id;
     }
 
-    //copy constructor (used for conveniently copying the fields of one instance into another instance)
-    public AppUser(AppUser copy){
-        this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.passWord, copy.role);
+    // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
+    public AppUser(AppUser copy) {
+        this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.email, copy.role);
     }
 
-    //getters and setters
-
+    // getters and setters
     public Integer getId() {
         return id;
     }
@@ -60,24 +68,31 @@ public class AppUser {
         this.lastName = lastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Role getRole() {
-
         return role;
     }
 
@@ -85,26 +100,24 @@ public class AppUser {
         this.role = role;
     }
 
-    //any other instance methods
-
-    //overridden methods
-
+    // overridden Object methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AppUser)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return Objects.equals(getId(), appUser.getId()) &&
-                Objects.equals(getFirstName(), appUser.getFirstName()) &&
-                Objects.equals(getLastName(), appUser.getLastName()) &&
-                Objects.equals(getUserName(), appUser.getUserName()) &&
-                Objects.equals(getPassWord(), appUser.getPassWord()) &&
-                getRole() == appUser.getRole();
+        return Objects.equals(id, appUser.id) &&
+                Objects.equals(firstName, appUser.firstName) &&
+                Objects.equals(lastName, appUser.lastName) &&
+                Objects.equals(username, appUser.username) &&
+                Objects.equals(password, appUser.password) &&
+                Objects.equals(email, appUser.email) &&
+                role == appUser.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getUserName(), getPassWord(), getRole());
+        return Objects.hash(id, firstName, lastName, username, password, email, role);
     }
 
     @Override
@@ -113,9 +126,11 @@ public class AppUser {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }
+
 }
