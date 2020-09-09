@@ -23,27 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="379c668c-1402-4d12-87d6-083ff8456f14" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/dtos/Credentials.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/dtos/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/exceptions/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/AuthServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/UserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/dtos/Principal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/ViewServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/RequestViewHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/partials/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/AppDriver.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/repos/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/DashboardScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/HomeScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/LoginScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/RegisterScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/Screen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/SearchBooksScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/screens/UserProfileScreen.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/AppState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ConnectionFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/util/ScreenRouter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/util/ConnectionFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/revature/revabooks/util/ConnectionFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/AuthServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/AuthServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revabooks/servlets/UserServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +71,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mia_capoli_p1/project1" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="JUnit.ConnectionFactoryTest">
     <configuration name="AppDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -205,16 +196,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="#Project_Structure/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597169333509" />
-    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser" timestamp="1599602436649">
+    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser" timestamp="1599680876266">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="686" y="114" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597951829337" />
-    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599602436649" />
-    <state x="655" y="333" width="609" height="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597706941735">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2408" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599680876266" />
+    <state x="2386" y="433" width="609" height="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1599675947520">
+      <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="655" y="333" width="609" height="379" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597706941735" />
-    <state x="2386" y="433" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597182773375" />
+    <state x="2386" y="433" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599675947520" />
     <state x="422" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597706915713">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -228,31 +219,31 @@
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="2333" y="311" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597957420686" />
-    <state x="2446" y="393" key="FileChooserDialogImpl" timestamp="1599094698292">
+    <state x="2446" y="393" key="FileChooserDialogImpl" timestamp="1599676120832">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598364014036" />
-    <state x="2446" y="393" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599094698292" />
-    <state width="1323" height="237" key="GridCell.Tab.0.bottom" timestamp="1599593321653">
+    <state x="2446" y="393" key="FileChooserDialogImpl/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599676120832" />
+    <state width="1323" height="237" key="GridCell.Tab.0.bottom" timestamp="1599619402972">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665346" />
-    <state width="1323" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321653" />
-    <state width="1323" height="237" key="GridCell.Tab.0.center" timestamp="1599593321653">
+    <state width="1323" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599619402972" />
+    <state width="1323" height="237" key="GridCell.Tab.0.center" timestamp="1599619402972">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665345" />
-    <state width="1323" height="237" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321653" />
-    <state width="1323" height="237" key="GridCell.Tab.0.left" timestamp="1599593321652">
+    <state width="1323" height="237" key="GridCell.Tab.0.center/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599619402972" />
+    <state width="1323" height="237" key="GridCell.Tab.0.left" timestamp="1599619402972">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665345" />
-    <state width="1323" height="237" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321652" />
-    <state width="1323" height="237" key="GridCell.Tab.0.right" timestamp="1599593321653">
+    <state width="1323" height="237" key="GridCell.Tab.0.left/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599619402972" />
+    <state width="1323" height="237" key="GridCell.Tab.0.right" timestamp="1599619402972">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state width="1877" height="202" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1598025665345" />
-    <state width="1323" height="237" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599593321653" />
+    <state width="1323" height="237" key="GridCell.Tab.0.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599619402972" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1597969331961">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
@@ -273,10 +264,10 @@
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597952609447" />
     <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597969331961" />
-    <state x="2104" y="209" key="SettingsEditor" timestamp="1597174322938">
+    <state x="2104" y="209" key="SettingsEditor" timestamp="1599675931638">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
-    <state x="2104" y="209" key="SettingsEditor/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1597174322938" />
+    <state x="2104" y="209" key="SettingsEditor/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599675931638" />
     <state x="2148" y="299" width="909" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597969210111">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
@@ -293,11 +284,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597948798345" />
-    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup" timestamp="1599597481946">
+    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup" timestamp="1599675923752">
       <screen x="1920" y="200" width="1366" height="728" />
     </state>
     <state x="486" y="70" width="945" height="969" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@0.0.1920.1040" timestamp="1597259394896" />
-    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599597481946" />
+    <state x="2266" y="249" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.200.1366.728@1920.200.1366.728" timestamp="1599675923752" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -155,7 +155,8 @@ public class UserRepository {
             temp.setPassword(rs.getString("password"));
             temp.setFirstName(rs.getString("first_name"));
             temp.setLastName(rs.getString("last_name"));
-//            temp.setRole(Role.getByName(rs.getString("name")));
+            temp.setEmail(rs.getString("email"));
+            temp.setRole(Role.getByName(rs.getString("name")));
             users.add(temp);
         }
 

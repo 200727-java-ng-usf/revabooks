@@ -3,6 +3,7 @@ package com.revature.revabooks.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.revature.revabooks.dtos.ErrorResponse;
+import com.revature.revabooks.dtos.Principal;
 import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.exceptions.ResourceNotFoundException;
 import com.revature.revabooks.models.AppUser;
@@ -31,7 +32,25 @@ public class UserServlet extends HttpServlet {
         PrintWriter respWriter = resp.getWriter();
         resp.setContentType("application/json");
 
-        System.out.println(req.getParameter("id"));
+        String principalJSON = (String) req.getSession().getAttribute("principal");
+
+
+        if (principalJSON == null) {
+            ErrorResponse err = new ErrorResponse(401, "No principal object found on request.");
+            respWriter.write(mapper.writeValueAsString(err));
+            resp.setStatus(401);
+            return; //make sure it doesnt fall through
+        }
+
+        Principal principal = mapper.readValue(principalJSON, Principal.class);
+
+        if (!principal.getRole().equalsIgnoreCase("Admin")) {
+            ErrorResponse err = new ErrorResponse(403, "Forbidden: your role does not permit you to access this endpoint.");
+            respWriter.write(mapper.writeValueAsString(err));
+            resp.setStatus(403);
+            return;
+        }
+
         try {
             String idPAram = req.getParameter("id");
             if (idPAram != null) {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.revature.revabooks.dtos.Credentials;
 import com.revature.revabooks.dtos.ErrorResponse;
+import com.revature.revabooks.dtos.Principal;
 import com.revature.revabooks.exceptions.AuthenticationException;
 import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.models.AppUser;
@@ -43,7 +44,9 @@ public class AuthServlet extends HttpServlet {
             AppUser authUser = userService.authenticate(creds.getUsername(), creds.getPassword());
 
             HttpSession session = req.getSession();
-            session.setAttribute("auth-user", authUser);
+            Principal principal = new Principal(authUser);
+            session.setAttribute("principal", principal.stringify());
+
             resp.setStatus(204); //204 = no content
 
         } catch (MismatchedInputException | InvalidRequestException e) {
