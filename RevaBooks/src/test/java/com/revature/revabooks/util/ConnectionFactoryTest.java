@@ -21,7 +21,7 @@ public class ConnectionFactoryTest {
 	}
 
 	@Test
-	public void ensureConnectioNFactoryIsSingleton(){
+	public void ensureConnectionFactoryIsSingleton(){
 		ConnectionFactory c1 = ConnectionFactory.getInstance();
 		ConnectionFactory c2 = ConnectionFactory.getInstance();
 

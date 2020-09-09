@@ -3,6 +3,7 @@ package com.revature.revabooks.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.revature.revabooks.dtos.ErrorResponse;
+import com.revature.revabooks.dtos.Principal;
 import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.exceptions.ResourceNotFoundException;
 import com.revature.revabooks.models.AppUser;
@@ -28,11 +29,29 @@ public class UserServlet extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		PrintWriter respWriter = resp.getWriter();
 		resp.setContentType("application/json");
-		Enumeration<String> paramNames = req.getParameterNames();
-		while(paramNames.hasMoreElements()){
-//			System.out.println(paramNames.nextElement());
-			String paramValue = req.getParameter(paramNames.nextElement());
-			System.out.println(paramValue);
+//		Enumeration<String> paramNames = req.getParameterNames();
+//		while(paramNames.hasMoreElements()){
+////			System.out.println(paramNames.nextElement());
+//			String paramValue = req.getParameter(paramNames.nextElement());
+//			System.out.println(paramValue);
+//		}
+
+		String principalJSON = (String) req.getSession().getAttribute("principal");
+		System.out.println(principalJSON);
+
+		if(principalJSON == null){
+			ErrorResponse err = new ErrorResponse(401, "No principal object found on request. ");
+			respWriter.write(mapper.writeValueAsString(err));
+			resp.setStatus(401);
+			return; // necessary so that we do not continue with the rest of this method's logic.
+		}
+		Principal principal = mapper.readValue(principalJSON, Principal.class);
+
+		if(!principal.getRole().equalsIgnoreCase("Admin")){
+			ErrorResponse err = new ErrorResponse(403, "Forbidding: Your role does not permit you to access this endpoint. ");
+			respWriter.write(mapper.writeValueAsString(err));
+			resp.setStatus(403);
+			return; // necessary so that we do not continue with the rest of this method's logic.
 		}
 
 		try {

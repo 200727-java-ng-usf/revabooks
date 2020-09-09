@@ -76,7 +76,7 @@
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
-                        <!--Endpoint where Tomcat tells the applciation to go-->
+                        <!--Endpoint where Tomcat tells the application to go-->
                         <url>http://localhost:8080/manager/text/</url>
                         <server>LocalTomcat</server>
                         <path>/revabooks</path>
