@@ -26,17 +26,25 @@ function loadLogin() {
     
 }
 
-let login = document.getElementById("loginButton")
+// let login = document.getElementById("loginButton")
 
-// login.addEventListener(onclick, loginButton());
+// // login.addEventListener(onclick, loginButton());
 
 function loginButton() {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', './auth', true)
-    xhr.send('{ "username": ' + '"' + document.getElementById('login-username').value 
-    + '",' + '"password": "' + document.getElementById('login-password').value + '"}')
 
-    if (xhr.status != 200) {
+    let username = document.getElementById('login-username').value;
+    let password = document.getElementById('login-password').value;
+
+    let creds = {
+        username: username,
+        password: password
+    };
+
+    xhr.send(JSON.stringify(creds));
+
+    if (xhr.status != 204) {
         document.getElementById('login-message').innerHTML = "Error: failed to login";
         document.getElementById('login-message').style.display  = "block";
     }
