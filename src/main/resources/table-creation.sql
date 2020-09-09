@@ -94,3 +94,12 @@ from app_users au
 join user_roles ur
 on au.role_id = ur.id;
 
+
+-- test query
+select * from revabooks.app_users;
+
+select * from revabooks.user_roles ur ;
+
+delete from revabooks.app_users where id = 0;
+
+commit;
