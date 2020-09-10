@@ -17,11 +17,11 @@ public class ConnectionFactoryTest {
         assertSame(c1, c2);
     }
 
-    @Test
-    public void ensureThatAConnectionIsObtained() {
-        Connection conn = ConnectionFactory.getInstance().getConnection();
-        assertNotNull(conn);
-    }
+//    @Test
+//    public void ensureThatAConnectionIsObtained() {
+//        Connection conn = ConnectionFactory.getInstance().getConnection();
+//        assertNotNull(conn);
+//    }
 
 
 }
