@@ -20,25 +20,25 @@ import static org.junit.Assert.*;
 
 public class UserServiceTest {
 
-	private UserService sut;
-	private UserRepository mockUserRepo = Mockito.mock(UserRepository.class);
-	Set<AppUser> mockUsers = new HashSet<>();
-
-	@Before
-	public void setUp() {
-		sut = new UserService();
-		mockUsers.add(new AppUser(1, "Adam", "Inn", "admin", "secret", "admin@app.com", Role.ADMIN));
-		mockUsers.add(new AppUser(2, "Manny", "Gerr", "manager", "manage", "manager@app.com", Role.ADMIN));
-		mockUsers.add(new AppUser(3, "Alice", "Anderson", "aanderson", "password", "admin@app.com", Role.BASIC_MEMBER));
-		mockUsers.add(new AppUser(4, "Bob", "Bailey", "bbailey", "dev", "dev@app.com", Role.PREMIUM_MEMBER));
-
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		sut = null;
-		mockUsers.removeAll(mockUsers);
-	}
+//	private UserService sut;
+//	private UserRepository mockUserRepo = Mockito.mock(UserRepository.class);
+//	Set<AppUser> mockUsers = new HashSet<>();
+//
+//	@Before
+//	public void setUp() {
+//		sut = new UserService();
+//		mockUsers.add(new AppUser(1, "Adam", "Inn", "admin", "secret", "admin@app.com", Role.ADMIN));
+//		mockUsers.add(new AppUser(2, "Manny", "Gerr", "manager", "manage", "manager@app.com", Role.ADMIN));
+//		mockUsers.add(new AppUser(3, "Alice", "Anderson", "aanderson", "password", "admin@app.com", Role.BASIC_MEMBER));
+//		mockUsers.add(new AppUser(4, "Bob", "Bailey", "bbailey", "dev", "dev@app.com", Role.PREMIUM_MEMBER));
+//
+//	}
+//
+//	@After
+//	public void tearDown() throws Exception {
+//		sut = null;
+//		mockUsers.removeAll(mockUsers);
+//	}
 
 //	@Test
 //	public void AuthenticationWithValidCredentials(){
