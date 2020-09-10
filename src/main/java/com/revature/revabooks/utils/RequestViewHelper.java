@@ -8,12 +8,15 @@ public class RequestViewHelper {
 
         switch (req.getRequestURI()) {
 
+            case "/login.view":
             case "/revabooks/login.view":
                 return "partials/login.html";
 
+            case "/register.view":
             case "/revabooks/register.view":
                 return "partials/register.html";
 
+            case "/home.view":
             case "/revabooks/home.view":
 
                 String principal = (String) req.getSession().getAttribute("principal");

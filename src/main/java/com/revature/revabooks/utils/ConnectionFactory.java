@@ -39,25 +39,24 @@ public class ConnectionFactory {
             Class.forName("org.postgresql.Driver");
 
             conn = DriverManager.getConnection(
-                    props.getProperty("url") ,
-            props.getProperty("username") ,
-            props.getProperty("password"));
+                    props.getProperty("url"),
+                    props.getProperty("username"),
+                    props.getProperty("password")
+            );
 
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
-        if (conn == null) {
             try {
                 conn = DriverManager.getConnection(
                         System.getenv("url"),
                         System.getenv("username"),
                         System.getenv("password")
                 );
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
+
         }
+
 
 
         return conn;

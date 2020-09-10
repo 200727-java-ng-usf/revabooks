@@ -23,11 +23,11 @@ public class UserServiceTests {
 
     @Before
     public void setup() {
-        sut = new UserService(mockUserRepo);
-        mockUsers.add(new AppUser(1, "Adam", "Inn", "admin", "secret","email", Role.ADMIN));
-        mockUsers.add(new AppUser(2, "Manny", "Gerr", "manager", "manage","email", Role.MANAGER));
-        mockUsers.add(new AppUser(3, "Alice", "Anderson", "aanderson", "password","email", Role.BASIC_MEMBER));
-        mockUsers.add(new AppUser(4, "Bob", "Bailey", "bbailey", "dev","email", Role.PREMIUM_MEMBER));
+        sut = new UserService();
+        mockUsers.add(new AppUser(1, "Adam", "Inn", "admin", "secret", "admin@app.com", Role.ADMIN));
+        mockUsers.add(new AppUser(2, "Manny", "Gerr", "manager", "manage", "manager@app.com", Role.MANAGER));
+        mockUsers.add(new AppUser(3, "Alice", "Anderson", "aanderson", "password", "admin@app.com", Role.BASIC_MEMBER));
+        mockUsers.add(new AppUser(4, "Bob", "Bailey", "bbailey", "dev", "dev@app.com", Role.PREMIUM_MEMBER));
     }
 
     @After
@@ -35,22 +35,6 @@ public class UserServiceTests {
         sut = null;
         mockUsers.removeAll(mockUsers);
     }
-
-//    @Test
-//    public void authenticationWithValidCredentials() {
-//
-//        // Arrange
-//        AppUser expectedUser = new AppUser(1, "Adam", "Inn", "admin", "secret", Role.ADMIN);
-//        Mockito.when(mockUserRepo.findUserByCredentials("admin", "secret"))
-//                .thenReturn(Optional.of(expectedUser));
-//
-//        // Act
-//        AppUser actualResult = sut.authenticate("admin", "secret");
-//
-//        // Assert
-//        Assert.assertEquals(expectedUser, actualResult);
-//
-//    }
 
     @Test(expected = InvalidRequestException.class)
     public void authenticationWithInvalidCredentials() {
