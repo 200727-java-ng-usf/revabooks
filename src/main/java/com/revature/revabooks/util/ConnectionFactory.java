@@ -20,10 +20,13 @@ public class ConnectionFactory {
             InputStream propsInput = loader.getResourceAsStream("application.properties");
 
             if (propsInput == null) {
-                return;
+                props.setProperty("url", System.getenv("url"));
+                props.setProperty("username", System.getenv("username"));
+                props.setProperty("password", System.getenv("password"));
+            } else {
+                props.load(propsInput);
             }
 
-            props.load(propsInput);
         } catch (IOException e) {
             e.printStackTrace();
         }
