@@ -50,7 +50,6 @@ public class ConnectionFactory {
         }
 
         if (conn == null) {
-
             try {
                 conn = DriverManager.getConnection(
                         System.getenv("url"),
