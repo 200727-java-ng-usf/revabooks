@@ -18,6 +18,11 @@ public class ConnectionFactory {
         try {
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream propsInput = loader.getResourceAsStream("application.properties");
+
+            if (propsInput == null) {
+                return;
+            }
+
             props.load(propsInput);
         } catch (IOException e) {
             e.printStackTrace();
