@@ -45,8 +45,21 @@ public class ConnectionFactory {
 		} catch(ClassNotFoundException | SQLException e) {
 		    e.printStackTrace();
 		}
+
 		if(conn == null){
-			throw new RuntimeException("Failed to establish connection");
+			try {
+				conn = DriverManager.getConnection(
+						"jdbc:" +
+								"postgresql://" +
+								System.getenv("url") +
+								":5432" +
+								"/postgres",
+						System.getenv("username"),
+						System.getenv("password")
+				);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return conn;
 	}
