@@ -9,8 +9,10 @@ public class RequestViewHelper {
 		switch (req.getRequestURI()){
 			case "/revabooks/login.view":
 				return "partials/login.html";
+
 			case "/revabooks/register.view":
 				return "partials/register.html";
+
 			default:
 				return null;
 		}

@@ -5,8 +5,8 @@ import java.util.Objects;
 public class AppUser {
 	//region fields/attributes
 	private Integer id;
-	private String firstname;
-	private String lastname;
+	private String firstName;
+	private String lastName;
 	private String username;
 	private String password;
 	private String email;
@@ -19,28 +19,28 @@ public class AppUser {
 		super();
 	}
 
-	public AppUser(String firstname, String lastName, String userName, String password, String email){
-		this.firstname = firstname;
-		this.lastname = lastName;
+	public AppUser(String firstName, String lastName, String userName, String password, String email){
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.username = userName;
 		this.password = password;
 		this.email = email;
 		this.role = Role.LOCKED;
 	}
 
-	public AppUser(String firstname, String lastName, String userName, String password, String email, Role role) {
-		this(firstname, lastName, userName, password, email);
+	public AppUser(String firstName, String lastName, String userName, String password, String email, Role role) {
+		this(firstName, lastName, userName, password, email);
 		this.role = role;
 	}
 
-	public AppUser(Integer id, String firstname, String lastName, String userName, String password, String email, Role role) {
-		this(firstname, lastName, userName, password, email, role);
+	public AppUser(Integer id, String firstName, String lastName, String userName, String password, String email, Role role) {
+		this(firstName, lastName, userName, password, email, role);
 		this.id = id;
 	}
 
 	//copy constructor (used for convbeniently copying the values of one AppUser to create a new instance with the same values.
 	public AppUser(AppUser copy){
-		this(copy.id, copy.firstname, copy.lastname, copy.username, copy.password, copy.email, copy.role);
+		this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.email, copy.role);
 	}
 
 	//endregion
@@ -54,20 +54,20 @@ public class AppUser {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getUsername() {
@@ -117,8 +117,8 @@ public class AppUser {
 		if (o == null || getClass() != o.getClass()) return false;
 		AppUser appUser = (AppUser) o;
 		return Objects.equals(id, appUser.id) &&
-				Objects.equals(firstname, appUser.firstname) &&
-				Objects.equals(lastname, appUser.lastname) &&
+				Objects.equals(firstName, appUser.firstName) &&
+				Objects.equals(lastName, appUser.lastName) &&
 				Objects.equals(username, appUser.username) &&
 				Objects.equals(password, appUser.password) &&
 				Objects.equals(email, appUser.email) &&
@@ -127,15 +127,15 @@ public class AppUser {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, firstname, lastname, username, password, email, role);
+		return Objects.hash(id, firstName, lastName, username, password, email, role);
 	}
 
 	@Override
 	public String toString() {
 		return "AppUser{" +
 				"id=" + id +
-				", firstName='" + firstname + '\'' +
-				", lastName='" + lastname + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
 				", userName='" + username + '\'' +
 				", password='" + password + '\'' +
 				", email='" + email + '\'' +

@@ -1,37 +1,29 @@
 <div id="register-container">
-    <div class="form" id="register-form">
-        <header class="h2">Revabooks</header>
-        <hr/>
-        <header class="h3">Register for Revabooks</header>
-
-        <div class="form-group">
-            <label for="register-username">Username</label>
-            <input type="text" class="form-control" id="register-username" placeholder="Please enter your username"/>
-        </div>
-
-        <div class="form-group">
-            <label for="register-password">Password</label>
-            <input type="password" class="form-control" id="register-password" placeholder="Please enter your password"/>
-        </div>
-
-        <div class="form-group">
-            <label for="register-firstname">First name</label>
-            <input type="text" class="form-control" id="register-firstname" placeholder="Please enter your first name"/>
-        </div>
-
-        <div class="form-group">
-            <label for="register-lastname">Last name</label>
-            <input type="text" class="form-control" id="register-lastname" placeholder="Please enter your last name"/>
-        </div>
-
-        <div class="form-group">
-            <label for="register-email">Email</label>
-            <input type="text" class="form-control" id="register-email" placeholder="Please enter your email"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary" id="register">Register</button>
-        <br/>
-        <br/>
-        <div class="alert alert-danger" id="register-message"></div>
+    <header class="h2">Revabooks</header>
+    <hr/>
+    <header class="h3">Revabooks Registration</header>
+    <div class="form-group">
+		<label for="fn">First name</label> 
+		<input type="text" class="form-control" id="fn" placeholder="Enter your first name">
     </div>
+    <div class="form-group">
+		<label for="ln">Last name</label> 
+		<input type="text" class="form-control" id="ln" placeholder="Enter your last name">
+    </div>
+    <div class="form-group">
+		<label for="email">Email Address</label> 
+		<input type="email" class="form-control" id="email" placeholder="Enter your email address">
+    </div>
+    <div class="form-group">
+		<label for="reg-username">Username</label> 
+		<input type="text" class="form-control" id="reg-username" placeholder="Enter your desired username">
+    </div>
+    <div class="form-group">
+		<label for="reg-password">Password</label> 
+		<input type="password" class="form-control" id="reg-password" placeholder="Enter your password">
+    </div>
+    <button type="submit" class="btn btn-block btn-primary" id="register">Register</button>
+	<br/> 
+	<br/>
+    <div class="alert alert-danger" id="reg-message"></div>
 </div>

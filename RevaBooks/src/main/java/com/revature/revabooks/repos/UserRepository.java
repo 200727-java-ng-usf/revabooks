@@ -158,8 +158,8 @@ public class UserRepository {
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
 			pstmt.setString(1, newUser.getUsername());
 			pstmt.setString(2, newUser.getPassword());
-			pstmt.setString(3, newUser.getFirstname());
-			pstmt.setString(4, newUser.getLastname());
+			pstmt.setString(3, newUser.getFirstName());
+			pstmt.setString(4, newUser.getLastName());
 			pstmt.setString(5, newUser.getEmail());
 //			pstmt.setString(5, newUser.getFirstName().toLowerCase().charAt(0)
 //					+ newUser.getLastName().toLowerCase()
@@ -192,8 +192,8 @@ public class UserRepository {
 			temp.setId(			rs.getInt("id"));
 			temp.setUsername(	rs.getString("username"));
 			temp.setPassword(	rs.getString("password"));
-			temp.setFirstname(	rs.getString("first_name"));
-			temp.setLastname(	rs.getString("last_name"));
+			temp.setFirstName(	rs.getString("first_name"));
+			temp.setLastName(	rs.getString("last_name"));
 //				temp.setEmail(rs.getString("email"));
 			// TODO figure out how to set the Role of an AppUser using a ResultSet
 			temp.setRole(Role.getByName(rs.getString("name")));
