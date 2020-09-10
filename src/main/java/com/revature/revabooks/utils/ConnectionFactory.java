@@ -2,6 +2,7 @@ package com.revature.revabooks.utils;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,8 +16,11 @@ public class ConnectionFactory {
 
     private ConnectionFactory() {
         try {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            InputStream propsInput = loader.getResourceAsStream("application.properties");
+            props.load(propsInput);
             props.load(new FileReader("./src/main/resources/application.properties"));
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -44,8 +48,17 @@ public class ConnectionFactory {
         }
 
         if (conn == null) {
-            throw new RuntimeException("Failed to establish connection.");
+            try {
+                conn = DriverManager.getConnection(
+                        System.getenv("url"),
+                        System.getenv("username"),
+                        System.getenv("password")
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+
 
         return conn;
 
