@@ -29,6 +29,29 @@ public class UserRepository {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
     }
 
+    public Optional<AppUser> findUserById(int id) {
+
+        Optional<AppUser> _user = Optional.empty();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = baseQuery + "WHERE au.id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            Set<AppUser> result = mapResultSet(pstmt.executeQuery());
+            if (!result.isEmpty()) {
+                _user = result.stream().findFirst();
+            }
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+        return _user;
+
+    }
+
     public Set<AppUser> findAllUsers() {
 
         Set<AppUser> users = new HashSet<>();
@@ -74,31 +97,6 @@ public class UserRepository {
         return _user;
     }
 
-    public Optional<AppUser> findByID(int id){
-
-        Optional<AppUser> _user = Optional.empty();
-
-        String sql = baseQuery + "WHERE au.id = ?";
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            ps.setInt(1,id);
-
-            Set<AppUser> result = mapResultSet(ps.executeQuery());
-
-            if (!result.isEmpty()){
-                _user = result.stream().findFirst();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
-        return _user;
-
-    }
-
     public Optional<AppUser> findUserByUsername(String username) {
 
         Optional<AppUser> _user = Optional.empty();
@@ -128,7 +126,35 @@ public class UserRepository {
         return _user;
 
     }
+    public Optional<AppUser> findUserByEmail(String email) {
 
+        Optional<AppUser> _user = Optional.empty();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            // you can control whether or not JDBC automatically commits DML statements
+//            conn.setAutoCommit(false);
+
+            String sql = baseQuery + "WHERE username = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery();
+            _user = mapResultSet(rs).stream().findFirst();
+
+            // if you want to manually control the transaction
+//            conn.commit();
+//            conn.rollback();
+//            conn.setSavepoint();
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+        return _user;
+
+    }
     public void save(AppUser newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -175,12 +201,12 @@ public class UserRepository {
             temp.setPassword(rs.getString("password"));
             temp.setRole(Role.getByName(rs.getString("name")));
             temp.setEmail(rs.getString("email"));
-            System.out.println(temp);
             users.add(temp);
         }
 
         return users;
 
     }
+
 
 }

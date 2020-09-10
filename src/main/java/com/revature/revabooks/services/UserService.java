@@ -9,7 +9,6 @@ import com.revature.revabooks.repos.UserRepository;
 
 import java.util.*;
 
-//import static com.revature.revabooks.AppDriver.app;
 
 public class UserService {
 
@@ -24,6 +23,7 @@ public class UserService {
         }
 
         return users;
+
     }
 
     public AppUser authenticate(String username, String password) {
@@ -34,8 +34,7 @@ public class UserService {
         }
 
         return userRepo.findUserByCredentials(username, password)
-                                    .orElseThrow(AuthenticationException::new);
-
+                        .orElseThrow(AuthenticationException::new);
 
     }
 
@@ -53,8 +52,6 @@ public class UserService {
 
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
-        System.out.println(newUser);
-//        app.setCurrentUser(newUser);
 
     }
 
@@ -63,13 +60,22 @@ public class UserService {
     }
 
     public AppUser getUserById(int id) {
-        if (id <= 0){
-            throw new InvalidRequestException("tHE PROVIDED ID CANNOT BE LESS THAN OR EQUAL TO ZERO");
+
+        if (id <= 0) {
+            throw new InvalidRequestException("The provided id cannot be less than or equal to zero.");
         }
 
-        return userRepo.findByID(id).orElseThrow(ResourceNotFoundException::new);
+        return userRepo.findUserById(id)
+                        .orElseThrow(ResourceNotFoundException::new);
+    }
+    public boolean isUsernameAvailable(String username) {
+        AppUser user = userRepo.findUserByUsername(username).orElse(null);
+        return user == null;
+    }
 
-
+    public boolean isEmailAvailable(String email) {
+        AppUser user = userRepo.findUserByEmail(email).orElse(null);
+        return user == null;
     }
 
     public AppUser getUserByUsername(String username) {

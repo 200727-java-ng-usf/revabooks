@@ -9,7 +9,7 @@ public class ErrorResponse {
     private String message;
     private String timestamp;
 
-    public ErrorResponse(){
+    public ErrorResponse() {
         super();
     }
 
@@ -46,16 +46,16 @@ public class ErrorResponse {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ErrorResponse)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         ErrorResponse that = (ErrorResponse) o;
-        return getStatus() == that.getStatus() &&
-                Objects.equals(getMessage(), that.getMessage()) &&
-                Objects.equals(getTimestamp(), that.getTimestamp());
+        return status == that.status &&
+                Objects.equals(message, that.message) &&
+                Objects.equals(timestamp, that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStatus(), getMessage(), getTimestamp());
+        return Objects.hash(status, message, timestamp);
     }
 
     @Override
@@ -66,4 +66,5 @@ public class ErrorResponse {
                 ", timestamp=" + timestamp +
                 '}';
     }
+
 }
