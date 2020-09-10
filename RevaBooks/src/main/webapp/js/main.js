@@ -9,7 +9,7 @@ window.onload = function(){ //function w/out a name = anon function
 	document.getElementById('toLogout').addEventListener('click', logout);
 }
 
-//region loaders
+//#region loaders
 
 function loadPage(page){
 	console.log(page);
@@ -89,9 +89,9 @@ function loadLogout(){
 	}
 }
 
-//endregion
+//#endregion
 
-// #region configurators
+//#region configurations
 
 function configureLoginView(){
 	console.log('in configureLoginView');
@@ -121,9 +121,9 @@ function configureHomeView(){
 	document.getElementById('loggedInUsername').innerText = authUser.username;
 }
 
-//endregion
+//#endregion
 
-//region operations
+//#region operations
 
 function login(){
 	console.log('in login()');
@@ -272,9 +272,9 @@ function isEmailAvailable() {
     }
 }
 
-//endregion
+//#endregion
 
-//region formValidation
+//#region formValidation
 
 function validateLoginForm() {
 
@@ -320,4 +320,4 @@ function validateRegisterForm() {
     }
 }
 
-//endregion
+//#endregion
