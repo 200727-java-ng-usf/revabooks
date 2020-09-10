@@ -8,11 +8,13 @@ public class RequestViewHelper {
     public String process(HttpServletRequest req) {
 
         switch (req.getRequestURI()) {
-
+            case "/login.view":
             case "/revabooks/login.view":
                 return "partials/login.html";
+            case "/register.view":
             case "/revabooks/register.view":
                 return "partials/register.html";
+            case "/home.view":
             case "/revabooks/home.view":
                 String pr = (String) req.getSession().getAttribute("principal");
                 if(pr == null || pr.equals("")){
