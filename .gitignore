@@ -27,6 +27,15 @@ hs_err_pid*
 target/
 out/
 
+<<<<<<< HEAD
 # IntelliJ specific files/folders
 *.xml
 .idea/
+=======
+# IntelliJ-specific files/folders
+*.iml
+.idea/
+
+# Properties files
+*.properties
+>>>>>>> 3ebe6e34a8d49c7451080cc5591ebd6294df7f88
