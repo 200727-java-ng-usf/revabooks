@@ -46,20 +46,19 @@ public class ConnectionFactory {
             );
 
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
-        if (conn == null) {
             try {
                 conn = DriverManager.getConnection(
                         System.getenv("url"),
                         System.getenv("username"),
                         System.getenv("password")
                 );
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
+
         }
+
+
 
         return conn;
 
