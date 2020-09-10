@@ -3,6 +3,7 @@ package com.revature.revabooks.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.revature.revabooks.dtos.ErrorResponse;
+import com.revature.revabooks.dtos.Principal;
 import com.revature.revabooks.exceptions.InvalidRequestException;
 import com.revature.revabooks.exceptions.ResourceNotFoundException;
 import com.revature.revabooks.models.AppUser;
@@ -29,6 +30,25 @@ public class UserServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         PrintWriter respWriter = resp.getWriter();
         resp.setContentType("application/json");
+
+        //String principalJSON = (String)req.getAttribute("principal");
+        String principalJSON = (String)req.getSession().getAttribute("principal");
+        Principal principal = mapper.readValue(principalJSON, Principal.class);
+
+        if (principal == null) {
+            ErrorResponse err = new ErrorResponse(401, "No principal Object found");
+            respWriter.write(mapper.writeValueAsString(err));
+            resp.setStatus(401);
+            return; // necesary to skip the rest, cleaner than else brackets
+        }
+
+        if (!principal.getRole().equalsIgnoreCase("Admin")){
+            ErrorResponse err = new ErrorResponse(403,"Not permited");
+            respWriter.write(mapper.writeValueAsString(err));
+            resp.setStatus(403);
+            return;
+
+        }
 
         try {
 

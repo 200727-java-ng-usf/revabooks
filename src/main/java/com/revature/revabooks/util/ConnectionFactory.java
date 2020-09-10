@@ -50,7 +50,16 @@ public class ConnectionFactory {
         }
 
         if (conn == null) {
-            throw new RuntimeException("Failed to establish connection.");
+            try {
+                conn = DriverManager.getConnection(
+                   System.getenv("url"),
+                   System.getenv("username"),
+                   System.getenv("password")
+                );
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+            }
+            //throw new RuntimeException("Failed to establish connection.");
         }
 
         return conn;
