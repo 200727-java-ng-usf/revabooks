@@ -11,25 +11,20 @@ public class ConnectionFactory {
 
     private static ConnectionFactory connFactory = new ConnectionFactory();
 
-    private Properties props = new Properties();
+    private final Properties props = new Properties();
 
     private ConnectionFactory() {
 
         try {
+
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream propsInput = loader.getResourceAsStream("application.properties");
+            props.load(propsInput);
 
-            if (propsInput == null) {
-                System.out.println(props);
-                props.setProperty("url", System.getenv("url"));
-                props.setProperty("username", System.getenv("username"));
-                props.setProperty("password", System.getenv("password"));
-            } else {
-                props.load(propsInput);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NullPointerException e) {
+            props.setProperty("url", System.getenv("url"));
+            props.setProperty("username", System.getenv("username"));
+            props.setProperty("password", System.getenv("password"));
         }
 
     }
