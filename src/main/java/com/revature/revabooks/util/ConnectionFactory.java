@@ -47,20 +47,22 @@ public class ConnectionFactory {
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
 
-        if (conn == null) {
+
             try {
                 conn = DriverManager.getConnection(
-                   System.getenv("url"),
-                   System.getenv("username"),
-                   System.getenv("password")
+                        System.getenv("url"),
+                        System.getenv("username"),
+                        System.getenv("password")
                 );
             } catch (SQLException sqle) {
                 sqle.printStackTrace();
             }
             //throw new RuntimeException("Failed to establish connection.");
+
         }
+
+
 
         return conn;
 
