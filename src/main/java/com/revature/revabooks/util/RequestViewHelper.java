@@ -1,7 +1,6 @@
 package com.revature.revabooks.util;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class RequestViewHelper {
 
@@ -11,6 +10,9 @@ public class RequestViewHelper {
 
             case "/revabooks/login.view":
                 return "partials/login.html";
+
+            case "/revabooks/register.view":
+                return "partials/register.html";
 
             default:
                 return null;

@@ -10,7 +10,6 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 
-
     private static ConnectionFactory connFactory = new ConnectionFactory();
 
     private Properties props = new Properties();

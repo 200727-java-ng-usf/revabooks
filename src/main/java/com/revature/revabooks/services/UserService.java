@@ -9,12 +9,10 @@ import com.revature.revabooks.repos.UserRepository;
 
 import java.util.*;
 
-//import static com.revature.revabooks.AppDriver.app;
 
 public class UserService {
 
     private UserRepository userRepo = new UserRepository();
-
 
     public Set<AppUser> getAllUsers() {
 
@@ -25,8 +23,8 @@ public class UserService {
         }
 
         return users;
-    }
 
+    }
 
     public AppUser authenticate(String username, String password) {
 
@@ -36,8 +34,7 @@ public class UserService {
         }
 
         return userRepo.findUserByCredentials(username, password)
-                                    .orElseThrow(AuthenticationException::new);
-
+                        .orElseThrow(AuthenticationException::new);
 
     }
 
@@ -55,7 +52,6 @@ public class UserService {
 
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
-        //app.setCurrentUser(newUser);
 
     }
 
@@ -70,8 +66,17 @@ public class UserService {
         }
 
         return userRepo.findUserById(id)
-                       .orElseThrow(ResourceNotFoundException::new);
+                        .orElseThrow(ResourceNotFoundException::new);
+    }
 
+    public boolean isUsernameAvailable(String username) {
+        AppUser user = userRepo.findUserByUsername(username).orElse(null);
+        return user == null;
+    }
+
+    public boolean isEmailAvailable(String email) {
+        AppUser user = userRepo.findUserByEmail(email).orElse(null);
+        return user == null;
     }
 
     public AppUser getUserByUsername(String username) {
@@ -99,8 +104,6 @@ public class UserService {
         if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
         if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
         if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
-        if (user.getEmail() == null || user.getEmail().trim().equals("")) return false;
-
         return true;
     }
 

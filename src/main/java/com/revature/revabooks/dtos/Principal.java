@@ -74,4 +74,5 @@ public class Principal {
                 ", role='" + role + '\'' +
                 '}';
     }
+
 }

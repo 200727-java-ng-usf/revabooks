@@ -26,10 +26,8 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         req.getSession().invalidate();
         resp.setStatus(204);
-
     }
 
     @Override
@@ -41,6 +39,7 @@ public class AuthServlet extends HttpServlet {
 
         try {
 
+            // User Jackson to read the request body and map the provided JSON to a Java POJO
             Credentials creds = mapper.readValue(req.getInputStream(), Credentials.class);
 
             AppUser authUser = userService.authenticate(creds.getUsername(), creds.getPassword());
@@ -51,20 +50,17 @@ public class AuthServlet extends HttpServlet {
 
             resp.setStatus(204); // 204 = NO CONTENT
 
+        } catch (MismatchedInputException | InvalidRequestException e) {
 
-        } catch (AuthenticationException ae) {
-
-            resp.setStatus(400); // 400 = BAD REQUEST
-
-            ErrorResponse err = new ErrorResponse(400, "Bad Request: Malformed user object found in request body");
+            resp.setStatus(400);
+            ErrorResponse err = new ErrorResponse(400, "Bad Request: Malformed credentials object found in request body");
             String errJSON = mapper.writeValueAsString(err);
             respWriter.write(errJSON);
 
-        } catch (MismatchedInputException | InvalidRequestException e) {
+        } catch (AuthenticationException ae) {
 
-            resp.setStatus(400); // 400 = BAD REQUEST
-
-            ErrorResponse err = new ErrorResponse(400, "Bad Request: Malformed user object found in request body");
+            resp.setStatus(401);
+            ErrorResponse err = new ErrorResponse(401, ae.getMessage());
             String errJSON = mapper.writeValueAsString(err);
             respWriter.write(errJSON);
 
@@ -72,8 +68,10 @@ public class AuthServlet extends HttpServlet {
 
             e.printStackTrace();
             resp.setStatus(500); // 500 = INTERNAL SERVER ERROR
-            ErrorResponse err = new ErrorResponse(500, "It's not you, it's use. Our bad...");
+            ErrorResponse err = new ErrorResponse(500, "It's not you, it's us. Our bad...");
             respWriter.write(mapper.writeValueAsString(err));
+
         }
+
     }
 }

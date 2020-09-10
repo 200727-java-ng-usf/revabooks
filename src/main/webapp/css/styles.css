@@ -2,19 +2,13 @@ html, body {
     height: 100%;
 }
 
-body {
+.container {
     background-color: #f5f5f5;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     align-items: center;
 }
-#listNavBar {
-    list-style-type: none;
+
+#nav-dropdown {
+    color: white;
 }
-ul#listNavBar li {
-    display: inline;
-    padding: 1rem;
-}
-ul#listNavBar li:hover {
-    background-color: #1DA1F2;
-} 
