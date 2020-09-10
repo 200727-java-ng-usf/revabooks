@@ -21,9 +21,9 @@ public class ConnectionFactory {
             InputStream propsInput = loader.getResourceAsStream("application.properties");
 
             if (propsInput == null) {
-                props.setProperty("url", System.getenv("url"));
-                props.setProperty("username", System.getenv("username"));
-                props.setProperty("password", System.getenv("password"));
+                props.setProperty("url", System.getProperty("url"));
+                props.setProperty("username", System.getProperty("username"));
+                props.setProperty("password", System.getProperty("password"));
             } else {
                 props.load(propsInput);
             }
