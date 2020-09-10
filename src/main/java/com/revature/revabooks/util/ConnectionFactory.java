@@ -19,12 +19,17 @@ public class ConnectionFactory {
 
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream propsInput = loader.getResourceAsStream("application.properties");
-            props.load(propsInput);
 
-        } catch (IOException | NullPointerException e) {
-            props.setProperty("url", System.getenv("url"));
-            props.setProperty("username", System.getenv("username"));
-            props.setProperty("password", System.getenv("password"));
+            if (propsInput == null) {
+                props.setProperty("url", System.getenv("url"));
+                props.setProperty("username", System.getenv("username"));
+                props.setProperty("password", System.getenv("password"));
+            } else {
+                props.load(propsInput);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
