@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 public class UserServiceTests {
@@ -23,7 +22,7 @@ public class UserServiceTests {
 
     @Before
     public void setup() {
-        sut = new UserService(mockUserRepo);
+        sut = new UserService();
         mockUsers.add(new AppUser(1, "Adam", "Inn", "admin", "secret", "admin@app.com", Role.ADMIN));
         mockUsers.add(new AppUser(2, "Manny", "Gerr", "manager", "manage", "manager@app.com", Role.MANAGER));
         mockUsers.add(new AppUser(3, "Alice", "Anderson", "aanderson", "password", "admin@app.com", Role.BASIC_MEMBER));
