@@ -22,6 +22,14 @@ public class UserService {
 ////		userRepo = new UserRepository(); // tight coupling ~hard~ impossible to unit test
 //	}
 
+	public Set<AppUser> getAllUsers() throws ResourceNotFoundException {
+		Set<AppUser> users = userRepo.findAllUsers();
+		if(users.isEmpty()){
+			throw new ResourceNotFoundException();
+		}
+		return users;
+	}
+
 	/**
 	 *
 	 * @param username
@@ -72,14 +80,6 @@ public class UserService {
 
 	}
 
-	public Set<AppUser> getAllUsers() throws ResourceNotFoundException {
-		Set<AppUser> users = userRepo.findAllUsers();
-		if(users.isEmpty()){
-			throw new ResourceNotFoundException();
-		}
-		return users;
-	}
-
 	public Set<AppUser> getUsersByRole(){
 		return new HashSet<>();
 	}
@@ -91,6 +91,16 @@ public class UserService {
 
 		return userRepo.findUserById(id)
 				.orElseThrow(ResourceNotFoundException::new);
+	}
+
+	public boolean isUsernameAvailable(String username) {
+		AppUser user = userRepo.findUserByUsername(username).orElse(null);
+		return user == null;
+	}
+
+	public boolean isEmailAvailable(String email) {
+		AppUser user = userRepo.findUserByEmail(email).orElse(null);
+		return user == null;
 	}
 
 	public AppUser getUserByUserName(String username){

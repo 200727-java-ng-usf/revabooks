@@ -13,6 +13,13 @@ public class RequestViewHelper {
 			case "/revabooks/register.view":
 				return "partials/register.html";
 
+			case "/revabooks/home.view":
+				String principal = (String) req.getSession().getAttribute("principal");
+				if(principal == null || principal.equals("")){
+					return "partials/login.html";
+				}
+				return "partials/home.html";
+
 			default:
 				return null;
 		}
