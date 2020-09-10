@@ -1,6 +1,5 @@
 package com.revature.revabooks.util;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -46,19 +45,8 @@ public class ConnectionFactory {
             );
 
         } catch (ClassNotFoundException | SQLException e) {
-            try {
-                conn = DriverManager.getConnection(
-                        System.getenv("url"),
-                        System.getenv("username"),
-                        System.getenv("password")
-                );
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
+            e.printStackTrace();
         }
-
-
 
         return conn;
 
