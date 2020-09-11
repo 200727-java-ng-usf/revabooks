@@ -12,9 +12,10 @@ public class ConnectionFactory {
 
     private static ConnectionFactory connFactory = new ConnectionFactory();
 
-    private Properties props = new Properties();
+    private final Properties props = new Properties();
 
     private ConnectionFactory() {
+
         try {
 
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -54,19 +55,8 @@ public class ConnectionFactory {
             );
 
         } catch (ClassNotFoundException | SQLException e) {
-            try {
-                conn = DriverManager.getConnection(
-                        System.getenv("url"),
-                        System.getenv("username"),
-                        System.getenv("password")
-                );
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
+            e.printStackTrace();
         }
-
-
 
         return conn;
 
