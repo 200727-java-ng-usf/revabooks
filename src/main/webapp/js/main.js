@@ -95,6 +95,8 @@ function login() {
 
     xhr.onreadystatechange = function () {
 
+        console.log(xhr.readyState);
+
         if (xhr.readyState == 4 && xhr.status == 204) {
 
             document.getElementById('login-message').setAttribute('hidden', true);
