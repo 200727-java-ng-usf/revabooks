@@ -17,9 +17,18 @@ public class ConnectionFactory {
     private ConnectionFactory() {
 
         try {
+
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream propsInput = loader.getResourceAsStream("application.properties");
-            props.load(propsInput);
+
+            if (propsInput == null) {
+                props.setProperty("url", System.getProperty("url"));
+                props.setProperty("username", System.getProperty("username"));
+                props.setProperty("password", System.getProperty("password"));
+            } else {
+                props.load(propsInput);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,17 +56,6 @@ public class ConnectionFactory {
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
-
-        if (conn == null) {
-            try {
-                conn = DriverManager.getConnection(
-                        System.getenv("url"),
-                        System.getenv("username"),
-                        System.getenv("password"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
 
         return conn;
