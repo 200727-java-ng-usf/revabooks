@@ -52,19 +52,6 @@ public class ConnectionFactory {
 					props.getProperty("password")
 			);
 			if (conn == null) {
-				try {
-					conn = DriverManager.getConnection(
-							System.getenv("url"),
-							System.getenv("username"),
-							System.getenv("password")
-					);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		} catch(ClassNotFoundException | SQLException e) {
-		    e.printStackTrace();
-			try {
 				conn = DriverManager.getConnection(
 						"jdbc:" +
 								"postgresql://" +
@@ -74,9 +61,9 @@ public class ConnectionFactory {
 						System.getenv("username"),
 						System.getenv("password")
 				);
-			} catch (SQLException ex) {
-				ex.printStackTrace();
 			}
+		} catch(ClassNotFoundException | SQLException e) {
+		    e.printStackTrace();
 		}
 
 		return conn;
