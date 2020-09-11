@@ -1,5 +1,6 @@
 package com.revature.revabooks.servlets;
 
+import com.revature.revabooks.dtos.ErrorResponse;
 import com.revature.revabooks.util.ValidationHelper;
 
 import javax.servlet.ServletException;

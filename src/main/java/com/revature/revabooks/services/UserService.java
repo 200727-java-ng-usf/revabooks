@@ -68,6 +68,7 @@ public class UserService {
         return userRepo.findUserById(id)
                         .orElseThrow(ResourceNotFoundException::new);
     }
+
     public boolean isUsernameAvailable(String username) {
         AppUser user = userRepo.findUserByUsername(username).orElse(null);
         return user == null;

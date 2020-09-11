@@ -48,11 +48,10 @@ public class AuthServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("principal", principal.stringify());
 
-            String principleJSON = mapper.writeValueAsString(principal);
-            respWriter.write(principleJSON);
+            String principalJSON = mapper.writeValueAsString(principal);
+            respWriter.write(principalJSON);
 
-
-            resp.setStatus(204); // 204 = NO CONTENT
+            resp.setStatus(200);
 
         } catch (MismatchedInputException | InvalidRequestException e) {
 

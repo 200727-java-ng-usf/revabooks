@@ -1,6 +1,5 @@
 package com.revature.revabooks.util;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -12,7 +11,7 @@ public class ConnectionFactory {
 
     private static ConnectionFactory connFactory = new ConnectionFactory();
 
-    private Properties props = new Properties();
+    private final Properties props = new Properties();
 
     private ConnectionFactory() {
 
