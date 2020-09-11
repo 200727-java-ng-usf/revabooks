@@ -1,16 +1,36 @@
 package com.revature.revabooks.models;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name="app_users")
 public class AppUser {
 
-    // fields/attributes
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name="first_name")
     private String firstName;
+
+    @Column(name="last_name")
     private String lastName;
+
+    @Column
     private String username;
+
+    @Column
     private String password;
+
+    @Column
     private String email;
+
+    // Role is an enum and cannot be mapped using @JoinColumn
+//    @ManyToOne(fetch=FetchType.EAGER)
+//    @JoinColumn(name="role_id")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     // constructors
