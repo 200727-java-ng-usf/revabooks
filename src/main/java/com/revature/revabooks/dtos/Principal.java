@@ -12,14 +12,14 @@ public class Principal {
     private String username;
     private String role;
 
-    public Principal(){
-
+    public Principal() {
+        super();
     }
 
-    public Principal(AppUser appUser){
-        this.id = appUser.getId();
-        this.username = appUser.getUsername();
-        this.role = appUser.getRole().toString();
+    public Principal(AppUser user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.role = user.getRole().toString();
     }
 
     public int getId() {
@@ -74,4 +74,5 @@ public class Principal {
                 ", role='" + role + '\'' +
                 '}';
     }
+
 }

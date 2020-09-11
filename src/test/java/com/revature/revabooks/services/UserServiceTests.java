@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 public class UserServiceTests {

@@ -17,5 +17,6 @@ public class ViewServlet extends HttpServlet {
 
         String nextView = new RequestViewHelper().process(req);
         req.getRequestDispatcher(nextView).forward(req, resp);
+
     }
 }
