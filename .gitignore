@@ -33,3 +33,6 @@ out/
 
 # Properties files
 *.properties
+
+#config files
+hibernate.cfg.xml
