@@ -16,15 +16,18 @@ public class ConnectionFactory {
 
 	private ConnectionFactory(){
 		try {
+
 			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			InputStream propsInput = loader.getResourceAsStream("application.properties");
-			if(propsInput == null){
+
+			if (propsInput == null) {
 				props.setProperty("url", System.getProperty("url"));
 				props.setProperty("username", System.getProperty("username"));
 				props.setProperty("password", System.getProperty("password"));
 			} else {
 				props.load(propsInput);
 			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -50,19 +53,19 @@ public class ConnectionFactory {
 			);
 		} catch(ClassNotFoundException | SQLException e) {
 		    e.printStackTrace();
-			try {
-				conn = DriverManager.getConnection(
-						"jdbc:" +
-								"postgresql://" +
-								System.getenv("url") +
-								":5432" +
-								"/postgres",
-						System.getenv("username"),
-						System.getenv("password")
-				);
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
+//			try {
+//				conn = DriverManager.getConnection(
+//						"jdbc:" +
+//								"postgresql://" +
+//								System.getenv("url") +
+//								":5432" +
+//								"/postgres",
+//						System.getenv("username"),
+//						System.getenv("password")
+//				);
+//			} catch (SQLException ex) {
+//				ex.printStackTrace();
+//			}
 		}
 
 		return conn;
