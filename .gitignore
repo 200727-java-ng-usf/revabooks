@@ -34,3 +34,4 @@ out/
 
 # Properties files
 *.properties
+hibernate.cfg.xml
