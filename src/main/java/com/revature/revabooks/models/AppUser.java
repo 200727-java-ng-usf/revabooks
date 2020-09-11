@@ -1,16 +1,37 @@
 package com.revature.revabooks.models;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+
+@Entity
+@Table(name = "app_users")
 public class AppUser {
-// fields/attributes
-private Integer id;
-private String firstName;
-private String lastName;
-private String username;
-private String password;
-private String email;
-private Role role;
+    // fields/attributes
+
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name="first_name")
+    private String firstName;
+
+    @Column(name="last_name")
+    private String lastName;
+
+    @Column
+    private String username;
+    @Column
+    private String password;
+    @Column
+    private String email;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="role_id")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 
     public AppUser() {
         super();
@@ -30,13 +51,12 @@ private Role role;
     }
 
 
-
     public AppUser(String firstName, String lastName, String username, String password, String email, Role role) {
         this(firstName, lastName, username, password, email);
         this.role = role;
     }
 
-    public AppUser(Integer id, String firstName, String lastName, String username, String password,String email, Role role) {
+    public AppUser(Integer id, String firstName, String lastName, String username, String password, String email, Role role) {
         this(firstName, lastName, username, password, email, role);
         this.id = id;
     }

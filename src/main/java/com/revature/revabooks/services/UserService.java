@@ -54,6 +54,7 @@ public class UserService {
         newUser.setRole(Role.BASIC_MEMBER);
         userRepo.save(newUser);
 
+
     }
 
     public Set<AppUser> getUsersByRole() {

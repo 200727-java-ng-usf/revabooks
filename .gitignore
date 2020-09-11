@@ -31,3 +31,5 @@ out/
 .idea/
 
 *.properties
+
+hibernate.cfg.xml
