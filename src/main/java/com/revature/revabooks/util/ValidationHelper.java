@@ -12,17 +12,15 @@ public class ValidationHelper {
 
     public boolean process(HttpServletRequest req) throws IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper  mapper = new ObjectMapper();
 
         switch (req.getRequestURI()) {
             case "/revabooks/email.validate":
                 String email = mapper.readValue(req.getInputStream(), String.class);
                 return userService.isEmailAvailable(email);
-
             case "/revabooks/username.validate":
                 String username = mapper.readValue(req.getInputStream(), String.class);
                 return userService.isUsernameAvailable(username);
-
             default:
                 return false;
         }
