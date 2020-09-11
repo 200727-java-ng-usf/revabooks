@@ -34,4 +34,6 @@ out/
 
 # Properties files
 *.properties
+
+# Configuration files
 hibernate.cfg.xml

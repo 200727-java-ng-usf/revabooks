@@ -127,6 +127,28 @@ public class UserRepository {
 
     }
 
+    public Optional<AppUser> findUserByEmail(String email) {
+
+        Optional<AppUser> _user = Optional.empty();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = baseQuery + "WHERE email = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery();
+            _user = mapResultSet(rs).stream().findFirst();
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+        return _user;
+
+    }
+
     public void save(AppUser newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {

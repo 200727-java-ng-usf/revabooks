@@ -69,6 +69,16 @@ public class UserService {
                         .orElseThrow(ResourceNotFoundException::new);
     }
 
+    public boolean isUsernameAvailable(String username) {
+        AppUser user = userRepo.findUserByUsername(username).orElse(null);
+        return user == null;
+    }
+
+    public boolean isEmailAvailable(String email) {
+        AppUser user = userRepo.findUserByEmail(email).orElse(null);
+        return user == null;
+    }
+
     public AppUser getUserByUsername(String username) {
         return null;
     }
