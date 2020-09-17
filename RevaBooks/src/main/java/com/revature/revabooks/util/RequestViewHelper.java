@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RequestViewHelper {
 
-	public String process(HttpServletRequest req){
+	public static String process(HttpServletRequest req){
 		switch (req.getRequestURI()){
 			case "/revabooks/login.view":
 			case "/login.view":

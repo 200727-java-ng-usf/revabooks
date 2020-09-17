@@ -3,7 +3,12 @@ package com.revature.revabooks.repos;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.util.ConnectionFactory;
+import com.revature.revabooks.util.HibernateConfig;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Optional;
@@ -20,6 +25,8 @@ import java.util.Set;
 		- Optional<AppUser> findUserByEmail(String email)
  */
 public class UserRepository {
+
+	private final SessionFactory sessionFactory = HibernateConfig.getSessionFactory();
 
 	// Extract common query clauses into a easily referenced thingamabobamagigit
 	/**
@@ -81,36 +88,53 @@ public class UserRepository {
 	public Optional<AppUser> findUserByCredentials(String username, String password){
 
 		Optional<AppUser> _user = Optional.empty();
+		Session session = sessionFactory.getCurrentSession();
+		try{
 
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-
-			String sql =
-					baseQuery +
-					"WHERE username = ? AND password = ? "
-					;
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, username);
-			pstmt.setString(2, password);
-
-			ResultSet rs =  pstmt.executeQuery();
-			_user = mapResultSet(rs).stream().findFirst();
-//			AppUser appUser = new AppUser();
-//
-//			while(rs.next()){
-//				appUser.setId(			rs.getInt("id"));
-//				appUser.setUserName(	rs.getString("username"));
-//				appUser.setPassword(	rs.getString("password"));
-//				appUser.setFirstName(	rs.getString("first_name"));
-//				appUser.setLastName(	rs.getString("last_name"));
-////				appUser.setEmail(rs.getString("email"));
-//				appUser.setRole(Role.values()[Integer.parseInt(rs.getString("role_id"))]);
-//			}
-//
-//			_user = Optional.of(appUser);
-
-		} catch(SQLException sqle){
-			sqle.printStackTrace();
+			Transaction tx = session.beginTransaction();
+			AppUser retrievedUser = session.createQuery(
+					"from AppUser au where au.username = :un and password = :pw"
+					, AppUser.class)
+					.setParameter("un", username)
+					.setParameter("pw", password)
+					.getSingleResult();
+			_user = Optional.of(retrievedUser);
+			tx.commit();
+		} catch(Exception e) {
+			session.getTransaction().rollback();
+		    e.printStackTrace();
 		}
+		session.close(); // not really required, since the Session object is scoped to this metho
+		// and once this method returns, the Session objcet will be garbage collected and subsequently closed.
+//		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+//
+//			String sql =
+//					baseQuery +
+//					"WHERE username = ? AND password = ? "
+//					;
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, username);
+//			pstmt.setString(2, password);
+//
+//			ResultSet rs =  pstmt.executeQuery();
+//			_user = mapResultSet(rs).stream().findFirst();
+////			AppUser appUser = new AppUser();
+////
+////			while(rs.next()){
+////				appUser.setId(			rs.getInt("id"));
+////				appUser.setUserName(	rs.getString("username"));
+////				appUser.setPassword(	rs.getString("password"));
+////				appUser.setFirstName(	rs.getString("first_name"));
+////				appUser.setLastName(	rs.getString("last_name"));
+//////				appUser.setEmail(rs.getString("email"));
+////				appUser.setRole(Role.values()[Integer.parseInt(rs.getString("role_id"))]);
+////			}
+////
+////			_user = Optional.of(appUser);
+//
+//		} catch(SQLException sqle){
+//			sqle.printStackTrace();
+//		}
 
 		return _user;
 	}
@@ -167,42 +191,52 @@ public class UserRepository {
 	}
 
 	public void save(AppUser newUser){
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-
-			String sql =
-					"INSERT INTO revabooks.app_users " +
-					"(username, password, first_name, last_name, email, role_id) " +
-					//(username, password, first_name, last_name, email, role_id)
-					"VALUES (?, ?, ?, ?, ?, ?) "
-//					"VALUES (0, ?, ?, ?, ?, ?, ?) "
-					;
-			// second parameter here is used to indicate column names that will have generated values
-			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
-			pstmt.setString(1, newUser.getUsername());
-			pstmt.setString(2, newUser.getPassword());
-			pstmt.setString(3, newUser.getFirstName());
-			pstmt.setString(4, newUser.getLastName());
-			pstmt.setString(5, newUser.getEmail());
-//			pstmt.setString(5, newUser.getFirstName().toLowerCase().charAt(0)
-//					+ newUser.getLastName().toLowerCase()
-//					+ "@revature.com");
-			pstmt.setInt(6, newUser.getRole().ordinal() + 1);
-//			pstmt.setInt(6, Role.getOrdinal(newUser.getRole()));
-
-			int rowsInserted = pstmt.executeUpdate();
-
-			if(rowsInserted != 0){
-
-				ResultSet rs = pstmt.getGeneratedKeys();
-
-				rs.next();
-				newUser.setId(rs.getInt(1));
-//					newUser.setId(rs.getInt("id")); // also works
-			}
-
-		} catch(SQLException sqle){
-			sqle.printStackTrace();
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			Transaction tx = session.beginTransaction();
+			session.save(newUser);
+			tx.commit();
+		} catch(Exception e) {
+			session.getTransaction().rollback();
+		    e.printStackTrace();
 		}
+		session.close();
+//		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+//
+//			String sql =
+//					"INSERT INTO revabooks.app_users " +
+//					"(username, password, first_name, last_name, email, role_id) " +
+//					//(username, password, first_name, last_name, email, role_id)
+//					"VALUES (?, ?, ?, ?, ?, ?) "
+////					"VALUES (0, ?, ?, ?, ?, ?, ?) "
+//					;
+//			// second parameter here is used to indicate column names that will have generated values
+//			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
+//			pstmt.setString(1, newUser.getUsername());
+//			pstmt.setString(2, newUser.getPassword());
+//			pstmt.setString(3, newUser.getFirstName());
+//			pstmt.setString(4, newUser.getLastName());
+//			pstmt.setString(5, newUser.getEmail());
+////			pstmt.setString(5, newUser.getFirstName().toLowerCase().charAt(0)
+////					+ newUser.getLastName().toLowerCase()
+////					+ "@revature.com");
+//			pstmt.setInt(6, newUser.getRole().ordinal() + 1);
+////			pstmt.setInt(6, Role.getOrdinal(newUser.getRole()));
+//
+//			int rowsInserted = pstmt.executeUpdate();
+//
+//			if(rowsInserted != 0){
+//
+//				ResultSet rs = pstmt.getGeneratedKeys();
+//
+//				rs.next();
+//				newUser.setId(rs.getInt(1));
+////					newUser.setId(rs.getInt("id")); // also works
+//			}
+//
+//		} catch(SQLException sqle){
+//			sqle.printStackTrace();
+//		}
 	}
 
 	private Set<AppUser> mapResultSet(ResultSet rs) throws SQLException {

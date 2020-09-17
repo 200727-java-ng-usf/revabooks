@@ -15,7 +15,7 @@ public class ViewServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String nextView = new RequestViewHelper().process(req);
+		String nextView = RequestViewHelper.process(req);
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher(nextView);
 		requestDispatcher.forward(req, resp);
 	}
