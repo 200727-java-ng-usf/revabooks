@@ -3,7 +3,12 @@ package com.revature.revabooks.repos;
 import com.revature.revabooks.models.AppUser;
 import com.revature.revabooks.models.Role;
 import com.revature.revabooks.util.ConnectionFactory;
+import com.revature.revabooks.util.HibernateConfig;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Optional;
@@ -19,6 +24,8 @@ import java.util.Set;
         - Optional<AppUser> findUserByEmail(String email)
  */
 public class UserRepository {
+
+    private final SessionFactory sessionFactory = HibernateConfig.getSessionFactory();
 
     // extract common query clauses into a easily referenced member for reusability.
     private String baseQuery = "SELECT * FROM app_users au " +
@@ -76,22 +83,30 @@ public class UserRepository {
 
     public Optional<AppUser> findUserByCredentials(String username, String password) {
 
+        Session session = sessionFactory.getCurrentSession();
         Optional<AppUser> _user = Optional.empty();
 
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+        try {
 
-            String sql = baseQuery + "WHERE username = ? AND password = ?";
+//            session.beginTransaction();
+//            Query query = session.createQuery("from AppUser au where au.username = :un and password = :pw", AppUser.class);
+//            query.setParameter("un", username);
+//            query.setParameter("pw", password);
+//            AppUser retrievedUser = (AppUser) query.getSingleResult();
+//            _user = Optional.of(retrievedUser);
 
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
+            // does the same thing as the comment out code above (just a bit more concise)
+            session.beginTransaction();
+            AppUser retrievedUser = session.createQuery("from AppUser au where au.username = :un and password = :pw", AppUser.class)
+                                           .setParameter("un", username)
+                                           .setParameter("pw", password)
+                                           .getSingleResult();
 
-            ResultSet rs = pstmt.executeQuery();
+            _user = Optional.of(retrievedUser);
 
-            _user = mapResultSet(rs).stream().findFirst();
-
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
         }
 
         return _user;
@@ -151,34 +166,21 @@ public class UserRepository {
 
     public void save(AppUser newUser) {
 
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+        Session session = sessionFactory.getCurrentSession();
 
-            String sql = "INSERT INTO app_users (username, password, first_name, last_name, email, role_id) " +
-                         "VALUES (?, ?, ?, ?, ?, ?)";
+        try {
 
-            // second parameter here is used to indicate column names that will have generated values
-            PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"id"});
-            pstmt.setString(1, newUser.getUsername());
-            pstmt.setString(2, newUser.getPassword());
-            pstmt.setString(3, newUser.getFirstName());
-            pstmt.setString(4, newUser.getLastName());
-            pstmt.setString(5, newUser.getEmail());
-            pstmt.setInt(6, newUser.getRole().ordinal() + 1);
+            Transaction tx = session.beginTransaction();
+            session.save(newUser);
+            tx.commit();
 
-            int rowsInserted = pstmt.executeUpdate();
-
-            if (rowsInserted != 0) {
-
-                ResultSet rs = pstmt.getGeneratedKeys();
-
-                rs.next();
-                newUser.setId(rs.getInt(1));
-
-            }
-
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
         }
+
+        session.close(); // not really required, since the Session object is scoped to this method
+        // and once this method returns, the Session object will be garbage collection and subsequently closed
 
     }
 

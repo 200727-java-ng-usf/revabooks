@@ -4,6 +4,8 @@ window.onload = function() {
     loadLogin();
     document.getElementById('toLogin').addEventListener('click', loadLogin);
     document.getElementById('toRegister').addEventListener('click', loadRegister);
+    document.getElementById('toHome').addEventListener('click', loadHome);
+    document.getElementById('toLogout').addEventListener('click', logout);
 }
 
 //----------------------LOAD VIEWS-------------------------
@@ -44,6 +46,30 @@ function loadRegister() {
 
 }
 
+function loadHome() {
+
+    console.log('in loadHome()');
+
+    if (!localStorage.getItem('authUser')) {
+        console.log('No user logged in, navigating to login screen');
+        loadLogin();
+        return;
+    }
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'home.view');
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            APP_VIEW.innerHTML = xhr.responseText;
+            configureHomeView();
+        }
+    }
+
+}
+
 //----------------CONFIGURE VIEWS--------------------
 
 function configureLoginView() {
@@ -71,6 +97,13 @@ function configureRegisterView() {
 
 }
 
+function configureHomeView() {
+    
+    let authUser = JSON.parse(localStorage.getItem('authUser'));
+    document.getElementById('loggedInUsername').innerText = authUser.username;
+
+}
+
 //------------------OPERATIONS-----------------------
 
 function login() {
@@ -95,12 +128,11 @@ function login() {
 
     xhr.onreadystatechange = function () {
 
-        console.log(xhr.readyState);
-
-        if (xhr.readyState == 4 && xhr.status == 204) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
 
             document.getElementById('login-message').setAttribute('hidden', true);
-            console.log('login successful!');
+            localStorage.setItem('authUser', xhr.responseText);
+            loadHome();
 
         } else if (xhr.readyState == 4 && xhr.status == 401) {
 
@@ -141,8 +173,7 @@ function register() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 201) {
-            let registeredUser = JSON.parse(xhr.responseText);
-            console.log(registeredUser);
+            loadLogin();
         } else if (xhr.readyState == 4 && xhr.status != 201) {
             document.getElementById('reg-message').removeAttribute('hidden');
             let err = JSON.parse(xhr.responseText);
@@ -165,6 +196,8 @@ function logout() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 204) {
             console.log('logout successful!');
+            localStorage.removeItem('authUser');
+            loadLogin();
         }
     }
 }
@@ -175,6 +208,10 @@ function isUsernameAvailable() {
 
     let username = document.getElementById('reg-username').value;
 
+    if (!username) {
+        return;
+    }
+
     let xhr = new XMLHttpRequest();
 
     xhr.open('POST', 'username.validate');
@@ -184,6 +221,7 @@ function isUsernameAvailable() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 204) {
             console.log('Provided username is available!');
+            document.getElementById('reg-message').setAttribute('hidden', true);
         } else if (xhr.readyState == 4 && xhr.status == 409 ) {
             document.getElementById('reg-message').removeAttribute('hidden')
             document.getElementById('reg-message').innerText = 'The provided username is already taken!';
@@ -199,6 +237,10 @@ function isEmailAvailable() {
 
     let email = document.getElementById('email').value;
 
+    if (!email) {
+        return;
+    }
+
     let xhr = new XMLHttpRequest();
 
     xhr.open('POST', 'email.validate');
@@ -208,6 +250,7 @@ function isEmailAvailable() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 204) {
             console.log('Provided email is available!');
+            document.getElementById('reg-message').setAttribute('hidden', true);
         } else if (xhr.readyState == 4 && xhr.status == 409) {
             document.getElementById('reg-message').removeAttribute('hidden');
             document.getElementById('reg-message').innerText = 'The provided email address is already taken!';
@@ -233,7 +276,7 @@ function validateLoginForm() {
 
     if (!un || !pw) {
         document.getElementById('login-message').removeAttribute('hidden');
-        document.getElementById('login-message').innerText = 'You must provided values for all fields in the form!'
+        document.getElementById('login-message').innerText = 'You must provided values for all fields in the form!';
         document.getElementById('login').setAttribute('disabled', true);
     } else {
         document.getElementById('login').removeAttribute('disabled');
