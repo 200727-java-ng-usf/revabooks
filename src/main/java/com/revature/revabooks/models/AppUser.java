@@ -13,10 +13,10 @@ public class AppUser {
     private Integer id;
 
     @Column(name="first_name")
-    private String firstName;
+    private String first_name;
 
     @Column(name="last_name")
-    private String lastName;
+    private String last_name;
 
     @Column
     private String username;
@@ -39,28 +39,28 @@ public class AppUser {
         super();
     }
 
-    public AppUser(String firstName, String lastName, String username, String password, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public AppUser(String first_name, String last_name, String username, String password, String email) {
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = Role.LOCKED;
     }
 
-    public AppUser(String firstName, String lastName, String username, String password, String email, Role role) {
-        this(firstName, lastName, username, password, email);
+    public AppUser(String first_name, String last_name, String username, String password, String email, Role role) {
+        this(first_name, last_name, username, password, email);
         this.role = role;
     }
 
-    public AppUser(Integer id, String firstName, String lastName, String username, String password, String email,  Role role) {
-        this(firstName, lastName, username, password, email, role);
+    public AppUser(Integer id, String first_name, String last_name, String username, String password, String email, Role role) {
+        this(first_name, last_name, username, password, email, role);
         this.id = id;
     }
 
     // copy constructor (used for conveniently copying the values of one AppUser to create a new instance with those values)
     public AppUser(AppUser copy) {
-        this(copy.id, copy.firstName, copy.lastName, copy.username, copy.password, copy.email, copy.role);
+        this(copy.id, copy.first_name, copy.last_name, copy.username, copy.password, copy.email, copy.role);
     }
 
     // getters and setters
@@ -72,20 +72,20 @@ public class AppUser {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getUsername() {
@@ -127,8 +127,8 @@ public class AppUser {
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
         return Objects.equals(id, appUser.id) &&
-                Objects.equals(firstName, appUser.firstName) &&
-                Objects.equals(lastName, appUser.lastName) &&
+                Objects.equals(first_name, appUser.first_name) &&
+                Objects.equals(last_name, appUser.last_name) &&
                 Objects.equals(username, appUser.username) &&
                 Objects.equals(password, appUser.password) &&
                 Objects.equals(email, appUser.email) &&
@@ -137,15 +137,15 @@ public class AppUser {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, password, email, role);
+        return Objects.hash(id, first_name, last_name, username, password, email, role);
     }
 
     @Override
     public String toString() {
         return "AppUser{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + first_name + '\'' +
+                ", lastName='" + last_name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

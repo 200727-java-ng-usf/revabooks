@@ -100,8 +100,8 @@ public class UserService {
      */
     public boolean isUserValid(AppUser user) {
         if (user == null) return false;
-        if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
-        if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
+        if (user.getFirst_name() == null || user.getFirst_name().trim().equals("")) return false;
+        if (user.getLast_name() == null || user.getLast_name().trim().equals("")) return false;
         if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
         if (user.getPassword() == null || user.getPassword().trim().equals("")) return false;
         return true;

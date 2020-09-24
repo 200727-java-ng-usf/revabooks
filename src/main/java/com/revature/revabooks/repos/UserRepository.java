@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Optional;
@@ -29,8 +28,8 @@ public class UserRepository {
 
     // extract common query clauses into a easily referenced member for reusability.
     private String baseQuery = "SELECT * FROM app_users au " +
-                               "JOIN user_roles ur " +
-                               "ON au.role_id = ur.id ";
+            "JOIN user_roles ur " +
+            "ON au.role_id = ur.id ";
 
     public UserRepository() {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
@@ -66,8 +65,8 @@ public class UserRepository {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sql = "SELECT * FROM app_users au " +
-                         "JOIN user_roles ur " +
-                         "ON au.role_id = ur.id";
+                    "JOIN user_roles ur " +
+                    "ON au.role_id = ur.id";
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -98,9 +97,9 @@ public class UserRepository {
             // does the same thing as the comment out code above (just a bit more concise)
             session.beginTransaction();
             AppUser retrievedUser = session.createQuery("from AppUser au where au.username = :un and password = :pw", AppUser.class)
-                                           .setParameter("un", username)
-                                           .setParameter("pw", password)
-                                           .getSingleResult();
+                    .setParameter("un", username)
+                    .setParameter("pw", password)
+                    .getSingleResult();
 
             _user = Optional.of(retrievedUser);
 
@@ -191,8 +190,8 @@ public class UserRepository {
         while (rs.next()) {
             AppUser temp = new AppUser();
             temp.setId(rs.getInt("id"));
-            temp.setFirstName(rs.getString("first_name"));
-            temp.setLastName(rs.getString("last_name"));
+            temp.setFirst_name(rs.getString("first_name"));
+            temp.setLast_name(rs.getString("last_name"));
             temp.setUsername(rs.getString("username"));
             temp.setPassword(rs.getString("password"));
             temp.setRole(Role.getByName(rs.getString("name")));
